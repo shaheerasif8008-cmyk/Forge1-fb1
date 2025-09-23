@@ -1,0 +1,28 @@
+groups:
+  - name: forge1-slos
+    rules:
+      - alert: HighErrorRate
+        expr: sum(rate(forge1_http_requests_total{status=~"5.."}[5m])) / sum(rate(forge1_http_requests_total[5m])) > 0.05
+        for: 10m
+        labels:
+          severity: page
+        annotations:
+          summary: High 5xx error rate
+          description: Error rate exceeded 5% for 10m.
+      - alert: HighLatencyP95
+        expr: histogram_quantile(0.95, sum(rate(forge1_http_request_duration_seconds_bucket[5m])) by (le)) > 1
+        for: 10m
+        labels:
+          severity: page
+        annotations:
+          summary: P95 latency above 1s
+          description: Request latency SLO breach.
+      - alert: QueueBacklog
+        expr: redis_list_length{key=~"t:.*:queue:jobs"} > 1000
+        for: 15m
+        labels:
+          severity: ticket
+        annotations:
+          summary: Job queue backlog high
+          description: Investigate workers and downstream dependencies.
+

@@ -1,0 +1,58 @@
+namespace: forge1
+
+imagePullPolicy: IfNotPresent
+
+backend:
+  enabled: true
+  image: forge1/backend:latest
+  replicas: 2
+  port: 8000
+  env:
+    LOG_LEVEL: INFO
+    FORGE1_ENV: production
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+  hpa:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 60
+  service:
+    type: ClusterIP
+  metrics:
+    enabled: true
+
+frontend:
+  enabled: true
+  image: forge1/frontend:latest
+  replicas: 2
+  port: 3000
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 800m
+      memory: 512Mi
+  service:
+    type: ClusterIP
+
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: forge1.local
+      paths:
+        - path: /
+          pathType: Prefix
+          service: frontend
+        - path: /api
+          pathType: Prefix
+          service: backend
+  tls: []
+

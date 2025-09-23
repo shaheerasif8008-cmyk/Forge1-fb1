@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install backend dependencies
+        working-directory: forge1/backend
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+      - name: Run backend tests
+        working-directory: forge1/backend
+        run: |
+          pytest -q --maxfail=1 --disable-warnings
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install frontend deps
+        working-directory: forge1/frontend
+        run: |
+          npm ci
+      - name: Type check
+        working-directory: forge1/frontend
+        run: npm run type-check
+      - name: Build
+        working-directory: forge1/frontend
+        run: npm run build
+
+  deploy-validate:
+    needs: [backend, frontend]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate artifacts
+        run: |
+          echo "All tests passed. Ready to deploy."
+      - name: Performance regression sentinel
+        run: |
+          echo "No explicit regression checks wired; add thresholds as needed."
+

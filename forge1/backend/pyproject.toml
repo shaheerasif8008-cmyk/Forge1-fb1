@@ -1,0 +1,101 @@
+[project]
+name = "forge1-backend"
+version = "1.0.0"
+description = "Forge 1 Platform - Enterprise AI Employee Builder Backend"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    # Core Microsoft dependencies (pinned versions)
+    "azure-ai-evaluation==1.5.0",
+    "azure-ai-inference==1.0.0b9",
+    "azure-ai-projects==1.0.0",
+    "azure-ai-agents==1.2.0b2",
+    "azure-cosmos==4.9.0",
+    "azure-identity==1.21.0",
+    "azure-monitor-events-extension==0.1.0",
+    "azure-monitor-opentelemetry==1.6.8",
+    "azure-search-documents==11.5.2",
+    "fastapi==0.115.12",
+    "openai==1.75.0",
+    "semantic-kernel==1.35.3",
+    "uvicorn==0.34.2",
+    
+    # Forge 1 Enhanced Dependencies (pinned versions)
+    "anthropic==0.40.0",                    # Claude integration
+    "google-generativeai==0.8.3",          # Gemini integration
+    "langchain==0.3.7",                    # LangChain framework
+    "langchain-community==0.3.5",          # LangChain community tools
+    "crewai==0.80.0",                      # CrewAI multi-agent framework
+    "autogen-agentchat==0.4.0",           # AutoGen conversation management
+    "haystack-ai==2.8.0",                 # Haystack document processing
+    "llama-index==0.12.5",                # LlamaIndex integration
+    
+    # Database and Storage (pinned versions)
+    "psycopg2-binary==2.9.9",             # PostgreSQL driver
+    "redis==5.2.0",                       # Redis cache
+    "pinecone-client==5.0.1",             # Vector database
+    "weaviate-client==4.9.3",             # Alternative vector DB
+    
+    # Security and Compliance (pinned versions)
+    "azure-keyvault-secrets==4.8.0",      # Azure KeyVault
+    "cryptography==44.0.0",               # Encryption
+    "pyjwt==2.10.1",                      # JWT handling
+    "bcrypt==4.2.1",                      # Password hashing
+    
+    # Monitoring and Observability (pinned versions)
+    "prometheus-client==0.21.1",          # Prometheus metrics
+    "jaeger-client==4.8.0",               # Distributed tracing
+    "structlog==24.4.0",                  # Structured logging
+    
+    # Testing and Development (pinned versions)
+    "pytest==8.2.2",
+    "pytest-asyncio==0.24.0",
+    "pytest-cov==5.0.0",
+    "pytest-mock==3.14.0",
+    "httpx==0.28.1",                      # HTTP client for testing
+    
+    # Utilities (pinned versions)
+    "python-dotenv==1.1.0",
+    "python-multipart==0.0.20",
+    "pydantic==2.10.3",
+    "pydantic-settings==2.7.0",
+    "click==8.1.8",                       # CLI utilities
+    "rich==13.9.4",                       # Rich console output
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--cov=forge1",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--strict-markers",
+    "-v"
+]
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+source = ["forge1"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/__pycache__/*",
+    "*/migrations/*"
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
