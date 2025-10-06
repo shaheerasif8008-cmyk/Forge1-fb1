@@ -19,7 +19,8 @@ import redis.asyncio as redis
 import pinecone
 import weaviate
 from weaviate.classes.init import Auth
-from pydantic import BaseSettings, Field
+from pydantic import Field
+from pydantic_settings import BaseSettings
 
 logger = logging.getLogger(__name__)
 

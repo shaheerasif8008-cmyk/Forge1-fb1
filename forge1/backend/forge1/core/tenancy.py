@@ -1,24 +1,23 @@
-import contextvars
+"""
+Forge 1 Multi-Tenancy Support
+Enterprise multi-tenant architecture with data isolation
+"""
+
+import threading
 from typing import Optional
 
-_tenant_ctx: contextvars.ContextVar[str] = contextvars.ContextVar("forge1_tenant", default="default_tenant")
+# Thread-local storage for tenant context
+_tenant_context = threading.local()
 
+def set_current_tenant(tenant_id: Optional[str]):
+    """Set the current tenant ID for the request context"""
+    _tenant_context.tenant_id = tenant_id
 
-def set_current_tenant(tenant_id: Optional[str]) -> None:
-    _tenant_ctx.set(tenant_id or "default_tenant")
+def get_current_tenant() -> Optional[str]:
+    """Get the current tenant ID from the request context"""
+    return getattr(_tenant_context, 'tenant_id', None)
 
-
-def get_current_tenant() -> str:
-    return _tenant_ctx.get()
-
-
-def tenant_prefix(prefix: str) -> str:
-    return f"t:{get_current_tenant()}:{prefix}"
-
-
-__all__ = [
-    "set_current_tenant",
-    "get_current_tenant",
-    "tenant_prefix",
-]
-
+def clear_tenant_context():
+    """Clear the tenant context"""
+    if hasattr(_tenant_context, 'tenant_id'):
+        delattr(_tenant_context, 'tenant_id')

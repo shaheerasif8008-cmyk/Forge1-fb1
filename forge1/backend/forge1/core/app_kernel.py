@@ -18,31 +18,49 @@ import time
 from typing import Dict, List, Optional, Any
 from contextlib import asynccontextmanager
 
-# Import Microsoft's base functionality
+# Import Microsoft's base functionality with fallbacks
 import sys
-sys.path.append('../../../Multi-Agent-Custom-Automation-Engine-Solution-Accelerator/src/backend')
+import os
 
-from app_config import config
-from auth.auth_utils import get_authenticated_user_details
-from config_kernel import Config
-from event_utils import track_event_if_configured
+# Try to import Microsoft's modules, fallback to our implementations
+try:
+    sys.path.append('../../../Multi-Agent-Custom-Automation-Engine-Solution-Accelerator/src/backend')
+    from app_config import config
+    from auth.auth_utils import get_authenticated_user_details
+    from config_kernel import Config
+    from event_utils import track_event_if_configured
+    MICROSOFT_MODULES_AVAILABLE = True
+except ImportError:
+    # Fallback implementations
+    from forge1.core.fallback_modules import (
+        config, get_authenticated_user_details, Config, track_event_if_configured
+    )
+    MICROSOFT_MODULES_AVAILABLE = False
 from fastapi import FastAPI, HTTPException, Query, Request, Response, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from fastapi.responses import JSONResponse, Response
 from fastapi.exceptions import RequestValidationError
-from middleware.health_check import HealthCheckMiddleware
-from models.messages_kernel import (
-    AgentMessage,
-    AgentType,
-    HumanClarification,
-    HumanFeedback,
-    InputTask,
-    PlanWithSteps,
-    Step,
-    UserLanguage
-)
-from utils_kernel import initialize_runtime_and_context, rai_success
+try:
+    from middleware.health_check import HealthCheckMiddleware
+    from models.messages_kernel import (
+        AgentMessage,
+        AgentType,
+        HumanClarification,
+        HumanFeedback,
+        InputTask,
+        PlanWithSteps,
+        Step,
+        UserLanguage
+    )
+    from utils_kernel import initialize_runtime_and_context, rai_success
+except ImportError:
+    # Fallback implementations
+    from forge1.core.fallback_modules import (
+        HealthCheckMiddleware, AgentMessage, AgentType, HumanClarification,
+        HumanFeedback, InputTask, PlanWithSteps, Step, UserLanguage,
+        initialize_runtime_and_context, rai_success
+    )
 from pydantic import BaseModel, ValidationError
 
 # Forge 1 Enhanced Imports
@@ -55,8 +73,13 @@ from forge1.api.compliance_api import router as compliance_router
 from forge1.core.tenancy import set_current_tenant, get_current_tenant
 from forge1.agents.agent_factory_enhanced import EnhancedAgentFactory
 
-# Azure monitoring
-from azure.monitor.opentelemetry import configure_azure_monitor
+# Azure monitoring (optional)
+try:
+    from azure.monitor.opentelemetry import configure_azure_monitor
+    AZURE_MONITORING_AVAILABLE = True
+except ImportError:
+    AZURE_MONITORING_AVAILABLE = False
+    configure_azure_monitor = None
 
 # Prometheus exporter
 try:
@@ -67,18 +90,21 @@ except Exception:
 
 # Configure Application Insights
 connection_string = os.getenv("APPLICATIONINSIGHTS_CONNECTION_STRING")
-if connection_string:
+if connection_string and AZURE_MONITORING_AVAILABLE:
     configure_azure_monitor(connection_string=connection_string)
     logging.info("Application Insights configured with Forge 1 enhancements")
+elif connection_string:
+    logging.warning("Application Insights connection string found but Azure monitoring not available")
 else:
-    logging.warning("No Application Insights connection string found")
+    logging.info("No Application Insights connection string found - using fallback monitoring")
 
-# Optional Jaeger tracing (Task 9.1)
+# Optional Jaeger tracing
 JAEGER_TRACING_ENABLED = False
+JaegerConfig = None
 try:
     from jaeger_client import Config as JaegerConfig
     JAEGER_TRACING_ENABLED = True
-except Exception:
+except ImportError:
     JAEGER_TRACING_ENABLED = False
 
 # Configure logging with Forge 1 structured logging

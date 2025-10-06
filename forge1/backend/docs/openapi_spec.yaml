@@ -1,0 +1,748 @@
+openapi: 3.0.3
+info:
+  title: Forge1 Employee Lifecycle API
+  description: |
+    Comprehensive API for managing AI employee lifecycle including client onboarding,
+    employee creation, interactions, memory management, and analytics.
+    
+    ## Features
+    - **Client Management**: Onboard and manage clients with tier-based configuration
+    - **Employee Lifecycle**: Create, configure, and manage AI employees
+    - **Employee Interactions**: Real-time conversations with personality-driven responses
+    - **Memory Management**: Isolated memory with semantic search capabilities
+    - **Analytics & Monitoring**: Performance metrics, health monitoring, and cost tracking
+    - **Security**: Multi-tenant isolation with comprehensive access control
+    
+    ## Authentication
+    All endpoints require authentication via Bearer token and tenant context headers:
+    - `Authorization: Bearer <token>`
+    - `X-Tenant-ID: <tenant_id>`
+    - `X-Client-ID: <client_id>`
+    - `X-User-ID: <user_id>`
+    
+  version: 1.0.0
+  contact:
+    name: Forge1 API Support
+    email: api-support@forge1.com
+  license:
+    name: Proprietary
+    url: https://forge1.com/license
+
+servers:
+  - url: https://api.forge1.com/v1
+    description: Production server
+  - url: https://staging-api.forge1.com/v1
+    description: Staging server
+  - url: http://localhost:8000
+    description: Development server
+
+security:
+  - BearerAuth: []
+  - TenantHeaders: []
+
+paths:
+  # Client Management
+  /api/v1/employees/clients:
+    post:
+      summary: Onboard new client
+      description: Create a new client account with tier-based configuration and employee limits
+      tags: [Client Management]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientInfo'
+            example:
+              name: "Acme Corporation"
+              industry: "Technology"
+              tier: "enterprise"
+              max_employees: 50
+              allowed_models: ["gpt-4", "gpt-3.5-turbo"]
+              security_level: "high"
+              compliance_requirements: ["SOC2", "GDPR"]
+      responses:
+        '200':
+          description: Client onboarded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientResponse'
+        '400':
+          description: Invalid client data
+        '403':
+          description: Access denied
+        '500':
+          description: Internal server error
+
+  /api/v1/employees/clients/{client_id}:
+    get:
+      summary: Get client information
+      description: Retrieve client details and statistics
+      tags: [Client Management]
+      parameters:
+        - name: client_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Client identifier
+      responses:
+        '200':
+          description: Client information retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientResponse'
+        '404':
+          description: Client not found
+        '403':
+          description: Access denied
+
+  # Employee Management
+  /api/v1/employees/clients/{client_id}/employees:
+    post:
+      summary: Create new employee
+      description: Create a new AI employee based on requirements and client specifications
+      tags: [Employee Management]
+      parameters:
+        - name: client_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeRequirements'
+            example:
+              role: "Customer Support Specialist"
+              industry: "Technology"
+              expertise_areas: ["customer_service", "technical_support"]
+              communication_style: "friendly"
+              tools_needed: ["email", "chat", "knowledge_base"]
+              knowledge_domains: ["product_docs", "troubleshooting"]
+              personality_traits:
+                empathy_level: 0.9
+                patience_level: 0.95
+              model_preferences:
+                primary_model: "gpt-4"
+                temperature: 0.7
+                max_tokens: 1500
+      responses:
+        '200':
+          description: Employee created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeResponse'
+        '400':
+          description: Invalid employee requirements
+        '403':
+          description: Access denied
+        '404':
+          description: Client not found
+
+    get:
+      summary: List client employees
+      description: Get list of all employees for a client with optional filtering
+      tags: [Employee Management]
+      parameters:
+        - name: client_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [active, inactive, archived]
+          description: Filter by employee status
+        - name: role
+          in: query
+          schema:
+            type: string
+          description: Filter by role (partial match)
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+            default: 100
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: Employee list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EmployeeResponse'
+
+  /api/v1/employees/clients/{client_id}/employees/{employee_id}:
+    get:
+      summary: Get employee details
+      description: Retrieve detailed employee information including configuration
+      tags: [Employee Management]
+      parameters:
+        - name: client_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: employee_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: include_stats
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Include employee statistics
+      responses:
+        '200':
+          description: Employee details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeDetails'
+
+  # Employee Interactions
+  /api/v1/employees/clients/{client_id}/employees/{employee_id}/interact:
+    post:
+      summary: Interact with employee
+      description: Send a message to an AI employee and receive a personalized response
+      tags: [Employee Interactions]
+      parameters:
+        - name: client_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: employee_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InteractionRequest'
+            example:
+              message: "Hello, I need help with setting up my account"
+              session_id: "user_session_123"
+              context:
+                user_type: "new_customer"
+                urgency: "normal"
+              include_memory: true
+              memory_limit: 10
+      responses:
+        '200':
+          description: Interaction processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InteractionResponse'
+
+  # Memory Management
+  /api/v1/employees/clients/{client_id}/employees/{employee_id}/memory:
+    get:
+      summary: Get employee memory
+      description: Retrieve employee conversation history with optional semantic search
+      tags: [Memory Management]
+      parameters:
+        - name: client_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: employee_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          schema:
+            type: string
+          description: Semantic search query
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+        - name: include_embeddings
+          in: query
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Memory retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemoryResponse'
+
+  # Analytics
+  /api/v1/analytics/employees/{client_id}/{employee_id}/metrics:
+    get:
+      summary: Get employee metrics
+      description: Retrieve comprehensive performance metrics for an employee
+      tags: [Analytics]
+      parameters:
+        - name: client_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: employee_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: days
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 365
+            default: 30
+      responses:
+        '200':
+          description: Employee metrics retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeMetrics'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    TenantHeaders:
+      type: apiKey
+      in: header
+      name: X-Tenant-ID
+
+  schemas:
+    ClientInfo:
+      type: object
+      required: [name, industry, tier]
+      properties:
+        name:
+          type: string
+          description: Client company name
+          example: "Acme Corporation"
+        industry:
+          type: string
+          description: Client industry
+          example: "Technology"
+        tier:
+          type: string
+          enum: [startup, business, enterprise]
+          description: Client tier level
+        max_employees:
+          type: integer
+          minimum: 1
+          maximum: 1000
+          default: 10
+          description: Maximum number of employees allowed
+        allowed_models:
+          type: array
+          items:
+            type: string
+          description: AI models this client can use
+          example: ["gpt-4", "gpt-3.5-turbo"]
+        security_level:
+          type: string
+          enum: [standard, high, maximum]
+          default: standard
+        compliance_requirements:
+          type: array
+          items:
+            type: string
+          example: ["SOC2", "GDPR", "HIPAA"]
+
+    ClientResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique client identifier
+        name:
+          type: string
+          description: Client name
+        industry:
+          type: string
+          description: Client industry
+        tier:
+          type: string
+          description: Client tier
+        max_employees:
+          type: integer
+          description: Maximum employees allowed
+        current_employees:
+          type: integer
+          description: Current number of employees
+        security_level:
+          type: string
+          description: Security level
+        status:
+          type: string
+          enum: [active, inactive, suspended]
+        created_at:
+          type: string
+          format: date-time
+
+    EmployeeRequirements:
+      type: object
+      required: [role, industry, expertise_areas, communication_style]
+      properties:
+        role:
+          type: string
+          description: Employee role/job title
+          example: "Customer Support Specialist"
+        industry:
+          type: string
+          description: Industry context
+          example: "Technology"
+        expertise_areas:
+          type: array
+          items:
+            type: string
+          description: Areas of expertise
+          example: ["customer_service", "technical_support"]
+        communication_style:
+          type: string
+          enum: [professional, friendly, casual, technical]
+          description: Preferred communication style
+        tools_needed:
+          type: array
+          items:
+            type: string
+          description: Tools the employee should have access to
+          example: ["email", "chat", "knowledge_base"]
+        knowledge_domains:
+          type: array
+          items:
+            type: string
+          description: Knowledge domains for the employee
+          example: ["product_docs", "troubleshooting"]
+        personality_traits:
+          type: object
+          description: Personality configuration
+          properties:
+            empathy_level:
+              type: number
+              minimum: 0
+              maximum: 1
+              description: Empathy level (0.0 to 1.0)
+            patience_level:
+              type: number
+              minimum: 0
+              maximum: 1
+              description: Patience level (0.0 to 1.0)
+        model_preferences:
+          type: object
+          description: AI model preferences
+          properties:
+            primary_model:
+              type: string
+              example: "gpt-4"
+            temperature:
+              type: number
+              minimum: 0
+              maximum: 2
+              default: 0.7
+            max_tokens:
+              type: integer
+              minimum: 1
+              maximum: 8000
+              default: 2000
+
+    EmployeeResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique employee identifier
+        client_id:
+          type: string
+          description: Client identifier
+        name:
+          type: string
+          description: Employee name
+        role:
+          type: string
+          description: Employee role
+        communication_style:
+          type: string
+          description: Communication style
+        expertise_level:
+          type: string
+          description: Expertise level
+        status:
+          type: string
+          enum: [active, inactive, archived]
+        created_at:
+          type: string
+          format: date-time
+        last_interaction_at:
+          type: string
+          format: date-time
+          nullable: true
+
+    InteractionRequest:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+          description: Message to send to the employee
+          example: "Hello, I need help with my account"
+        session_id:
+          type: string
+          description: Session identifier for conversation continuity
+          example: "user_session_123"
+        context:
+          type: object
+          description: Additional context for the interaction
+          example:
+            user_type: "existing_customer"
+            urgency: "high"
+        include_memory:
+          type: boolean
+          default: true
+          description: Whether to include memory context
+        memory_limit:
+          type: integer
+          minimum: 1
+          maximum: 50
+          default: 10
+          description: Maximum number of memory items to include
+
+    InteractionResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Employee's response message
+        employee_id:
+          type: string
+          description: Employee identifier
+        employee_name:
+          type: string
+          description: Employee name
+        interaction_id:
+          type: string
+          description: Unique interaction identifier
+        session_id:
+          type: string
+          description: Session identifier
+        timestamp:
+          type: string
+          format: date-time
+        model_used:
+          type: string
+          description: AI model used for response
+        processing_time_ms:
+          type: integer
+          description: Processing time in milliseconds
+        tokens_used:
+          type: integer
+          description: Total tokens used
+        cost:
+          type: number
+          format: float
+          description: Cost of the interaction
+        confidence_score:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Confidence score of the response
+
+    MemoryResponse:
+      type: object
+      properties:
+        memories:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemoryItem'
+        total_count:
+          type: integer
+          description: Total number of memory items
+        query_time_ms:
+          type: number
+          description: Query execution time in milliseconds
+
+    MemoryItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Memory item identifier
+        content:
+          type: string
+          description: Original message content
+        response:
+          type: string
+          description: Employee response
+        timestamp:
+          type: string
+          format: date-time
+        memory_type:
+          type: string
+          enum: [interaction, summary, knowledge]
+        importance_score:
+          type: number
+          minimum: 0
+          maximum: 1
+        relevance_score:
+          type: number
+          minimum: 0
+          maximum: 1
+        context:
+          type: object
+          description: Interaction context
+
+    EmployeeMetrics:
+      type: object
+      properties:
+        employee_id:
+          type: string
+        employee_name:
+          type: string
+        period_days:
+          type: integer
+        metrics:
+          type: object
+          properties:
+            total_interactions:
+              type: integer
+            avg_response_time_ms:
+              type: number
+            success_rate:
+              type: number
+            user_satisfaction_score:
+              type: number
+            cost_per_interaction:
+              type: number
+            total_cost:
+              type: number
+            active_days:
+              type: integer
+            performance_trend:
+              type: string
+              enum: [improving, stable, declining]
+        common_topics:
+          type: array
+          items:
+            type: object
+            properties:
+              topic:
+                type: string
+              count:
+                type: integer
+              avg_response_time:
+                type: number
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        detail:
+          type: string
+          description: Detailed error information
+        request_id:
+          type: string
+          description: Request identifier for tracking
+
+  responses:
+    UnauthorizedError:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "Authentication required"
+            detail: "Valid Bearer token and tenant headers required"
+
+    ForbiddenError:
+      description: Access denied
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "Access denied"
+            detail: "Insufficient permissions for this resource"
+
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "Resource not found"
+            detail: "The requested resource does not exist"
+
+    ValidationError:
+      description: Invalid request data
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "Validation error"
+            detail: "Invalid field values in request"
+
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "Internal server error"
+            detail: "An unexpected error occurred"
+
+tags:
+  - name: Client Management
+    description: Client onboarding and management operations
+  - name: Employee Management
+    description: Employee creation, configuration, and lifecycle management
+  - name: Employee Interactions
+    description: Real-time employee conversations and interactions
+  - name: Memory Management
+    description: Employee memory storage, retrieval, and search
+  - name: Configuration Management
+    description: Employee personality, model, and tool configuration
+  - name: Analytics
+    description: Performance metrics, monitoring, and reporting
+  - name: Security
+    description: Security, audit, and compliance operations
+  - name: Integration
+    description: System integration and compatibility endpoints

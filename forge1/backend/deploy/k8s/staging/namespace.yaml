@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: employee-lifecycle-staging
+  labels:
+    name: employee-lifecycle-staging
+    environment: staging
+    app: employee-lifecycle
+  annotations:
+    description: "Employee Lifecycle System - Staging Environment"

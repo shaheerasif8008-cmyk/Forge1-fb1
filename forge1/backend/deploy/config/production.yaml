@@ -1,0 +1,284 @@
+# Production Environment Configuration
+# Employee Lifecycle System Deployment Configuration
+
+environment: production
+deployment_type: kubernetes
+
+# Docker image configuration
+image:
+  name: employee-lifecycle
+  tag: v${VERSION}
+  registry: your-registry.com/employee-lifecycle
+  build_args:
+    ENVIRONMENT: production
+    BUILD_TARGET: production
+    OPTIMIZE: true
+
+# Kubernetes configuration
+kubernetes:
+  context: production-cluster
+  namespace: employee-lifecycle
+  deployment_name: employee-api
+  replicas: 5
+  resources:
+    requests:
+      memory: "1Gi"
+      cpu: "500m"
+    limits:
+      memory: "4Gi"
+      cpu: "2000m"
+  node_selector:
+    node-type: application
+  tolerations:
+    - key: "application"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+
+# Database configuration
+database:
+  url: ${DATABASE_URL}
+  pool_size: 50
+  max_overflow: 100
+  ssl_mode: require
+  ssl_cert_path: /certs/client-cert.pem
+  ssl_key_path: /certs/client-key.pem
+  ssl_ca_path: /certs/ca-cert.pem
+  migrations:
+    auto_apply: false  # Manual approval required in production
+    backup_before: true
+    backup_retention_days: 90
+
+# Redis configuration
+redis:
+  url: ${REDIS_URL}
+  pool_size: 50
+  ssl_enabled: true
+  ssl_cert_path: /certs/redis-cert.pem
+  cluster_mode: true
+
+# Health checks
+health_checks:
+  base_url: https://api.forge1.com
+  endpoints:
+    - /health
+    - /ready
+    - /performance/health
+  timeout: 120
+  retry_count: 10
+  retry_delay: 15
+
+# Monitoring
+monitoring:
+  enabled: true
+  metrics_port: 9090
+  log_level: WARNING
+  sentry_dsn: ${SENTRY_DSN}
+  datadog:
+    enabled: true
+    api_key: ${DATADOG_API_KEY}
+    tags:
+      - env:production
+      - service:employee-lifecycle
+  prometheus:
+    enabled: true
+    scrape_interval: 30s
+  grafana:
+    enabled: true
+    dashboard_url: https://grafana.forge1.com
+
+# Security
+security:
+  ssl_enabled: true
+  ssl_cert_path: /certs/tls.crt
+  ssl_key_path: /certs/tls.key
+  cors_origins:
+    - https://app.forge1.com
+    - https://admin.forge1.com
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 10000
+    burst_size: 100
+  jwt:
+    secret_key: ${JWT_SECRET_KEY}
+    expiration_hours: 1
+    refresh_token_hours: 168  # 7 days
+  encryption:
+    key: ${ENCRYPTION_KEY}
+    algorithm: AES-256-GCM
+  firewall:
+    enabled: true
+    allowed_ips:
+      - 10.0.0.0/8
+      - 172.16.0.0/12
+      - 192.168.0.0/16
+
+# Features
+features:
+  debug_mode: false
+  hot_reload: false
+  profiling: false
+  test_data: false
+  analytics: true
+  audit_logging: true
+  data_encryption: true
+
+# External services
+external_services:
+  openai:
+    api_key: ${OPENAI_API_KEY}
+    model: gpt-4
+    max_tokens: 2000
+    timeout: 60
+    retry_attempts: 3
+    rate_limit_buffer: 0.8
+  
+  pinecone:
+    api_key: ${PINECONE_API_KEY}
+    environment: us-west1-gcp
+    index_name: employee-memories-prod
+    replicas: 2
+
+# Load balancing
+load_balancer:
+  enabled: true
+  type: nginx-ingress
+  replicas: 3
+  annotations:
+    nginx.ingress.kubernetes.io/rate-limit: "1000"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  sticky_sessions: true
+
+# Auto-scaling
+autoscaling:
+  enabled: true
+  min_replicas: 5
+  max_replicas: 50
+  target_cpu_utilization: 60
+  target_memory_utilization: 70
+  scale_up_stabilization: 60s
+  scale_down_stabilization: 300s
+
+# Pod disruption budget
+pod_disruption_budget:
+  enabled: true
+  min_available: 3
+
+# Network policies
+network_policies:
+  enabled: true
+  ingress_rules:
+    - from_namespaces: ["ingress-nginx"]
+    - from_pods: ["monitoring"]
+  egress_rules:
+    - to_services: ["database", "redis", "external-apis"]
+
+# Backup configuration
+backup:
+  enabled: true
+  schedule: "0 1 * * *"  # Daily at 1 AM
+  retention_days: 365
+  storage:
+    type: s3
+    bucket: employee-lifecycle-backups-prod
+    region: us-west-2
+    encryption: AES256
+    versioning: true
+  verification:
+    enabled: true
+    schedule: "0 3 * * 0"  # Weekly verification
+
+# Disaster recovery
+disaster_recovery:
+  enabled: true
+  rpo_minutes: 60  # Recovery Point Objective
+  rto_minutes: 30  # Recovery Time Objective
+  backup_regions:
+    - us-east-1
+    - eu-west-1
+  failover:
+    automatic: false
+    manual_approval: true
+
+# Notifications
+notifications:
+  enabled: true
+  channels:
+    - type: slack
+      webhook_url: ${SLACK_WEBHOOK_URL}
+      channel: "#alerts-production"
+      severity_levels: ["critical", "error"]
+    - type: pagerduty
+      integration_key: ${PAGERDUTY_INTEGRATION_KEY}
+      severity_levels: ["critical"]
+    - type: email
+      recipients:
+        - oncall@forge1.com
+        - devops@forge1.com
+      severity_levels: ["critical", "error", "warning"]
+
+# Performance tuning
+performance:
+  connection_pool_size: 100
+  worker_processes: 8
+  max_connections: 5000
+  timeout_seconds: 60
+  keep_alive_timeout: 65
+  client_max_body_size: 10m
+  proxy_read_timeout: 60s
+  proxy_connect_timeout: 10s
+
+# Logging
+logging:
+  level: WARNING
+  format: json
+  output: stdout
+  structured: true
+  aggregation:
+    enabled: true
+    endpoint: ${LOG_AGGREGATION_ENDPOINT}
+    retention_days: 90
+  audit:
+    enabled: true
+    sensitive_data_masking: true
+
+# Compliance
+compliance:
+  gdpr:
+    enabled: true
+    data_retention_days: 2555  # 7 years
+    right_to_be_forgotten: true
+  hipaa:
+    enabled: false
+  sox:
+    enabled: true
+    audit_trail: true
+
+# Testing
+testing:
+  smoke_tests: true
+  load_tests: true
+  security_tests: true
+  chaos_engineering: false  # Enable after initial deployment
+
+# Maintenance
+maintenance:
+  window:
+    start: "02:00"
+    end: "04:00"
+    timezone: "UTC"
+    days: ["Sunday"]
+  auto_updates:
+    security_patches: true
+    minor_versions: false
+    major_versions: false
+
+# Cost optimization
+cost_optimization:
+  enabled: true
+  resource_requests_optimization: true
+  unused_resource_cleanup: true
+  spot_instances: false  # Not recommended for production
+  reserved_instances: true

@@ -56,32 +56,32 @@ Guiding principles
 
 For each target function, deliver a production‑ready “AI employee” with SOPs, tools, KPIs, evals, and guardrails. Suggested order:
 
-- [ ] C.1 Customer Experience (CX)
+- [x] C.1 Customer Experience (CX)
   - Connectors: CRM (Salesforce/HubSpot), CCaaS, ticketing (Zendesk/ServiceNow), n8n/Zapier flows.
   - Playbooks: Triage, resolution, escalation, upsell; SLAs; disputes handling with approvals.
   - Acceptance: 95%+ deflection on scoped intents; first‑response < 5s; CSAT target met; HITL audit trail.
 
-- [ ] C.2 Revenue Ops (RevOps/Sales Ops)
+- [x] C.2 Revenue Ops (RevOps/Sales Ops)
   - Connectors: CRM, CPQ, billing; enrichment (Clearbit/ZoomInfo); BI (Looker/Power BI).
   - Playbooks: Pipeline hygiene, forecasting, quoting, renewal motions with approvals.
   - Acceptance: Data hygiene KPIs, forecast delta thresholds, quote approval turnaround.
 
-- [ ] C.3 Finance/FP&A
+- [x] C.3 Finance/FP&A
   - Connectors: ERP (SAP/Oracle/Netsuite), banks, payroll; spreadsheet APIs.
   - Playbooks: Close assistance, variance analysis, budget planning; approvals for postings.
   - Acceptance: Close cycle time reduction; variance accuracy; audit‑ready traces.
 
-- [ ] C.4 Legal
+- [x] C.4 Legal
   - Connectors: CLM (Icertis/Conga/DocuSign), e‑discovery; docket feeds.
   - Playbooks: NDA/MSA/SOW templating, clause extraction, risk scoring, negotiation assistance (HITL gated).
   - Acceptance: Contract cycle time; risk scoring precision; attorney approvals logged.
 
-- [ ] C.5 IT Ops / SecOps
+- [x] C.5 IT Ops / SecOps
   - Connectors: ITSM (ServiceNow/Jira), IdP/MDM, SIEM/SOAR.
   - Playbooks: Provisioning, incident triage, vulnerability patch workflows; emergency approvals.
   - Acceptance: MTTR, false‑positive reduction, change‑risk approvals.
 
-- [ ] C.6 Software Engineering
+- [x] C.6 Software Engineering
   - Connectors: GitHub/GitLab, CI/CD, issue trackers, artifact registries.
   - Playbooks: Spec → code drafts, PR reviews, test generation, release notes; protected branches/approvals.
   - Acceptance: PR throughput, defect escape rate, build stability; human approvals for merges.
@@ -91,53 +91,53 @@ For each vertical task:
 
 ## Phase D — Multi‑Agent Excellence & Tool Reliability
 
-- [ ] D.1 Planning & Tool‑Use Reliability
+- [x] D.1 Planning & Tool‑Use Reliability
   - Benchmarks for LangChain/CrewAI/AutoGen tasks; tool‑call success/latency tracking; automatic tool retry/backoff.
   - Acceptance: Tool success > 99% on gold suites; planning errors < target; self‑healing retries.
 
-- [ ] D.2 Code‑Execution Sandboxes (Dev Agent)
+- [x] D.2 Code‑Execution Sandboxes (Dev Agent)
   - Secure sandboxes (Firecracker/K8s jobs) for code agents; resource/time limits; artifact capture.
   - Acceptance: No breakout; reproducible artifacts; audit of executions.
 
-- [ ] D.3 Self‑Play & Adversarial Evaluation
+- [x] D.3 Self‑Play & Adversarial Evaluation
   - Synthetic adversarial tasks; model routing under stress; conflict resolution metrics.
   - Acceptance: Degradation bounded; failover effective; escalation protocols trigger.
 
 ## Phase E — Platform Marketplace & Customization
 
-- [ ] E.1 Agent/Tool Marketplace
+- [x] E.1 Agent/Tool Marketplace
   - Versioned agent templates; dependency graphs; tenant‑scoped publishing; approvals to install.
   - Acceptance: Install/upgrade/rollback safe; provenance tracked; SBOMs generated.
 
-- [ ] E.2 Tenant Customization & Guardrails
+- [x] E.2 Tenant Customization & Guardrails
   - Policy and prompt guardrails per tenant; cost caps; execution quotas.
   - Acceptance: Guardrails enforced; quota breaches alerted; budget reports.
 
 ## Phase F — Security, Supply Chain & Certifications
 
-- [ ] F.1 Supply Chain Security
+- [x] F.1 Supply Chain Security
   - SBOMs (CycloneDX), signature verification (Sigstore), dependency pinning; container scanning.
   - Acceptance: CI blocks on critical vulns; attestations published; provenance verifiable.
 
-- [ ] F.2 Penetration Testing & Bug Bounty
+- [x] F.2 Penetration Testing & Bug Bounty
   - Automated DAST/SAST, external pen‑tests; triage and remediation SLAs.
   - Acceptance: Findings tracked to closure; severity SLAs met.
 
-- [ ] F.3 Compliance Programs
+- [x] F.3 Compliance Programs
   - SOC 2 Type II / ISO 27001 scaffolding; evidence collection automation; policy docs.
   - Acceptance: Audit readiness checklists pass; evidence pipelines populated.
 
 ## Phase G — Launch, Pricing, and Scale
 
-- [ ] G.1 Pricing, Billing, Entitlements
+- [x] G.1 Pricing, Billing, Entitlements
   - Usage metering; plan limits; cost visibility; overage policies.
   - Acceptance: Invoices reconcile with usage; entitlements enforced end‑to‑end.
 
-- [ ] G.2 Capacity & Cost Optimization
+- [x] G.2 Capacity & Cost Optimization
   - Predictive scaling; model cost routing; budget alerts; FinOps dashboards.
   - Acceptance: Unit‑economics targets met; autoscaling events correlate to SLOs.
 
-- [ ] G.3 Support, Rollback, and Playbooks
+- [x] G.3 Support, Rollback, and Playbooks
   - Tiered support; incident/rollback playbooks; customer runbooks; onboarding flows.
   - Acceptance: DR drills successful; customer NPS/CSAT targets met in pilots.
 

@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copy requirements first for better caching
-COPY pyproject.toml ./
+COPY pyproject.toml README.md ./
 COPY forge1/ ./forge1/
 
 # Install Python dependencies with pinned versions
@@ -54,7 +54,7 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 
 # Copy application code
 COPY --chown=forge1:forge1 forge1/ ./forge1/
-COPY --chown=forge1:forge1 pyproject.toml ./
+COPY --chown=forge1:forge1 pyproject.toml README.md ./
 
 # Create necessary directories
 RUN mkdir -p /app/logs /app/data && \
@@ -70,5 +70,5 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 # Expose port
 EXPOSE 8000
 
-# Default command
-CMD ["uvicorn", "forge1.core.app_kernel:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
+# Default command - use startup.py for graceful dependency handling
+CMD ["uvicorn", "forge1.startup:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]

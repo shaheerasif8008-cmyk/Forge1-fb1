@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: employee-config
+  namespace: employee-lifecycle-staging
+  labels:
+    app: employee-lifecycle
+    environment: staging
+data:
+  ENVIRONMENT: "staging"
+  LOG_LEVEL: "INFO"
+  API_HOST: "0.0.0.0"
+  API_PORT: "8000"
+  DATABASE_POOL_SIZE: "20"
+  DATABASE_MAX_OVERFLOW: "30"
+  REDIS_POOL_SIZE: "20"
+  ENABLE_METRICS: "true"
+  METRICS_PORT: "9090"
+  CORS_ORIGINS: "https://app-staging.forge1.com,https://admin-staging.forge1.com"
+  RATE_LIMIT_ENABLED: "true"
+  RATE_LIMIT_REQUESTS_PER_MINUTE: "5000"

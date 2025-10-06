@@ -8,10 +8,10 @@ FROM node:18-alpine as builder
 WORKDIR /app
 
 # Copy package files
-COPY package.json package-lock.json ./
+COPY package.json ./
 
-# Install dependencies with exact versions
-RUN npm ci --only=production --no-audit --no-fund
+# Install dependencies
+RUN npm install
 
 # Copy source code
 COPY . .
@@ -20,36 +20,36 @@ COPY . .
 RUN npm run build
 
 # Production stage
-FROM nginx:alpine as production
+FROM node:18-alpine as production
 
 # Install curl for health checks
 RUN apk add --no-cache curl
 
-# Copy custom nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
+# Set working directory
+WORKDIR /app
 
 # Copy built application from builder stage
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/node_modules ./node_modules
 
 # Create non-root user
 RUN addgroup -g 1001 -S forge1 && \
     adduser -S forge1 -u 1001 -G forge1
 
 # Set ownership
-RUN chown -R forge1:forge1 /usr/share/nginx/html && \
-    chown -R forge1:forge1 /var/cache/nginx && \
-    chown -R forge1:forge1 /var/log/nginx && \
-    chown -R forge1:forge1 /etc/nginx/conf.d
+RUN chown -R forge1:forge1 /app
 
 # Switch to non-root user
 USER forge1
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:3000 || exit 1
+    CMD curl -f http://localhost:3000/health || exit 1
 
 # Expose port
 EXPOSE 3000
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start Next.js application
+CMD ["npm", "start"]

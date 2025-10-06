@@ -1,0 +1,92 @@
+# Development Environment Configuration
+# Employee Lifecycle System Deployment Configuration
+
+environment: development
+deployment_type: docker-compose
+
+# Docker image configuration
+image:
+  name: employee-lifecycle
+  tag: dev-latest
+  build_args:
+    ENVIRONMENT: development
+    BUILD_TARGET: development
+
+# Docker Compose configuration
+docker_compose:
+  file: docker-compose.dev.yml
+  services:
+    - app
+    - db
+    - redis
+    - nginx
+
+# Database configuration
+database:
+  url: postgresql://dev_user:dev_pass@localhost:5432/employee_dev
+  pool_size: 5
+  max_overflow: 10
+  migrations:
+    auto_apply: true
+    backup_before: false
+
+# Redis configuration
+redis:
+  url: redis://localhost:6379/0
+  pool_size: 10
+
+# Health checks
+health_checks:
+  base_url: http://localhost:8000
+  endpoints:
+    - /health
+    - /ready
+    - /performance/health
+  timeout: 30
+  retry_count: 3
+  retry_delay: 5
+
+# Monitoring
+monitoring:
+  enabled: true
+  metrics_port: 9090
+  log_level: DEBUG
+
+# Security
+security:
+  ssl_enabled: false
+  cors_origins:
+    - http://localhost:3000
+    - http://localhost:8080
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 1000
+
+# Features
+features:
+  debug_mode: true
+  hot_reload: true
+  profiling: true
+  test_data: true
+
+# External services
+external_services:
+  openai:
+    api_key: ${OPENAI_API_KEY}
+    model: gpt-3.5-turbo
+    max_tokens: 1000
+  
+  pinecone:
+    api_key: ${PINECONE_API_KEY}
+    environment: us-west1-gcp
+    index_name: employee-memories-dev
+
+# Backup configuration
+backup:
+  enabled: false
+  retention_days: 7
+
+# Notifications
+notifications:
+  enabled: false
+  channels: []

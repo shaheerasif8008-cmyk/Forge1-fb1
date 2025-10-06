@@ -1,66 +1,100 @@
 [project]
-name = "forge1-backend"
+name = "forge1"
 version = "1.0.0"
 description = "Forge 1 Platform - Enterprise AI Employee Builder Backend"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    # Core Microsoft dependencies (pinned versions)
-    "azure-ai-evaluation==1.5.0",
-    "azure-ai-inference==1.0.0b9",
-    "azure-ai-projects==1.0.0",
-    "azure-ai-agents==1.2.0b2",
-    "azure-cosmos==4.9.0",
-    "azure-identity==1.21.0",
-    "azure-monitor-events-extension==0.1.0",
-    "azure-monitor-opentelemetry==1.6.8",
-    "azure-search-documents==11.5.2",
-    "fastapi==0.115.12",
-    "openai==1.75.0",
-    "semantic-kernel==1.35.3",
-    "uvicorn==0.34.2",
+    # Core FastAPI and web framework
+    "fastapi>=0.100.0",
+    "uvicorn[standard]>=0.20.0",
+    "pydantic>=2.0.0,<3.0.0",
+    "pydantic-settings>=2.0.0",
     
-    # Forge 1 Enhanced Dependencies (pinned versions)
-    "anthropic==0.40.0",                    # Claude integration
-    "google-generativeai==0.8.3",          # Gemini integration
-    "langchain==0.3.7",                    # LangChain framework
-    "langchain-community==0.3.5",          # LangChain community tools
-    "crewai==0.80.0",                      # CrewAI multi-agent framework
-    "autogen-agentchat==0.4.0",           # AutoGen conversation management
-    "haystack-ai==2.8.0",                 # Haystack document processing
-    "llama-index==0.12.5",                # LlamaIndex integration
+    # Database and Storage
+    "psycopg2-binary>=2.9.0",
+    "redis>=4.0.0",
     
-    # Database and Storage (pinned versions)
-    "psycopg2-binary==2.9.9",             # PostgreSQL driver
-    "redis==5.2.0",                       # Redis cache
-    "pinecone-client==5.0.1",             # Vector database
-    "weaviate-client==4.9.3",             # Alternative vector DB
+    # Security and Authentication
+    "cryptography>=40.0.0",
+    "pyjwt>=2.8.0",
+    "bcrypt>=4.0.0",
     
-    # Security and Compliance (pinned versions)
-    "azure-keyvault-secrets==4.8.0",      # Azure KeyVault
-    "cryptography==44.0.0",               # Encryption
-    "pyjwt==2.10.1",                      # JWT handling
-    "bcrypt==4.2.1",                      # Password hashing
+    # Monitoring and Observability
+    "prometheus-client>=0.20.0",
+    "structlog>=23.0.0",
     
-    # Monitoring and Observability (pinned versions)
-    "prometheus-client==0.21.1",          # Prometheus metrics
-    "jaeger-client==4.8.0",               # Distributed tracing
-    "structlog==24.4.0",                  # Structured logging
+    # AI and ML (simplified)
+    "openai>=1.0.0",
+    "anthropic>=0.30.0",
+    "numpy>=1.24.0",
     
-    # Testing and Development (pinned versions)
-    "pytest==8.2.2",
-    "pytest-asyncio==0.24.0",
-    "pytest-cov==5.0.0",
-    "pytest-mock==3.14.0",
-    "httpx==0.28.1",                      # HTTP client for testing
+    # LlamaIndex Integration (pinned for stability)
+    "llama-index>=0.10.0,<0.11.0",
+    "llama-index-core>=0.10.0,<0.11.0",
+    "llama-index-embeddings-openai>=0.1.0",
+    "llama-index-llms-openai>=0.1.0",
+    "llama-index-readers-file>=0.1.0",
+    "llama-index-vector-stores-postgres>=0.1.0",
     
-    # Utilities (pinned versions)
-    "python-dotenv==1.1.0",
-    "python-multipart==0.0.20",
-    "pydantic==2.10.3",
-    "pydantic-settings==2.7.0",
-    "click==8.1.8",                       # CLI utilities
-    "rich==13.9.4",                       # Rich console output
+    # Workflow orchestration (using native Python async/await)
+    # Note: workflows-py removed due to availability issues
+    
+    # Document Processing Dependencies
+    "pypdf>=3.0.0",
+    "python-docx>=0.8.11",
+    "pytesseract>=0.3.10",  # OCR support
+    "pillow>=10.0.0",  # Image processing for OCR
+    
+    # Google Drive Integration
+    "google-api-python-client>=2.0.0",
+    "google-auth>=2.0.0",
+    "google-auth-oauthlib>=1.0.0",
+    
+    # Slack Integration
+    "slack-sdk>=3.0.0",
+    
+    # Vector Operations
+    "pgvector>=0.2.0",
+    "sentence-transformers>=2.2.0",
+    "pinecone>=4.0.0",
+    
+    # OpenTelemetry for Observability
+    "opentelemetry-api>=1.36.0,<1.37.0",
+    "opentelemetry-sdk>=1.36.0,<1.37.0",
+    "opentelemetry-instrumentation>=0.57b0,<0.58.0",
+    "opentelemetry-exporter-otlp>=1.36.0,<1.37.0",
+    "opentelemetry-instrumentation-fastapi>=0.57b0,<0.58.0",
+    "opentelemetry-instrumentation-celery>=0.57b0,<0.58.0",
+    "opentelemetry-instrumentation-redis>=0.57b0,<0.58.0",
+    "opentelemetry-instrumentation-psycopg2>=0.57b0,<0.58.0",
+    "opentelemetry-instrumentation-requests>=0.57b0,<0.58.0",
+    "opentelemetry-instrumentation-httpx>=0.57b0,<0.58.0",
+    
+    # Azure Monitor Integration
+    "azure-monitor-opentelemetry>=1.8.0,<1.9.0",
+    "azure-core>=1.29.0",
+    
+    # OSS Systems Integration
+    "celery>=5.3.0",
+    "weaviate-client>=3.25.0",
+    "kafka-python>=2.0.0",
+    
+    # Policy Engine (OPA) - using requests for OPA REST API
+    # Note: Using standard HTTP client for OPA integration
+    
+    # Utilities
+    "python-dotenv>=1.0.0",
+    "python-multipart>=0.0.6",
+    "click>=8.0.0",
+    "rich>=13.0.0",
+    "requests>=2.28.0",
+    "httpx>=0.24.0",
+    
+    # Testing
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
 ]
 
 [build-system]

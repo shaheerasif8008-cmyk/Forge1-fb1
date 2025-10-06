@@ -1,0 +1,1064 @@
+openapi: 3.0.3
+info:
+  title: Employee Lifecycle System API
+  description: |
+    Comprehensive API for managing AI employees throughout their entire lifecycle,
+    from creation and configuration to interactions and analytics.
+    
+    ## Features
+    - Complete employee lifecycle management
+    - Real-time employee interactions
+    - Memory and knowledge management
+    - Analytics and performance monitoring
+    - Multi-tenant architecture with strict isolation
+    
+    ## Authentication
+    All endpoints require Bearer token authentication with appropriate tenant headers.
+    
+  version: 1.0.0
+  contact:
+    name: Forge1 API Support
+    email: api-support@forge1.com
+    url: https://docs.forge1.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.forge1.com/v1
+    description: Production server
+  - url: https://staging-api.forge1.com/v1
+    description: Staging server
+  - url: http://localhost:8000/api/v1
+    description: Development server
+
+security:
+  - BearerAuth: []
+  - TenantHeaders: []
+
+paths:
+  /employees/clients:
+    post:
+      summary: Create Client
+      description: Create a new client organization
+      operationId: createClient
+      tags:
+        - Client Management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClientRequest'
+            examples:
+              enterprise_client:
+                summary: Enterprise Client
+                value:
+                  name: "Acme Corporation"
+                  industry: "Technology"
+                  tier: "enterprise"
+                  max_employees: 50
+                  allowed_models: ["gpt-4", "gpt-3.5-turbo"]
+                  security_level: "high"
+                  compliance_requirements: ["SOC2", "GDPR"]
+      responses:
+        '200':
+          description: Client created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+  /employees/clients/{client_id}:
+    get:
+      summary: Get Client Details
+      description: Retrieve detailed information about a client
+      operationId: getClient
+      tags:
+        - Client Management
+      parameters:
+        - $ref: '#/components/parameters/ClientId'
+      responses:
+        '200':
+          description: Client details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /employees/clients/{client_id}/employees:
+    post:
+      summary: Create Employee
+      description: Create a new AI employee for a client
+      operationId: createEmployee
+      tags:
+        - Employee Management
+      parameters:
+        - $ref: '#/components/parameters/ClientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEmployeeRequest'
+            examples:
+              support_specialist:
+                summary: Customer Support Specialist
+                value:
+                  role: "Customer Support Specialist"
+                  industry: "Technology"
+                  expertise_areas: ["customer_service", "technical_support"]
+                  communication_style: "friendly"
+                  tools_needed: ["email", "chat", "knowledge_base"]
+                  knowledge_domains: ["product_documentation"]
+                  personality_traits:
+                    empathy_level: 0.9
+                    patience_level: 0.95
+                  model_preferences:
+                    primary_model: "gpt-4"
+                    temperature: 0.7
+      responses:
+        '200':
+          description: Employee created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          description: Employee limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    get:
+      summary: List Employees
+      description: Get a list of all employees for a client
+      operationId: listEmployees
+      tags:
+        - Employee Management
+      parameters:
+        - $ref: '#/components/parameters/ClientId'
+        - name: status
+          in: query
+          description: Filter by employee status
+          schema:
+            type: string
+            enum: [active, inactive, archived]
+        - name: role
+          in: query
+          description: Filter by employee role
+          schema:
+            type: string
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: Employees retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeList'
+
+  /employees/clients/{client_id}/employees/{employee_id}:
+    get:
+      summary: Get Employee Details
+      description: Retrieve detailed information about an employee
+      operationId: getEmployee
+      tags:
+        - Employee Management
+      parameters:
+        - $ref: '#/components/parameters/ClientId'
+        - $ref: '#/components/parameters/EmployeeId'
+      responses:
+        '200':
+          description: Employee details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    put:
+      summary: Update Employee
+      description: Update employee configuration
+      operationId: updateEmployee
+      tags:
+        - Employee Management
+      parameters:
+        - $ref: '#/components/parameters/ClientId'
+        - $ref: '#/components/parameters/EmployeeId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEmployeeRequest'
+      responses:
+        '200':
+          description: Employee updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      summary: Delete Employee
+      description: Soft delete or archive an employee
+      operationId: deleteEmployee
+      tags:
+        - Employee Management
+      parameters:
+        - $ref: '#/components/parameters/ClientId'
+        - $ref: '#/components/parameters/EmployeeId'
+        - name: archive_only
+          in: query
+          description: If true, archives instead of deleting
+          schema:
+            type: boolean
+            default: true
+      responses:
+        '200':
+          description: Employee deleted/archived successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+
+  /employees/clients/{client_id}/employees/{employee_id}/interact:
+    post:
+      summary: Interact with Employee
+      description: Send a message to an employee and receive a response
+      operationId: interactWithEmployee
+      tags:
+        - Employee Interactions
+      parameters:
+        - $ref: '#/components/parameters/ClientId'
+        - $ref: '#/components/parameters/EmployeeId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InteractionRequest'
+            examples:
+              customer_support:
+                summary: Customer Support Interaction
+                value:
+                  message: "Hello, I need help with my account setup"
+                  session_id: "session_abc123"
+                  context:
+                    user_type: "customer"
+                    urgency: "medium"
+                  include_memory: true
+                  memory_limit: 10
+      responses:
+        '200':
+          description: Interaction completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InteractionResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+
+  /employees/clients/{client_id}/employees/{employee_id}/memory:
+    get:
+      summary: Get Employee Memory
+      description: Retrieve employee's memory entries
+      operationId: getEmployeeMemory
+      tags:
+        - Memory Management
+      parameters:
+        - $ref: '#/components/parameters/ClientId'
+        - $ref: '#/components/parameters/EmployeeId'
+        - $ref: '#/components/parameters/Limit'
+        - name: memory_type
+          in: query
+          description: Filter by memory type
+          schema:
+            type: string
+            enum: [interaction, knowledge, context]
+        - name: query
+          in: query
+          description: Search memories by content
+          schema:
+            type: string
+        - name: importance_threshold
+          in: query
+          description: Minimum importance score
+          schema:
+            type: number
+            minimum: 0.0
+            maximum: 1.0
+      responses:
+        '200':
+          description: Memory entries retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemoryList'
+
+  /employees/clients/{client_id}/employees/{employee_id}/knowledge-sources:
+    post:
+      summary: Add Knowledge Source
+      description: Add a knowledge source to an employee
+      operationId: addKnowledgeSource
+      tags:
+        - Memory Management
+      parameters:
+        - $ref: '#/components/parameters/ClientId'
+        - $ref: '#/components/parameters/EmployeeId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KnowledgeSourceRequest'
+      responses:
+        '200':
+          description: Knowledge source added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KnowledgeSourceResponse'
+
+  /analytics/employees/{client_id}/{employee_id}/metrics:
+    get:
+      summary: Employee Metrics
+      description: Get performance metrics for an employee
+      operationId: getEmployeeMetrics
+      tags:
+        - Analytics
+      parameters:
+        - $ref: '#/components/parameters/ClientId'
+        - $ref: '#/components/parameters/EmployeeId'
+        - name: days
+          in: query
+          description: Number of days to include
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 90
+            default: 7
+        - name: granularity
+          in: query
+          description: Data granularity
+          schema:
+            type: string
+            enum: [hour, day, week]
+            default: day
+      responses:
+        '200':
+          description: Metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeMetrics'
+
+  /analytics/employees/{client_id}/{employee_id}/health:
+    get:
+      summary: Employee Health
+      description: Get health status and diagnostics for an employee
+      operationId: getEmployeeHealth
+      tags:
+        - Analytics
+      parameters:
+        - $ref: '#/components/parameters/ClientId'
+        - $ref: '#/components/parameters/EmployeeId'
+      responses:
+        '200':
+          description: Health status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeHealth'
+
+  /performance/health:
+    get:
+      summary: System Health
+      description: Check overall system health
+      operationId: getSystemHealth
+      tags:
+        - Performance
+      responses:
+        '200':
+          description: System health retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemHealth'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    TenantHeaders:
+      type: apiKey
+      in: header
+      name: X-Tenant-ID
+
+  parameters:
+    ClientId:
+      name: client_id
+      in: path
+      required: true
+      description: Client identifier
+      schema:
+        type: string
+        pattern: '^client_[a-zA-Z0-9]+$'
+        example: "client_abc123"
+
+    EmployeeId:
+      name: employee_id
+      in: path
+      required: true
+      description: Employee identifier
+      schema:
+        type: string
+        pattern: '^emp_[a-zA-Z0-9]+$'
+        example: "emp_xyz789"
+
+    Limit:
+      name: limit
+      in: query
+      description: Number of results to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+
+    Offset:
+      name: offset
+      in: query
+      description: Number of results to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+
+  schemas:
+    CreateClientRequest:
+      type: object
+      required:
+        - name
+        - industry
+        - tier
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+          example: "Acme Corporation"
+        industry:
+          type: string
+          example: "Technology"
+        tier:
+          type: string
+          enum: [basic, professional, enterprise]
+          example: "enterprise"
+        max_employees:
+          type: integer
+          minimum: 1
+          maximum: 1000
+          default: 10
+        allowed_models:
+          type: array
+          items:
+            type: string
+          example: ["gpt-4", "gpt-3.5-turbo"]
+        security_level:
+          type: string
+          enum: [standard, high, maximum]
+          default: "standard"
+        compliance_requirements:
+          type: array
+          items:
+            type: string
+          example: ["SOC2", "GDPR"]
+
+    Client:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "client_abc123"
+        name:
+          type: string
+          example: "Acme Corporation"
+        industry:
+          type: string
+          example: "Technology"
+        tier:
+          type: string
+          enum: [basic, professional, enterprise]
+        max_employees:
+          type: integer
+        current_employees:
+          type: integer
+        allowed_models:
+          type: array
+          items:
+            type: string
+        security_level:
+          type: string
+        compliance_requirements:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [active, inactive, suspended]
+
+    CreateEmployeeRequest:
+      type: object
+      required:
+        - role
+        - communication_style
+      properties:
+        role:
+          type: string
+          example: "Customer Support Specialist"
+        industry:
+          type: string
+          example: "Technology"
+        expertise_areas:
+          type: array
+          items:
+            type: string
+          example: ["customer_service", "technical_support"]
+        communication_style:
+          type: string
+          enum: [friendly, professional, technical, casual]
+        tools_needed:
+          type: array
+          items:
+            type: string
+          example: ["email", "chat"]
+        knowledge_domains:
+          type: array
+          items:
+            type: string
+        personality_traits:
+          type: object
+          additionalProperties:
+            type: number
+        model_preferences:
+          $ref: '#/components/schemas/ModelPreferences'
+
+    UpdateEmployeeRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        personality:
+          type: object
+          additionalProperties:
+            type: number
+        model_preferences:
+          $ref: '#/components/schemas/ModelPreferences'
+        tool_access:
+          type: array
+          items:
+            type: string
+
+    Employee:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "emp_xyz789"
+        client_id:
+          type: string
+          example: "client_abc123"
+        name:
+          type: string
+          example: "Sarah Support"
+        role:
+          type: string
+          example: "Customer Support Specialist"
+        status:
+          type: string
+          enum: [active, inactive, archived]
+        personality:
+          $ref: '#/components/schemas/PersonalityConfig'
+        model_preferences:
+          $ref: '#/components/schemas/ModelPreferences'
+        tool_access:
+          type: array
+          items:
+            type: string
+        knowledge_sources:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        last_interaction_at:
+          type: string
+          format: date-time
+
+    PersonalityConfig:
+      type: object
+      properties:
+        communication_style:
+          type: string
+          enum: [friendly, professional, technical, casual]
+        formality_level:
+          type: string
+          enum: [very_casual, casual, neutral, formal, very_formal]
+        expertise_level:
+          type: string
+          enum: [beginner, intermediate, advanced, expert]
+        response_length:
+          type: string
+          enum: [brief, moderate, detailed, comprehensive]
+        creativity_level:
+          type: number
+          minimum: 0.0
+          maximum: 1.0
+        empathy_level:
+          type: number
+          minimum: 0.0
+          maximum: 1.0
+        custom_traits:
+          type: object
+          additionalProperties:
+            type: number
+
+    ModelPreferences:
+      type: object
+      properties:
+        primary_model:
+          type: string
+          example: "gpt-4"
+        fallback_models:
+          type: array
+          items:
+            type: string
+        temperature:
+          type: number
+          minimum: 0.0
+          maximum: 2.0
+        max_tokens:
+          type: integer
+          minimum: 1
+          maximum: 4000
+        specialized_models:
+          type: object
+          additionalProperties:
+            type: string
+
+    InteractionRequest:
+      type: object
+      required:
+        - message
+        - session_id
+      properties:
+        message:
+          type: string
+          minLength: 1
+          maxLength: 10000
+        session_id:
+          type: string
+        context:
+          type: object
+          additionalProperties: true
+        include_memory:
+          type: boolean
+          default: true
+        memory_limit:
+          type: integer
+          minimum: 0
+          maximum: 50
+          default: 10
+
+    InteractionResponse:
+      type: object
+      properties:
+        interaction_id:
+          type: string
+        message:
+          type: string
+        processing_time_ms:
+          type: integer
+        tokens_used:
+          type: integer
+        cost:
+          type: number
+        model_used:
+          type: string
+        confidence_score:
+          type: number
+        memory_used:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemoryReference'
+        session_id:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+
+    MemoryReference:
+      type: object
+      properties:
+        id:
+          type: string
+        relevance:
+          type: number
+        content:
+          type: string
+
+    MemoryList:
+      type: object
+      properties:
+        memories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Memory'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    Memory:
+      type: object
+      properties:
+        id:
+          type: string
+        content:
+          type: string
+        memory_type:
+          type: string
+          enum: [interaction, knowledge, context]
+        importance_score:
+          type: number
+        context:
+          type: object
+          additionalProperties: true
+        created_at:
+          type: string
+          format: date-time
+
+    KnowledgeSourceRequest:
+      type: object
+      required:
+        - title
+        - content
+        - source_type
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+        source_type:
+          type: string
+          enum: [document, url, text, file]
+        keywords:
+          type: array
+          items:
+            type: string
+        metadata:
+          type: object
+          additionalProperties: true
+
+    KnowledgeSourceResponse:
+      type: object
+      properties:
+        knowledge_id:
+          type: string
+        title:
+          type: string
+        source_type:
+          type: string
+        status:
+          type: string
+          enum: [processing, processed, failed]
+        chunks_created:
+          type: integer
+        processing_time_ms:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+
+    EmployeeList:
+      type: object
+      properties:
+        employees:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployeeSummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    EmployeeSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        last_interaction_at:
+          type: string
+          format: date-time
+
+    EmployeeMetrics:
+      type: object
+      properties:
+        metrics:
+          $ref: '#/components/schemas/MetricsSummary'
+        time_series:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeSeriesPoint'
+        period:
+          $ref: '#/components/schemas/TimePeriod'
+
+    MetricsSummary:
+      type: object
+      properties:
+        total_interactions:
+          type: integer
+        avg_response_time_ms:
+          type: number
+        success_rate:
+          type: number
+        customer_satisfaction:
+          type: number
+        cost_per_interaction:
+          type: number
+        tokens_per_interaction:
+          type: number
+        performance_trend:
+          type: string
+          enum: [improving, stable, declining]
+
+    TimeSeriesPoint:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        interactions:
+          type: integer
+        avg_response_time:
+          type: number
+        success_rate:
+          type: number
+
+    TimePeriod:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        days:
+          type: integer
+
+    EmployeeHealth:
+      type: object
+      properties:
+        overall_health_score:
+          type: number
+        health_status:
+          type: string
+          enum: [excellent, good, fair, poor, critical]
+        component_scores:
+          type: object
+          additionalProperties:
+            type: number
+        alerts:
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthAlert'
+        recommendations:
+          type: array
+          items:
+            type: string
+        last_check:
+          type: string
+          format: date-time
+
+    HealthAlert:
+      type: object
+      properties:
+        type:
+          type: string
+        severity:
+          type: string
+          enum: [info, warning, error, critical]
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+
+    SystemHealth:
+      type: object
+      properties:
+        overall_score:
+          type: number
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+        components:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ComponentHealth'
+        timestamp:
+          type: string
+          format: date-time
+
+    ComponentHealth:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+        response_time_ms:
+          type: number
+        additional_metrics:
+          type: object
+          additionalProperties: true
+
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+        has_more:
+          type: boolean
+
+    DeleteResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        employee_id:
+          type: string
+        archived_at:
+          type: string
+          format: date-time
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: object
+              additionalProperties: true
+            timestamp:
+              type: string
+              format: date-time
+            request_id:
+              type: string
+
+  responses:
+    BadRequest:
+      description: Bad request - validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Unauthorized:
+      description: Unauthorized - authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Conflict:
+      description: Conflict - resource already exists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    RateLimitExceeded:
+      description: Rate limit exceeded
+      headers:
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+tags:
+  - name: Client Management
+    description: Operations for managing client organizations
+  - name: Employee Management
+    description: Operations for managing AI employees
+  - name: Employee Interactions
+    description: Operations for interacting with employees
+  - name: Memory Management
+    description: Operations for managing employee memory and knowledge
+  - name: Analytics
+    description: Operations for analytics and performance monitoring
+  - name: Performance
+    description: Operations for system performance and health monitoring
