@@ -15,7 +15,13 @@ from enum import Enum
 
 import weaviate
 from weaviate.client import Client
-from weaviate.exceptions import WeaviateException
+
+try:
+    from weaviate.exceptions import WeaviateException
+except ImportError:  # pragma: no cover - fallback for SDK changes
+    class WeaviateException(Exception):
+        """Fallback exception when using newer Weaviate SDK versions."""
+        pass
 
 from forge1.integrations.base_adapter import BaseAdapter, HealthCheckResult, AdapterStatus, ExecutionContext, TenantContext
 from forge1.config.integration_settings import IntegrationType, settings_manager
