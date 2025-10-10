@@ -1,0 +1,13 @@
+{
+  "status": "failed",
+  "reason": "Seed scripts depend on missing modules (forge1.core.memory.memgpt_summarizer) and limited backend functionality.",
+  "timestamp": "2025-10-08T15:36:33Z",
+  "attempted_actions": [
+    "docker compose up",
+    "health check"
+  ],
+  "health_check": {
+    "url": "http://localhost:8000/health",
+    "message": "Running with limited functionality due to missing dependencies"
+  }
+}

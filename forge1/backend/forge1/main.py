@@ -7,34 +7,72 @@ import os
 import time
 import logging
 from typing import Dict, Any
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel
+from prometheus_client import CONTENT_TYPE_LATEST, Gauge, generate_latest
+
+from forge1.core.logging_config import init_logger
+
+logger = init_logger("forge1.api.main")
 
 # Import API routers
-from forge1.api.employee_lifecycle_api import router as employee_lifecycle_router
-from forge1.api.automation_api import router as automation_router
-from forge1.api.compliance_api import router as compliance_router
-from forge1.api.api_integration_api import router as api_integration_router
-from forge1.api.azure_monitor_api import router as azure_monitor_router
+from forge1.api.employee_lifecycle_api import (
+    ROUTER_EXCEPTION_HANDLERS,
+    router as employee_lifecycle_router,
+)
+try:
+    from forge1.api.automation_api import router as automation_router
+    AUTOMATION_API_AVAILABLE = True
+except Exception as exc:  # pragma: no cover - optional API
+    logger.warning("Automation API not available", extra={"error": str(exc)})
+    automation_router = None
+    AUTOMATION_API_AVAILABLE = False
+
+try:
+    from forge1.api.compliance_api import router as compliance_router
+    COMPLIANCE_API_AVAILABLE = True
+except Exception as exc:  # pragma: no cover
+    logger.warning("Compliance API not available", extra={"error": str(exc)})
+    compliance_router = None
+    COMPLIANCE_API_AVAILABLE = False
+
+try:
+    from forge1.api.api_integration_api import router as api_integration_router
+    API_INTEGRATION_AVAILABLE = True
+except Exception as exc:  # pragma: no cover
+    logger.warning("API Integration router not available", extra={"error": str(exc)})
+    api_integration_router = None
+    API_INTEGRATION_AVAILABLE = False
+
+try:
+    from forge1.api.azure_monitor_api import router as azure_monitor_router
+    AZURE_MONITOR_API_AVAILABLE = True
+except Exception as exc:  # pragma: no cover
+    logger.warning("Azure Monitor API not available", extra={"error": str(exc)})
+    azure_monitor_router = None
+    AZURE_MONITOR_API_AVAILABLE = False
+
 # Analytics router - will be imported conditionally to handle missing dependencies
 try:
     from forge1.api.v1.analytics import router as analytics_router
     ANALYTICS_AVAILABLE = True
-except ImportError as e:
-    logger.warning(f"Analytics API not available: {e}")
+except Exception as e:  # pragma: no cover
+    logger.warning("Analytics API not available", extra={"error": str(e)})
     ANALYTICS_AVAILABLE = False
     analytics_router = None
 
 # Import security middleware
 from forge1.middleware.security_middleware import TenantIsolationMiddleware
+
 # Azure Monitor middleware - import conditionally
 try:
     from forge1.middleware.azure_monitor_middleware import AzureMonitorMiddleware
     AZURE_MONITOR_MIDDLEWARE_AVAILABLE = True
 except ImportError as e:
-    logger.warning(f"Azure Monitor middleware not available: {e}")
+    logger.warning("Azure Monitor middleware not available", extra={"error": str(e)})
     AZURE_MONITOR_MIDDLEWARE_AVAILABLE = False
     AzureMonitorMiddleware = None
 
@@ -44,10 +82,23 @@ from forge1.core.encryption_manager import EncryptionManager
 # Import performance optimization components
 from forge1.core.redis_cache_manager import get_cache_manager, close_cache_manager
 from forge1.core.performance_monitor import get_performance_monitor
-from forge1.core.connection_pool_manager import get_connection_pool_manager, close_connection_pool_manager
+from forge1.core.connection_pool_manager import (
+    get_connection_pool_manager,
+    close_connection_pool_manager,
+)
 
 # Import system integration components
 from forge1.integrations.forge1_system_adapter import get_system_integrator
+from forge1.integrations.queue.celery_app import celery_adapter
+from forge1.integrations.base_adapter import AdapterStatus
+
+try:
+    from forge1.integrations.vector.vector_store_weaviate import WeaviateMemoryAdapter
+    VECTOR_ADAPTER_AVAILABLE = True
+except ImportError as e:
+    logger.warning("Vector adapter not available", extra={"error": str(e)})
+    WeaviateMemoryAdapter = None  # type: ignore[assignment]
+    VECTOR_ADAPTER_AVAILABLE = False
 from forge1.services.employee_manager import EmployeeManager
 from forge1.services.employee_memory_manager import EmployeeMemoryManager
 
@@ -57,10 +108,6 @@ from forge1.services.employee_analytics_service import get_analytics_service
 # MCAE Integration imports
 from forge1.integrations.mcae_adapter import MCAEAdapter
 from forge1.integrations.mcae_error_handler import MCAEErrorHandler
-
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 # Create FastAPI app
 app = FastAPI(
@@ -85,7 +132,71 @@ analytics_service = None
 # MCAE Integration components
 mcae_adapter = None
 mcae_error_handler = None
+vector_adapter = None
 
+APP_START_TIME = time.time()
+
+HEALTH_STATUS_GAUGE = Gauge("forge1_health_status", "Overall Forge1 health (1=ok,0=degraded)")
+REDIS_HEALTH_GAUGE = Gauge("forge1_redis_health", "Redis cache health (1=ok,0=degraded)")
+CELERY_HEALTH_GAUGE = Gauge("forge1_celery_health", "Celery adapter health (1=ok,0=degraded)")
+VECTOR_HEALTH_GAUGE = Gauge("forge1_vector_health", "Vector adapter health (1=ok,0=degraded)")
+
+
+async def _collect_service_health() -> Dict[str, Any]:
+    global cache_manager, vector_adapter
+
+    # Redis
+    redis_ok = False
+    redis_details = "cache manager not initialized"
+    try:
+        if cache_manager is None:
+            cache_manager = await get_cache_manager()
+        if cache_manager:
+            redis_ok = getattr(cache_manager, "_initialized", False)
+            redis_details = "initialized" if redis_ok else "initialization incomplete"
+    except Exception as exc:  # pragma: no cover - defensive
+        redis_details = f"error: {exc}"
+    REDIS_HEALTH_GAUGE.set(1 if redis_ok else 0)
+
+    # Celery
+    celery_ok = False
+    celery_details = ""
+    try:
+        result = await celery_adapter.health_check()
+        celery_ok = result.status != AdapterStatus.ERROR
+        celery_details = result.message
+    except Exception as exc:  # pragma: no cover
+        celery_details = f"error: {exc}"
+    CELERY_HEALTH_GAUGE.set(1 if celery_ok else 0)
+
+    # Vector
+    vector_ok = False
+    vector_details = "adapter unavailable"
+    if VECTOR_ADAPTER_AVAILABLE:
+        if vector_adapter is None and WeaviateMemoryAdapter:
+            try:
+                vector_adapter = WeaviateMemoryAdapter()
+            except Exception as exc:  # pragma: no cover
+                vector_details = f"initialization error: {exc}"
+        if vector_adapter is not None:
+            vector_ok = True
+            vector_details = "adapter ready (lazy initialization)"
+    VECTOR_HEALTH_GAUGE.set(1 if vector_ok else 0)
+
+    services = {
+        "redis": {"status": "ok" if redis_ok else "degraded", "details": redis_details},
+        "celery": {"status": "ok" if celery_ok else "degraded", "details": celery_details},
+        "vector": {"status": "ok" if vector_ok else "degraded", "details": vector_details},
+    }
+
+    overall_ok = all(service["status"] == "ok" for service in services.values())
+    HEALTH_STATUS_GAUGE.set(1 if overall_ok else 0)
+
+    return {
+        "status": "ok" if overall_ok else "degraded",
+        "uptime_seconds": time.time() - APP_START_TIME,
+        "services": services,
+    }
 # Startup event to initialize performance components
 @app.on_event("startup")
 async def startup_event():
@@ -142,6 +253,19 @@ async def startup_event():
         logger.info("Continuing without MCAE integration - using Forge1 native orchestration")
     
     logger.info("All system components initialized successfully")
+
+
+@app.get("/health")
+async def health() -> JSONResponse:
+    report = await _collect_service_health()
+    return JSONResponse(report)
+
+
+@app.get("/metrics")
+async def metrics() -> Response:
+    await _collect_service_health()
+    return Response(content=generate_latest(), media_type=CONTENT_TYPE_LATEST)
+
 
 # Shutdown event to cleanup resources
 @app.on_event("shutdown")
@@ -214,10 +338,26 @@ app.add_middleware(
 
 # Include API routers
 app.include_router(employee_lifecycle_router)
-app.include_router(automation_router)
-app.include_router(compliance_router)
-app.include_router(api_integration_router)
-app.include_router(azure_monitor_router)
+
+if AUTOMATION_API_AVAILABLE and automation_router:
+    app.include_router(automation_router)
+else:
+    logger.warning("Automation router unavailable - skipping")
+
+if COMPLIANCE_API_AVAILABLE and compliance_router:
+    app.include_router(compliance_router)
+else:
+    logger.warning("Compliance router unavailable - skipping")
+
+if API_INTEGRATION_AVAILABLE and api_integration_router:
+    app.include_router(api_integration_router)
+else:
+    logger.warning("API integration router unavailable - skipping")
+
+if AZURE_MONITOR_API_AVAILABLE and azure_monitor_router:
+    app.include_router(azure_monitor_router)
+else:
+    logger.warning("Azure Monitor router unavailable - skipping")
 
 # Include analytics router if available
 if ANALYTICS_AVAILABLE and analytics_router:
@@ -225,6 +365,9 @@ if ANALYTICS_AVAILABLE and analytics_router:
     logger.info("Analytics API router included")
 else:
     logger.warning("Analytics API router not available - skipping")
+
+for exc_type, handler in ROUTER_EXCEPTION_HANDLERS:
+    app.add_exception_handler(exc_type, handler)
 
 # Pydantic models
 class HealthResponse(BaseModel):

@@ -1,2 +1,5 @@
-# Security Certifications & Compliance
-# SOC2 Type II, GDPR, HIPAA compliance framework with automated controls and audit trails
+"""
+Forge1 compliance package.
+"""
+
+__all__: list[str] = []

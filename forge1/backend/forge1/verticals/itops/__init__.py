@@ -1,1 +1,5 @@
-# IT Operations / Security Operations AI Employee Module
+"""
+Forge1 IT operations vertical package.
+"""
+
+__all__: list[str] = []

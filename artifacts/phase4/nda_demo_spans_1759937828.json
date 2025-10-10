@@ -1,0 +1,135 @@
+[
+  {
+    "trace_id": "trace_1759937821054723",
+    "span_id": "span_1759937821054734",
+    "operation_name": "intake_processing",
+    "start_time": "2025-10-08T15:37:01.054734+00:00",
+    "duration_ms": 500,
+    "attributes": {
+      "tenant.id": "hartwell_associates",
+      "employee.id": "intake_001",
+      "service.name": "forge1-workflows",
+      "priority": "high"
+    },
+    "status": "OK"
+  },
+  {
+    "trace_id": "trace_1759937821356396",
+    "span_id": "span_1759937821356402",
+    "operation_name": "mcae_handoff",
+    "start_time": "2025-10-08T15:37:01.356403+00:00",
+    "duration_ms": 300,
+    "attributes": {
+      "tenant.id": "hartwell_associates",
+      "employee.id": "system",
+      "service.name": "forge1-workflows",
+      "target_stage": "lawyer_workflow"
+    },
+    "status": "OK"
+  },
+  {
+    "trace_id": "trace_1759937822157478",
+    "span_id": "span_1759937822157492",
+    "operation_name": "drive_fetch",
+    "start_time": "2025-10-08T15:37:02.157507+00:00",
+    "duration_ms": 800,
+    "attributes": {
+      "tenant.id": "hartwell_associates",
+      "employee.id": "lawyer_001",
+      "service.name": "forge1-workflows",
+      "file_name": "TechCorp_NDA_2024.pdf",
+      "file_size": "245KB"
+    },
+    "status": "OK"
+  },
+  {
+    "trace_id": "trace_1759937823359560",
+    "span_id": "span_1759937823359567",
+    "operation_name": "document_parser",
+    "start_time": "2025-10-08T15:37:03.359573+00:00",
+    "duration_ms": 1200,
+    "attributes": {
+      "tenant.id": "hartwell_associates",
+      "employee.id": "lawyer_001",
+      "service.name": "forge1-workflows",
+      "text_length": 4250,
+      "node_count": 12,
+      "extraction_method": "standard_pdf"
+    },
+    "status": "OK"
+  },
+  {
+    "trace_id": "trace_1759937824261580",
+    "span_id": "span_1759937824261591",
+    "operation_name": "kb_search",
+    "start_time": "2025-10-08T15:37:04.261607+00:00",
+    "duration_ms": 900,
+    "attributes": {
+      "tenant.id": "hartwell_associates",
+      "employee.id": "lawyer_001",
+      "service.name": "forge1-workflows",
+      "query": "NDA confidentiality mutual technology partnership",
+      "results_count": 3
+    },
+    "status": "OK"
+  },
+  {
+    "trace_id": "trace_1759937826368244",
+    "span_id": "span_1759937826368257",
+    "operation_name": "compose_draft",
+    "start_time": "2025-10-08T15:37:06.368270+00:00",
+    "duration_ms": 2100,
+    "attributes": {
+      "tenant.id": "hartwell_associates",
+      "employee.id": "lawyer_001",
+      "service.name": "forge1-workflows",
+      "model": "claude-3-opus",
+      "word_count": 119
+    },
+    "status": "OK"
+  },
+  {
+    "trace_id": "trace_1759937826772527",
+    "span_id": "span_1759937826772529",
+    "operation_name": "slack_post",
+    "start_time": "2025-10-08T15:37:06.772532+00:00",
+    "duration_ms": 400,
+    "attributes": {
+      "tenant.id": "hartwell_associates",
+      "employee.id": "lawyer_001",
+      "service.name": "forge1-workflows",
+      "channel": "#legal-reviews",
+      "message_length": 943
+    },
+    "status": "OK"
+  },
+  {
+    "trace_id": "trace_1759937827774493",
+    "span_id": "span_1759937827774504",
+    "operation_name": "research_validation",
+    "start_time": "2025-10-08T15:37:07.774506+00:00",
+    "duration_ms": 1000,
+    "attributes": {
+      "tenant.id": "hartwell_associates",
+      "employee.id": "research_001",
+      "service.name": "forge1-workflows",
+      "validation_status": "approved"
+    },
+    "status": "OK"
+  },
+  {
+    "trace_id": "trace_1759937828075548",
+    "span_id": "span_1759937828075557",
+    "operation_name": "final_notification",
+    "start_time": "2025-10-08T15:37:08.075560+00:00",
+    "duration_ms": 300,
+    "attributes": {
+      "tenant.id": "hartwell_associates",
+      "employee.id": "system",
+      "service.name": "forge1-workflows",
+      "workflow_status": "completed",
+      "decision": "conditional_approval"
+    },
+    "status": "OK"
+  }
+]

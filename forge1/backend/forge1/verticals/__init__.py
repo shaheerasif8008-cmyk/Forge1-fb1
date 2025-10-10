@@ -1,2 +1,5 @@
-# Vertical AI Employee Implementations
-# This module contains production-ready AI employee implementations for specific business functions
+"""
+Forge1 vertical solutions package.
+"""
+
+__all__: list[str] = []

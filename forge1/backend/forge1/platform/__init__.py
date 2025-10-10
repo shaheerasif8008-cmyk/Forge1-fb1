@@ -1,2 +1,5 @@
-# Platform Integration Layer
-# Integrates marketplace, customization, and core platform capabilities
+"""
+Forge1 platform integration package.
+"""
+
+__all__: list[str] = []

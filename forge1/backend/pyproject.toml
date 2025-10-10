@@ -35,7 +35,7 @@ dependencies = [
     "llama-index-embeddings-openai>=0.1.0",
     "llama-index-llms-openai>=0.1.0",
     "llama-index-readers-file>=0.1.0",
-    "llama-index-vector-stores-postgres>=0.1.0",
+    "llama-index-vector-stores-postgres>=0.7.0",
     
     # Workflow orchestration (using native Python async/await)
     # Note: workflows-py removed due to availability issues

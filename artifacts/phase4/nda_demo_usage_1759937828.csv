@@ -1,0 +1,6 @@
+timestamp,tenant_id,employee_id,model,tokens_in,tokens_out,latency_ms,cost_estimate,tool_calls
+2025-10-08T15:37:02.157566+00:00,hartwell_associates,lawyer_001,tool:drive_fetch,0,0,800,0.0,[]
+2025-10-08T15:37:03.359637+00:00,hartwell_associates,lawyer_001,tool:document_parser,0,0,1200,0.0,[]
+2025-10-08T15:37:04.261666+00:00,hartwell_associates,lawyer_001,tool:kb_search,0,0,900,0.0,[]
+2025-10-08T15:37:06.368351+00:00,hartwell_associates,lawyer_001,claude-3-opus,850,320,2100,0.025,[]
+2025-10-08T15:37:06.772551+00:00,hartwell_associates,lawyer_001,tool:slack_post,0,0,400,0.0,[]

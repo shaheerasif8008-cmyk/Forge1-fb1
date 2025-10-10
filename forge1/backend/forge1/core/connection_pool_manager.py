@@ -10,6 +10,7 @@ Requirements: 5.2, 5.3
 
 import asyncio
 import logging
+import os
 import time
 from datetime import datetime, timezone, timedelta
 from typing import Dict, Any, Optional, List
@@ -77,16 +78,20 @@ class ConnectionPoolManager:
         self.last_health_check = None
         self.health_check_interval = 30  # seconds
         self.unhealthy_connections = set()
-        
+
         self._initialized = False
-    
+        self._skip_initialization = os.getenv("FORGE1_DISABLE_DB", "false").lower() in {"1", "true", "yes"}
+
     async def initialize(self):
         """Initialize connection pools"""
         if self._initialized:
             return
-        
+        if self._skip_initialization:
+            logger.warning("Database connection pool initialization disabled via FORGE1_DISABLE_DB.")
+            self._initialized = True
+            return
+
         try:
-            # Create read pool (can be same as write for single DB)
             self.read_pool = await asyncpg.create_pool(
                 self.database_url,
                 min_size=self.min_connections,
@@ -97,25 +102,26 @@ class ConnectionPoolManager:
                 server_settings=self.server_settings,
                 init=self._init_connection
             )
-            
-            # For now, use same pool for writes (can be separated for read replicas)
+
             self.write_pool = self.read_pool
-            
             self._initialized = True
             logger.info(
-                f"Connection pools initialized: "
-                f"min={self.min_connections}, max={self.max_connections}"
+                "Connection pools initialized: min=%s, max=%s",
+                self.min_connections,
+                self.max_connections,
             )
-            
-            # Start health monitoring
+
             asyncio.create_task(self._health_monitor_loop())
-            
+
         except Exception as e:
             logger.error(f"Failed to initialize connection pools: {e}")
             raise
     
     async def close(self):
         """Close all connection pools"""
+        if self._skip_initialization:
+            self._initialized = False
+            return
         if self.read_pool:
             await self.read_pool.close()
         
@@ -130,7 +136,10 @@ class ConnectionPoolManager:
         """Get a database connection from the appropriate pool"""
         if not self._initialized:
             await self.initialize()
-        
+
+        if self._skip_initialization:
+            raise RuntimeError("Database access disabled via FORGE1_DISABLE_DB")
+
         pool = self.read_pool if readonly else self.write_pool
         connection_start = time.time()
         connection = None
@@ -411,6 +420,8 @@ class ConnectionPoolManager:
     
     async def _health_monitor_loop(self):
         """Background health monitoring loop"""
+        if self._skip_initialization:
+            return
         while self._initialized:
             try:
                 await asyncio.sleep(self.health_check_interval)

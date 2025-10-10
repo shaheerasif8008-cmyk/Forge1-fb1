@@ -1,1 +1,5 @@
-# Software Engineering AI Employee Module
+"""
+Forge1 engineering vertical package.
+"""
+
+__all__: list[str] = []

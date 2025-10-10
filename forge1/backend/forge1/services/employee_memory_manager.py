@@ -21,13 +21,15 @@ from decimal import Decimal
 import numpy as np
 from openai import AsyncOpenAI
 from forge1.core.database_config import DatabaseManager, get_database_manager
+from forge1.core.logging_config import init_logger
+from forge1.core.memory import MemGPTSummarizer
 from forge1.core.tenancy import get_current_tenant
 from forge1.models.employee_models import (
     MemoryItem, EmployeeInteraction, EmployeeResponse, MemoryType,
     SummaryType, KnowledgeSourceType, MemoryAccessError, TenantIsolationError
 )
 
-logger = logging.getLogger(__name__)
+logger = init_logger("forge1.services.employee_memory_manager")
 
 
 class EmployeeMemoryManager:
@@ -52,6 +54,11 @@ class EmployeeMemoryManager:
         self.openai_client = None
         self.embedding_model = os.getenv("OPENAI_EMBEDDINGS_MODEL", "text-embedding-3-small")
         self.embedding_dimensions = int(os.getenv("OPENAI_EMBEDDINGS_DIMENSIONS", "1536"))
+        self._summarizer = None
+        try:
+            self._summarizer = MemGPTSummarizer()
+        except Exception as exc:  # pragma: no cover - defensive fallback
+            logger.warning("MemGPTSummarizer initialization failed; using mock summaries", extra={"error": str(exc)})
         
     async def initialize(self):
         """Initialize the memory manager"""
@@ -814,18 +821,29 @@ class EmployeeMemoryManager:
         interactions: List[str],
         summary_type: SummaryType
     ) -> str:
-        """Generate summary from interactions (mock implementation)"""
-        # In production, this would use an LLM to generate summaries
-        interaction_count = len(interactions) // 2  # Divide by 2 since we have user + assistant messages
-        
+        """Generate summary text using MemGPT fallback when available."""
+
+        interaction_count = len(interactions) // 2  # user + assistant pairs
+
+        if self._summarizer:
+            # Provide the summarizer with a joined transcript.
+            transcript = "\n".join(interactions)
+            try:
+                return self._summarizer.summarize(transcript, max_length=2048)
+            except Exception as exc:  # pragma: no cover - defensive fallback
+                logger.warning(
+                    "MemGPT summarization failed, falling back to heuristic summary",
+                    extra={"error": str(exc), "summary_type": summary_type.value},
+                )
+
+        # Heuristic summaries retain prior behavior
         if summary_type == SummaryType.CONVERSATION:
             return f"Conversation summary: {interaction_count} interactions covering various topics and requests."
-        elif summary_type == SummaryType.DAILY:
+        if summary_type == SummaryType.DAILY:
             return f"Daily summary: {interaction_count} interactions throughout the day."
-        elif summary_type == SummaryType.WEEKLY:
+        if summary_type == SummaryType.WEEKLY:
             return f"Weekly summary: {interaction_count} interactions over the past week."
-        else:
-            return f"Summary: {interaction_count} interactions of type {summary_type.value}."
+        return f"Summary: {interaction_count} interactions of type {summary_type.value}."
 
     # New methods for Task 9: Memory Analytics and Management
 

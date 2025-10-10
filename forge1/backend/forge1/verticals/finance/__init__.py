@@ -1,1 +1,5 @@
-# Finance/FP&A AI Employee Module
+"""
+Forge1 finance vertical package.
+"""
+
+__all__: list[str] = []

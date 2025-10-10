@@ -6,9 +6,34 @@ This is a stub to prevent import errors until the full MCAE integration is imple
 """
 
 import logging
+from dataclasses import dataclass
 from typing import Dict, Any, Optional
 
-logger = logging.getLogger(__name__)
+from forge1.core.logging_config import init_logger
+
+
+logger = init_logger("forge1.integrations.mcae")
+
+
+class MCAEIntegrationError(Exception):
+    """Raised when MCAE integration encounters a fatal error."""
+
+
+class WorkflowExecutionError(MCAEIntegrationError):
+    """Raised when a workflow fails to execute."""
+
+
+class TenantIsolationViolationError(MCAEIntegrationError):
+    """Raised when workflows attempt to cross tenant boundaries."""
+
+
+@dataclass
+class MCAEWorkflowResult:
+    workflow_id: str
+    status: str
+    result: Any
+    input_data: Dict[str, Any]
+
 
 class MCAEAdapter:
     """Stub implementation of MCAE adapter"""
@@ -38,12 +63,21 @@ class MCAEAdapter:
         logger.info(f"MCAE workflow {workflow_id} created (stub)")
         return workflow_id
     
-    async def execute_workflow(self, workflow_id: str, input_data: Dict[str, Any]) -> Dict[str, Any]:
+    async def execute_workflow(self, workflow_id: str, input_data: Dict[str, Any]) -> MCAEWorkflowResult:
         """Execute a workflow"""
         logger.info(f"MCAE workflow {workflow_id} executed (stub)")
-        return {
-            "workflow_id": workflow_id,
-            "status": "completed",
-            "result": "Stub execution completed",
-            "input_data": input_data
-        }
+        return MCAEWorkflowResult(
+            workflow_id=workflow_id,
+            status="completed",
+            result="Stub execution completed",
+            input_data=input_data,
+        )
+
+
+__all__ = [
+    "MCAEAdapter",
+    "MCAEIntegrationError",
+    "WorkflowExecutionError",
+    "TenantIsolationViolationError",
+    "MCAEWorkflowResult",
+]

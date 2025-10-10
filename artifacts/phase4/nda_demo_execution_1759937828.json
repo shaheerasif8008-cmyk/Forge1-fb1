@@ -1,0 +1,140 @@
+[
+  {
+    "timestamp": "2025-10-08T15:37:00.553291+00:00",
+    "stage": "setup",
+    "message": "Initializing Hartwell & Associates demo environment",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:00.553328+00:00",
+    "stage": "setup",
+    "message": "\u2705 Environment configured for Hartwell & Associates",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:00.553354+00:00",
+    "stage": "intake",
+    "message": "Sarah Chen (Intake) receives new NDA for review",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:01.054751+00:00",
+    "stage": "intake",
+    "message": "\u2705 Case case_nda_001 created and assigned to legal team",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:01.055077+00:00",
+    "stage": "mcae",
+    "message": "MCAE orchestrator routing case to Lawyer stage",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:01.356413+00:00",
+    "stage": "mcae",
+    "message": "\u2705 Workflow workflow_case_nda_001 routed to lawyer stage",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:01.356633+00:00",
+    "stage": "lawyer",
+    "message": "Michael Rodriguez (Lawyer) executing NDA review workflow",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:01.356683+00:00",
+    "stage": "lawyer",
+    "message": "\ud83d\udd04 Starting workflows-py subgraph: drive_fetch \u2192 document_parser \u2192 kb_search \u2192 compose_draft \u2192 slack_post",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:01.356722+00:00",
+    "stage": "lawyer.drive_fetch",
+    "message": "\ud83d\udcc1 Fetching NDA document from Google Drive",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:02.157582+00:00",
+    "stage": "lawyer.drive_fetch",
+    "message": "\u2705 Retrieved TechCorp_NDA_2024.pdf (245KB)",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:02.158082+00:00",
+    "stage": "lawyer.document_parser",
+    "message": "\ud83d\udcc4 Parsing PDF document and extracting text",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:03.359656+00:00",
+    "stage": "lawyer.document_parser",
+    "message": "\u2705 Extracted 4250 characters in 12 sections",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:03.360030+00:00",
+    "stage": "lawyer.kb_search",
+    "message": "\ud83d\udd0d Searching legal knowledge base for relevant precedents",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:04.261696+00:00",
+    "stage": "lawyer.kb_search",
+    "message": "\u2705 Found 3 relevant knowledge base entries",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:04.262162+00:00",
+    "stage": "lawyer.compose_draft",
+    "message": "\u270d\ufe0f Generating legal review draft using Claude-3-Opus",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:06.368400+00:00",
+    "stage": "lawyer.compose_draft",
+    "message": "\u2705 Generated 119-word legal review using claude-3-opus",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:06.370836+00:00",
+    "stage": "lawyer.slack_post",
+    "message": "\ud83d\udcac Posting review to #legal-reviews Slack channel",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:06.772561+00:00",
+    "stage": "lawyer.slack_post",
+    "message": "\u2705 Posted review to #legal-reviews (message length: 943 chars)",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:06.772867+00:00",
+    "stage": "lawyer",
+    "message": "\u2705 NDA review workflow completed with conditional approval",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:06.773000+00:00",
+    "stage": "research",
+    "message": "Dr. Emily Watson (Research) validating legal analysis",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:07.774522+00:00",
+    "stage": "research",
+    "message": "\u2705 Research validation completed - analysis approved",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:07.774929+00:00",
+    "stage": "final",
+    "message": "Sending final workflow completion notification",
+    "tenant_id": "hartwell_associates"
+  },
+  {
+    "timestamp": "2025-10-08T15:37:08.075575+00:00",
+    "stage": "final",
+    "message": "\u2705 NDA workflow completed successfully with conditional approval",
+    "tenant_id": "hartwell_associates"
+  }
+]

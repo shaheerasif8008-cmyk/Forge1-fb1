@@ -100,17 +100,21 @@ def check_and_mock_dependencies():
 
 def start_application():
     """Start the Forge1 application with dependency checks"""
-    
+
     logger.info("Starting Forge1 Backend...")
-    
+
     # Check and mock missing dependencies
     check_and_mock_dependencies()
-    
+
     # Set environment variables for graceful degradation
     os.environ.setdefault('OTEL_CONSOLE_EXPORTER', 'false')
     os.environ.setdefault('DISABLE_AZURE_MONITOR', 'true')
     os.environ.setdefault('DISABLE_MCAE_INTEGRATION', 'true')
-    
+
+    if os.getenv("FORGE1_FORCE_MINIMAL", "false").lower() in {"1", "true", "yes"}:
+        logger.info("FORGE1_FORCE_MINIMAL is set; returning minimal application without importing main app.")
+        return _create_fallback_app(reason="forced_minimal")
+
     try:
         # Import and start the main application
         from forge1.main import app
@@ -119,30 +123,40 @@ def start_application():
         
     except Exception as e:
         logger.error(f"Failed to import main application: {e}")
-        
-        # Fallback to a minimal FastAPI app
-        logger.info("Creating minimal fallback application...")
-        from fastapi import FastAPI
-        
-        fallback_app = FastAPI(
-            title="Forge1 Backend (Minimal Mode)",
-            description="Forge1 running in minimal mode due to missing dependencies",
-            version="1.0.0"
-        )
-        
-        @fallback_app.get("/")
-        async def root():
-            return {"message": "Forge1 Backend running in minimal mode", "status": "operational"}
-        
-        @fallback_app.get("/health")
-        async def health():
-            return {
-                "status": "healthy",
-                "mode": "minimal",
-                "message": "Running with limited functionality due to missing dependencies"
-            }
-        
-        return fallback_app
+        return _create_fallback_app(reason=str(e))
+
+
+def _create_fallback_app(reason: str) -> "FastAPI":
+    from fastapi import FastAPI
+
+    logger.info("Creating minimal fallback application...")
+    fallback_app = FastAPI(
+        title="Forge1 Backend (Minimal Mode)",
+        description="Forge1 running in minimal mode due to missing dependencies",
+        version="1.0.0"
+    )
+
+    @fallback_app.get("/")
+    async def root():
+        return {
+            "message": "Forge1 Backend running in minimal mode",
+            "status": "ok",
+            "details": reason,
+        }
+
+    @fallback_app.get("/health")
+    async def health():
+        return {
+            "status": "ok",
+            "mode": "minimal",
+            "details": reason,
+        }
+
+    @fallback_app.get("/metrics")
+    async def metrics():
+        return {"status": "ok", "mode": "minimal"}
+
+    return fallback_app
 
 # Create the app instance
 app = start_application()

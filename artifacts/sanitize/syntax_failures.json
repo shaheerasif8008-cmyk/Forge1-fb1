@@ -1,0 +1,26 @@
+{
+  "syntax_failures": [],
+  "non_python_like": [
+    "forge1/backend/forge1/__init__.py",
+    "forge1/backend/forge1/agents/__init__.py",
+    "forge1/backend/forge1/agents/communication_manager.py",
+    "forge1/backend/forge1/api/v1/__init__.py",
+    "forge1/backend/forge1/billing/__init__.py",
+    "forge1/backend/forge1/compliance/__init__.py",
+    "forge1/backend/forge1/customization/__init__.py",
+    "forge1/backend/forge1/marketplace/__init__.py",
+    "forge1/backend/forge1/optimization/__init__.py",
+    "forge1/backend/forge1/platform/__init__.py",
+    "forge1/backend/forge1/security/__init__.py",
+    "forge1/backend/forge1/support/__init__.py",
+    "forge1/backend/forge1/tests/__init__.py",
+    "forge1/backend/forge1/verticals/__init__.py",
+    "forge1/backend/forge1/verticals/cx/__init__.py",
+    "forge1/backend/forge1/verticals/engineering/__init__.py",
+    "forge1/backend/forge1/verticals/finance/__init__.py",
+    "forge1/backend/forge1/verticals/itops/__init__.py",
+    "forge1/backend/forge1/verticals/legal/__init__.py",
+    "forge1/backend/forge1/verticals/revops/__init__.py"
+  ],
+  "compile_errors": []
+}

@@ -8,10 +8,19 @@ import hmac
 import jwt
 import time
 import logging
+from enum import Enum
 from typing import Dict, Any, Optional, List
 from fastapi import Request, Response, HTTPException
 
 logger = logging.getLogger(__name__)
+
+
+class Permission(Enum):
+    """Stub permission levels for import-time checks."""
+
+    READ = "read"
+    WRITE = "write"
+    ADMIN = "admin"
 
 class SecurityManager:
     """Enhanced security manager with enterprise features"""

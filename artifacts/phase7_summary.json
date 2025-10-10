@@ -1,0 +1,84 @@
+{
+  "opa": {
+    "status": "blocked",
+    "reason": "No Rego policy files located; OPA client present but lacks configuration. verify_security_compliance.py is non-executable text."
+  },
+  "dlp": {
+    "status": "not_tested",
+    "reason": "Presidio adapter module exists but requires runtime connectors; tests rely on missing modules, and verification scripts are placeholders."
+  },
+  "cross_tenant": {
+    "status": "not_tested",
+    "reason": "Unit tests for tenant isolation cannot run due to import errors; API not functional."
+  },
+  "secrets_scan": {
+    "status": "failed",
+    "findings_count": 17,
+    "sample_leaks": [
+      {
+        "RuleID": "generic-api-key",
+        "Description": "Detected a Generic API Key, potentially exposing access to various services and sensitive operations.",
+        "StartLine": 12,
+        "EndLine": 12,
+        "StartColumn": 2,
+        "EndColumn": 33,
+        "Match": "POSTGRES_PASSWORD=forge1_db_pass",
+        "Secret": "forge1_db_pass",
+        "File": "forge1/.env.example",
+        "SymlinkFile": "",
+        "Commit": "751cb14d697d84fe06e938f363c52947271c773e",
+        "Link": "https://github.com/shaheerasif8008-cmyk/forge1-fb-2/blob/751cb14d697d84fe06e938f363c52947271c773e/forge1/.env.example#L12",
+        "Entropy": 3.5216405,
+        "Author": "shaheerasif8008-cmyk",
+        "Email": "shaheerasif8008@gmail.com",
+        "Date": "2025-10-06T18:38:59Z",
+        "Message": "\ud83d\ude80 Major Forge1 Platform Update: Azure Monitor Integration & Dependency Fixes\n\n\u2728 New Features:\n- Complete Azure Monitor OpenTelemetry integration with analytics\n- Advanced business intelligence and dashboard capabilities\n- Comprehensive OSS systems integration (Celery, Redis, Weaviate, etc.)\n- Employee lifecycle management with full API endpoints\n- Multi-tenant security and compliance framework\n- Production-ready deployment configurations\n\n\ud83d\udd27 Technical Improvements:\n- Fixed Docker build issues by removing unavailable dependencies\n- Added graceful degradation for optional components\n- Implemented comprehensive error handling and logging\n- Enhanced performance monitoring and optimization\n- Added extensive test suites and validation scripts\n\n\ud83d\udcda Documentation:\n- Complete setup and deployment guides\n- API documentation and troubleshooting guides\n- Azure Monitor integration documentation\n- Comprehensive README files and examples\n\n\ud83d\udee1\ufe0f Security & Compliance:\n- Multi-tenant isolation and data protection\n- GDPR and HIPAA compliance frameworks\n- Advanced audit logging and encryption\n- Security middleware and policy enforcement\n\n\ud83e\uddea Testing & Validation:\n- Comprehensive test suites for all components\n- Integration tests and performance benchmarks\n- Startup validation and health check scripts\n- End-to-end workflow testing\n\nThis update makes Forge1 production-ready with enterprise-grade observability,\nsecurity, and scalability features.",
+        "Tags": [],
+        "Fingerprint": "751cb14d697d84fe06e938f363c52947271c773e:forge1/.env.example:generic-api-key:12"
+      },
+      {
+        "RuleID": "generic-api-key",
+        "Description": "Detected a Generic API Key, potentially exposing access to various services and sensitive operations.",
+        "StartLine": 44,
+        "EndLine": 44,
+        "StartColumn": 2,
+        "EndColumn": 33,
+        "Match": "POSTGRES_PASSWORD=forge1_db_pass",
+        "Secret": "forge1_db_pass",
+        "File": "forge1/backend/.env.example",
+        "SymlinkFile": "",
+        "Commit": "751cb14d697d84fe06e938f363c52947271c773e",
+        "Link": "https://github.com/shaheerasif8008-cmyk/forge1-fb-2/blob/751cb14d697d84fe06e938f363c52947271c773e/forge1/backend/.env.example#L44",
+        "Entropy": 3.5216405,
+        "Author": "shaheerasif8008-cmyk",
+        "Email": "shaheerasif8008@gmail.com",
+        "Date": "2025-10-06T18:38:59Z",
+        "Message": "\ud83d\ude80 Major Forge1 Platform Update: Azure Monitor Integration & Dependency Fixes\n\n\u2728 New Features:\n- Complete Azure Monitor OpenTelemetry integration with analytics\n- Advanced business intelligence and dashboard capabilities\n- Comprehensive OSS systems integration (Celery, Redis, Weaviate, etc.)\n- Employee lifecycle management with full API endpoints\n- Multi-tenant security and compliance framework\n- Production-ready deployment configurations\n\n\ud83d\udd27 Technical Improvements:\n- Fixed Docker build issues by removing unavailable dependencies\n- Added graceful degradation for optional components\n- Implemented comprehensive error handling and logging\n- Enhanced performance monitoring and optimization\n- Added extensive test suites and validation scripts\n\n\ud83d\udcda Documentation:\n- Complete setup and deployment guides\n- API documentation and troubleshooting guides\n- Azure Monitor integration documentation\n- Comprehensive README files and examples\n\n\ud83d\udee1\ufe0f Security & Compliance:\n- Multi-tenant isolation and data protection\n- GDPR and HIPAA compliance frameworks\n- Advanced audit logging and encryption\n- Security middleware and policy enforcement\n\n\ud83e\uddea Testing & Validation:\n- Comprehensive test suites for all components\n- Integration tests and performance benchmarks\n- Startup validation and health check scripts\n- End-to-end workflow testing\n\nThis update makes Forge1 production-ready with enterprise-grade observability,\nsecurity, and scalability features.",
+        "Tags": [],
+        "Fingerprint": "751cb14d697d84fe06e938f363c52947271c773e:forge1/backend/.env.example:generic-api-key:44"
+      },
+      {
+        "RuleID": "generic-api-key",
+        "Description": "Detected a Generic API Key, potentially exposing access to various services and sensitive operations.",
+        "StartLine": 120,
+        "EndLine": 120,
+        "StartColumn": 2,
+        "EndColumn": 131,
+        "Match": "STRIPE_PUBLISHABLE_KEY=pk_test_51Ro3WTEHOZK3KdiUAtTKidfeTwko9gIQUPrhcYfqMKBAWY09sxrev2lHTLTYVvsJBOy3qhOt4ryB94o9JWy8TJEa00FMhxrq1X",
+        "Secret": "pk_test_51Ro3WTEHOZK3KdiUAtTKidfeTwko9gIQUPrhcYfqMKBAWY09sxrev2lHTLTYVvsJBOy3qhOt4ryB94o9JWy8TJEa00FMhxrq1X",
+        "File": "forge1/backend/.env.example",
+        "SymlinkFile": "",
+        "Commit": "751cb14d697d84fe06e938f363c52947271c773e",
+        "Link": "https://github.com/shaheerasif8008-cmyk/forge1-fb-2/blob/751cb14d697d84fe06e938f363c52947271c773e/forge1/backend/.env.example#L120",
+        "Entropy": 5.4580717,
+        "Author": "shaheerasif8008-cmyk",
+        "Email": "shaheerasif8008@gmail.com",
+        "Date": "2025-10-06T18:38:59Z",
+        "Message": "\ud83d\ude80 Major Forge1 Platform Update: Azure Monitor Integration & Dependency Fixes\n\n\u2728 New Features:\n- Complete Azure Monitor OpenTelemetry integration with analytics\n- Advanced business intelligence and dashboard capabilities\n- Comprehensive OSS systems integration (Celery, Redis, Weaviate, etc.)\n- Employee lifecycle management with full API endpoints\n- Multi-tenant security and compliance framework\n- Production-ready deployment configurations\n\n\ud83d\udd27 Technical Improvements:\n- Fixed Docker build issues by removing unavailable dependencies\n- Added graceful degradation for optional components\n- Implemented comprehensive error handling and logging\n- Enhanced performance monitoring and optimization\n- Added extensive test suites and validation scripts\n\n\ud83d\udcda Documentation:\n- Complete setup and deployment guides\n- API documentation and troubleshooting guides\n- Azure Monitor integration documentation\n- Comprehensive README files and examples\n\n\ud83d\udee1\ufe0f Security & Compliance:\n- Multi-tenant isolation and data protection\n- GDPR and HIPAA compliance frameworks\n- Advanced audit logging and encryption\n- Security middleware and policy enforcement\n\n\ud83e\uddea Testing & Validation:\n- Comprehensive test suites for all components\n- Integration tests and performance benchmarks\n- Startup validation and health check scripts\n- End-to-end workflow testing\n\nThis update makes Forge1 production-ready with enterprise-grade observability,\nsecurity, and scalability features.",
+        "Tags": [],
+        "Fingerprint": "751cb14d697d84fe06e938f363c52947271c773e:forge1/backend/.env.example:generic-api-key:120"
+      }
+    ]
+  },
+  "timestamp": "2025-10-08T15:41:32Z"
+}

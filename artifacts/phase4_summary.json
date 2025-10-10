@@ -1,0 +1,17 @@
+{
+  "nda_demo": {
+    "status": "simulated",
+    "script": "scripts/run_nda_demo.py",
+    "artifacts": [
+      "artifacts/phase4/nda_demo_usage_1759937828.csv",
+      "artifacts/phase4/nda_demo_execution_1759937828.json",
+      "artifacts/phase4/nda_demo_spans_1759937828.json"
+    ],
+    "notes": "Workflow simulated with mocked components; no live service calls or OPA traces generated."
+  },
+  "finance_pnl_flow": {
+    "status": "blocked",
+    "reason": "No executable Finance P&L automation script found; backend modules missing (forge1.core.memory.memgpt_summarizer) prevent workflow adapters from importing."
+  },
+  "timestamp": "2025-10-08T15:38:26Z"
+}

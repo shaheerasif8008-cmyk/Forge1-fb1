@@ -61,6 +61,30 @@ except ImportError as e:
         def add(self, *args, **kwargs): pass
         def record(self, *args, **kwargs): pass
 
+    class _MockTraceModule:
+        Tracer = MockTracer
+
+        def __init__(self):
+            self._tracer = MockTracer()
+
+        def get_tracer_provider(self):
+            return None
+
+        def get_tracer(self, *args, **kwargs):
+            return self._tracer
+
+    class _MockMetricsModule:
+        Meter = MockMeter
+
+        def get_meter_provider(self):
+            return None
+
+        def get_meter(self, *args, **kwargs):
+            return MockMeter()
+
+    trace = _MockTraceModule()
+    metrics = _MockMetricsModule()
+
 from forge1.integrations.base_adapter import BaseAdapter, HealthCheckResult, AdapterStatus, ExecutionContext, TenantContext
 from forge1.config.integration_settings import IntegrationType, settings_manager
 from forge1.core.tenancy import get_current_tenant

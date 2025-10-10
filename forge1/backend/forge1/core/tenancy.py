@@ -21,3 +21,9 @@ def clear_tenant_context():
     """Clear the tenant context"""
     if hasattr(_tenant_context, 'tenant_id'):
         delattr(_tenant_context, 'tenant_id')
+
+
+def tenant_prefix(tenant_id: Optional[str]) -> str:
+    """Return a normalized tenant prefix for cache namespaces."""
+    tenant = tenant_id or get_current_tenant() or "default"
+    return f"tenant:{tenant}"

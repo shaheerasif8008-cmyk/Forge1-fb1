@@ -11,8 +11,14 @@ from typing import Dict, Any, Optional, List
 from dataclasses import dataclass
 from enum import Enum
 
-from opentelemetry import metrics
-from opentelemetry.metrics import Counter, Histogram, UpDownCounter
+try:
+    from opentelemetry import metrics
+    from opentelemetry.metrics import Counter, Histogram, UpDownCounter
+    OTEL_METRICS_AVAILABLE = True
+except ImportError:
+    metrics = None  # type: ignore
+    Counter = Histogram = UpDownCounter = object  # type: ignore
+    OTEL_METRICS_AVAILABLE = False
 
 from forge1.integrations.observability.otel_init import otel_integration
 from forge1.core.tenancy import get_current_tenant
@@ -37,7 +43,7 @@ class MetricDefinition:
 class ForgeMetrics:
     """Business metrics collection for Forge1"""
     
-    def __init__(self, meter_provider: Optional[metrics.MeterProvider] = None):
+    def __init__(self, meter_provider: Optional[Any] = None):
         self.meter = otel_integration.get_meter() if otel_integration else None
         
         # Business metrics
@@ -205,10 +211,14 @@ class ForgeMetrics:
         self._policy_decision_counter.add(1, common_labels)
         
         logger.debug(f"Recorded policy decision: {decision} for {resource}")    
-    
-def record_memory_operation(self, operation: str, duration: float, 
-                               tenant_id: Optional[str] = None, 
-                               success: bool = True, **labels):
+    def record_memory_operation(
+        self,
+        operation: str,
+        duration: float,
+        tenant_id: Optional[str] = None,
+        success: bool = True,
+        **labels,
+    ):
         """Record memory operation metrics"""
         if not self._memory_operations_counter:
             return
@@ -230,9 +240,14 @@ def record_memory_operation(self, operation: str, duration: float,
         
         logger.debug(f"Recorded memory operation: {operation}, duration: {duration}s, success: {success}")
     
-    def record_vector_operation(self, operation: str, duration: float, 
-                              tenant_id: Optional[str] = None, 
-                              success: bool = True, **labels):
+    def record_vector_operation(
+        self,
+        operation: str,
+        duration: float,
+        tenant_id: Optional[str] = None,
+        success: bool = True,
+        **labels,
+    ):
         """Record vector operation metrics"""
         if not self._vector_operations_counter:
             return
@@ -254,8 +269,12 @@ def record_memory_operation(self, operation: str, duration: float,
         
         logger.debug(f"Recorded vector operation: {operation}, duration: {duration}s, success: {success}")
     
-    def update_queue_depth(self, queue_name: str, depth: int, 
-                          tenant_id: Optional[str] = None):
+    def update_queue_depth(
+        self,
+        queue_name: str,
+        depth: int,
+        tenant_id: Optional[str] = None,
+    ):
         """Update queue depth gauge"""
         if not self._queue_depth_gauge:
             return
@@ -274,8 +293,11 @@ def record_memory_operation(self, operation: str, duration: float,
         
         logger.debug(f"Updated queue depth: {queue_name} = {depth}")
     
-    def update_active_sessions(self, session_count: int, 
-                             tenant_id: Optional[str] = None):
+    def update_active_sessions(
+        self,
+        session_count: int,
+        tenant_id: Optional[str] = None,
+    ):
         """Update active sessions gauge"""
         if not self._active_sessions_gauge:
             return
@@ -293,8 +315,13 @@ def record_memory_operation(self, operation: str, duration: float,
         
         logger.debug(f"Updated active sessions: {session_count}")
     
-    def record_error(self, error_type: str, component: str, 
-                    tenant_id: Optional[str] = None, **labels):
+    def record_error(
+        self,
+        error_type: str,
+        component: str,
+        tenant_id: Optional[str] = None,
+        **labels,
+    ):
         """Record error metrics"""
         if not self._error_counter:
             return

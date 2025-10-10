@@ -1,0 +1,11 @@
+{
+  "accuracy_benchmarks": {
+    "status": "not_run",
+    "reason": "No benchmark datasets provided and unit tests referencing LlamaIndex fail due to unresolved imports; inference services not operational."
+  },
+  "hallucination_tests": {
+    "status": "not_run",
+    "reason": "Model evaluation requires functioning AI pipelines; backend health indicates minimal mode."
+  },
+  "timestamp": "2025-10-08T15:42:17Z"
+}

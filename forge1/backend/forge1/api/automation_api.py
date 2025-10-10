@@ -4,22 +4,87 @@
 FastAPI endpoints for automation platform connectors
 """
 
-from fastapi import APIRouter, HTTPException, Depends, BackgroundTasks
-from typing import Dict, Any, List, Optional
-from pydantic import BaseModel, Field
 import logging
+from typing import Dict, Any, List, Optional
 
-from forge1.integrations.automation_connectors import (
-    AutomationPlatform,
-    TriggerType,
-    ActionType,
-    AutomationConnectorManager
-)
-from forge1.auth.authentication_manager import AuthenticationManager
-from forge1.core.security_manager import SecurityManager
-from forge1.core.performance_monitor import PerformanceMonitor
+from fastapi import APIRouter, HTTPException, Depends, BackgroundTasks
+from pydantic import BaseModel, Field
 
-logger = logging.getLogger(__name__)
+from forge1.core.logging_config import init_logger
+
+try:
+    from forge1.integrations.automation_connectors import (
+        AutomationPlatform,
+        TriggerType,
+        ActionType,
+        AutomationConnectorManager,
+    )
+    AUTOMATION_AVAILABLE = True
+except Exception as exc:  # pragma: no cover - optional dependency
+    AUTOMATION_AVAILABLE = False
+
+    class AutomationPlatform(str):  # type: ignore[no-redef]
+        """Placeholder type when automation connectors are unavailable."""
+
+    TriggerType = ActionType = AutomationPlatform  # type: ignore
+
+    class AutomationConnectorManager:  # type: ignore[no-redef]
+        async def create_connector(self, *args, **kwargs) -> Dict[str, Any]:
+            raise NotImplementedError("Automation connectors are not available")
+
+        async def list_connectors(self) -> Dict[str, Any]:
+            raise NotImplementedError("Automation connectors are not available")
+
+        async def delete_connector(self, *args, **kwargs) -> Dict[str, Any]:
+            raise NotImplementedError("Automation connectors are not available")
+
+        async def create_workflow(self, *args, **kwargs) -> Dict[str, Any]:
+            raise NotImplementedError("Automation connectors are not available")
+
+        async def execute_workflow(self, *args, **kwargs) -> Dict[str, Any]:
+            raise NotImplementedError("Automation connectors are not available")
+
+        async def get_workflow(self, *args, **kwargs) -> Dict[str, Any]:
+            raise NotImplementedError("Automation connectors are not available")
+
+        async def delete_workflow(self, *args, **kwargs) -> Dict[str, Any]:
+            raise NotImplementedError("Automation connectors are not available")
+
+        async def register_webhook(self, *args, **kwargs) -> Dict[str, Any]:
+            raise NotImplementedError("Automation connectors are not available")
+
+
+
+try:
+    from forge1.auth.authentication_manager import AuthenticationManager
+except Exception as exc:  # pragma: no cover - optional dependency
+    AUTOMATION_AVAILABLE = False
+
+    class AuthenticationManager:  # type: ignore[no-redef]
+        async def authenticate(self, *args, **kwargs):
+            raise NotImplementedError("Authentication manager unavailable")
+
+
+try:
+    from forge1.core.security_manager import SecurityManager
+except Exception as exc:  # pragma: no cover
+    AUTOMATION_AVAILABLE = False
+
+    class SecurityManager:  # type: ignore[no-redef]
+        async def authorize(self, *args, **kwargs):
+            raise NotImplementedError("Security manager unavailable")
+
+
+try:
+    from forge1.core.performance_monitor import PerformanceMonitor
+except Exception as exc:  # pragma: no cover
+    AUTOMATION_AVAILABLE = False
+
+    class PerformanceMonitor:  # type: ignore[no-redef]
+        async def start_monitoring(self, *args, **kwargs):
+            return None
+
+logger = init_logger("forge1.api.automation")
 
 # Pydantic models for API requests/responses
 class TriggerConfig(BaseModel):
@@ -92,6 +157,8 @@ connector_manager: Optional[AutomationConnectorManager] = None
 def get_connector_manager() -> AutomationConnectorManager:
     """Get automation connector manager instance"""
     global connector_manager
+    if not AUTOMATION_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Automation connectors unavailable")
     if connector_manager is None:
         # In production, these would be injected via dependency injection
         auth_manager = AuthenticationManager()

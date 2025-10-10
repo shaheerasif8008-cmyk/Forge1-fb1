@@ -1,0 +1,11 @@
+{
+  "issues": [
+    {
+      "file": "forge1/auth/authentication_manager.py",
+      "line": 46,
+      "message": "Invalid syntax  [syntax]"
+    }
+  ],
+  "summary": "Found 1 error in 1 file (errors prevented further checking)",
+  "count": 1
+}

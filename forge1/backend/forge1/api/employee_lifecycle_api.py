@@ -1538,30 +1538,37 @@ async def get_api_metrics(
 
 
 # Error handlers for the router
-@router.exception_handler(ClientNotFoundError)
 async def client_not_found_handler(request: Request, exc: ClientNotFoundError):
     return JSONResponse(
         status_code=404,
         content={"error": "Client not found", "detail": str(exc)}
     )
 
-@router.exception_handler(EmployeeNotFoundError)
+
 async def employee_not_found_handler(request: Request, exc: EmployeeNotFoundError):
     return JSONResponse(
         status_code=404,
         content={"error": "Employee not found", "detail": str(exc)}
     )
 
-@router.exception_handler(TenantIsolationError)
+
 async def tenant_isolation_handler(request: Request, exc: TenantIsolationError):
     return JSONResponse(
         status_code=403,
         content={"error": "Access denied", "detail": "Tenant isolation violation"}
     )
 
-@router.exception_handler(InvalidConfigurationError)
+
 async def invalid_config_handler(request: Request, exc: InvalidConfigurationError):
     return JSONResponse(
         status_code=400,
         content={"error": "Invalid configuration", "detail": str(exc)}
     )
+
+
+ROUTER_EXCEPTION_HANDLERS = [
+    (ClientNotFoundError, client_not_found_handler),
+    (EmployeeNotFoundError, employee_not_found_handler),
+    (TenantIsolationError, tenant_isolation_handler),
+    (InvalidConfigurationError, invalid_config_handler),
+]

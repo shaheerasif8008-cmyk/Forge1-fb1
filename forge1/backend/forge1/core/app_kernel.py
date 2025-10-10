@@ -22,6 +22,10 @@ from contextlib import asynccontextmanager
 import sys
 import os
 
+from forge1.core.logging_config import init_logger
+
+logger = init_logger("forge1.core")
+
 # Try to import Microsoft's modules, fallback to our implementations
 try:
     sys.path.append('../../../Multi-Agent-Custom-Automation-Engine-Solution-Accelerator/src/backend')

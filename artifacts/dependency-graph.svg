@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+<style>text{font-family:monospace;font-size:12px;}</style>
+<rect x="0" y="0" width="400" height="400" fill="#0f0f17"/>
+<line x1="380.0" y1="200.0" x2="110.0" y2="355.9" stroke="#6ba4ff" stroke-width="2" marker-end="url(#arrow)" opacity="0.7"/>
+<line x1="380.0" y1="200.0" x2="20.0" y2="200.0" stroke="#6ba4ff" stroke-width="2" marker-end="url(#arrow)" opacity="0.7"/>
+<line x1="290.0" y1="355.9" x2="380.0" y2="200.0" stroke="#6ba4ff" stroke-width="2" marker-end="url(#arrow)" opacity="0.7"/>
+<line x1="290.0" y1="44.1" x2="110.0" y2="44.1" stroke="#6ba4ff" stroke-width="2" marker-end="url(#arrow)" opacity="0.7"/>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#6ba4ff"/></marker></defs>
+<circle cx="380.0" cy="200.0" r="28" fill="#1f2a44" stroke="#6ba4ff" stroke-width="2"/>
+<text x="380.0" y="204.0" fill="#e4ecff" text-anchor="middle">forge1-backend</text>
+<circle cx="290.0" cy="355.9" r="28" fill="#1f2a44" stroke="#6ba4ff" stroke-width="2"/>
+<text x="290.0" y="359.9" fill="#e4ecff" text-anchor="middle">forge1-frontend</text>
+<circle cx="110.0" cy="355.9" r="28" fill="#1f2a44" stroke="#6ba4ff" stroke-width="2"/>
+<text x="110.0" y="359.9" fill="#e4ecff" text-anchor="middle">redis</text>
+<circle cx="20.0" cy="200.0" r="28" fill="#1f2a44" stroke="#6ba4ff" stroke-width="2"/>
+<text x="20.0" y="204.0" fill="#e4ecff" text-anchor="middle">postgres</text>
+<circle cx="110.0" cy="44.1" r="28" fill="#1f2a44" stroke="#6ba4ff" stroke-width="2"/>
+<text x="110.0" y="48.1" fill="#e4ecff" text-anchor="middle">prometheus</text>
+<circle cx="290.0" cy="44.1" r="28" fill="#1f2a44" stroke="#6ba4ff" stroke-width="2"/>
+<text x="290.0" y="48.1" fill="#e4ecff" text-anchor="middle">grafana</text>
+</svg>
