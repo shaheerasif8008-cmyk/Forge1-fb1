@@ -208,3 +208,62 @@ async def check_system_resources() -> Dict[str, Any]:
             "error": str(e),
             "last_check": time.time()
         }
+
+class HealthStatus:
+    """Health status model"""
+    def __init__(self, status: str, checks: Dict[str, Any]):
+        self.status = status
+        self.checks = checks
+        self.timestamp = time.time()
+
+class HealthChecker:
+    """Health checker for Forge1 components"""
+    
+    def __init__(self):
+        self.logger = logging.getLogger(__name__)
+    
+    async def get_basic_health(self) -> HealthStatus:
+        """Get basic health status"""
+        return HealthStatus(
+            status="healthy",
+            checks={
+                "service": "forge1-platform",
+                "version": "1.0.0"
+            }
+        )
+    
+    async def get_detailed_health(self) -> HealthStatus:
+        """Get detailed health status"""
+        checks = {
+            "database": await check_database_health(),
+            "cache": await check_cache_health(),
+            "ai_models": await check_ai_models_health(),
+            "external_services": await check_external_services_health(),
+            "system_resources": await check_system_resources()
+        }
+        
+        # Determine overall status
+        overall_status = "healthy"
+        for component, status in checks.items():
+            if status.get("status") == "unhealthy":
+                overall_status = "unhealthy"
+                break
+            elif status.get("status") == "degraded" and overall_status == "healthy":
+                overall_status = "degraded"
+        
+        return HealthStatus(status=overall_status, checks=checks)
+    
+    async def check_component(self, component_name: str) -> Dict[str, Any]:
+        """Check specific component health"""
+        if component_name == "database":
+            return await check_database_health()
+        elif component_name == "cache":
+            return await check_cache_health()
+        elif component_name == "ai_models":
+            return await check_ai_models_health()
+        elif component_name == "external_services":
+            return await check_external_services_health()
+        elif component_name == "system_resources":
+            return await check_system_resources()
+        else:
+            return {"status": "unknown", "error": f"Unknown component: {component_name}"}

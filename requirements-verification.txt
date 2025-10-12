@@ -1,0 +1,46 @@
+# Combined requirements for verification script
+# Core web framework
+fastapi>=0.100.0
+uvicorn[standard]>=0.20.0
+pydantic>=2.0.0,<3.0.0
+pydantic-settings>=2.0.0
+
+# Utilities
+python-dotenv>=1.0.0
+python-multipart>=0.0.6
+requests>=2.28.0
+httpx>=0.24.0
+
+# Security
+pyjwt>=2.8.0
+cryptography>=40.0.0
+
+# System monitoring
+psutil>=5.9.0
+
+# OSS Integration
+weaviate-client>=3.25.0
+
+# Azure dependencies
+azure-cosmos
+azure-identity
+azure-monitor-opentelemetry>=1.8.0,<1.9.0
+azure-core>=1.29.0
+
+# OpenTelemetry
+opentelemetry-api>=1.36.0,<1.37.0
+opentelemetry-sdk>=1.36.0,<1.37.0
+opentelemetry-exporter-otlp>=1.36.0,<1.37.0
+opentelemetry-instrumentation>=0.57b0,<0.58.0
+opentelemetry-instrumentation-fastapi>=0.57b0,<0.58.0
+
+# Semantic Kernel (for MCAE)
+semantic-kernel[azure]==1.32.2
+azure-ai-projects==1.0.0b11
+openai==1.84.0
+azure-ai-inference==1.0.0b9
+
+# Testing
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.0.0

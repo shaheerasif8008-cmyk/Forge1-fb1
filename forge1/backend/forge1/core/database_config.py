@@ -113,3 +113,29 @@ class DatabaseManager:
 
 
 __all__ = ["DatabaseManager", "DatabaseSettings", "TenantRedis"]
+
+
+# Global database manager instance
+_database_manager: Optional[DatabaseManager] = None
+
+def get_database_manager() -> DatabaseManager:
+    """Get or create the global database manager instance"""
+    global _database_manager
+    if _database_manager is None:
+        _database_manager = DatabaseManager()
+    return _database_manager
+
+async def init_database_manager(settings: Optional[DatabaseSettings] = None) -> DatabaseManager:
+    """Initialize and start the database manager"""
+    global _database_manager
+    if _database_manager is None:
+        _database_manager = DatabaseManager(settings)
+        await _database_manager.start()
+    return _database_manager
+
+async def close_database_manager() -> None:
+    """Close the global database manager"""
+    global _database_manager
+    if _database_manager is not None:
+        await _database_manager.stop()
+        _database_manager = None
