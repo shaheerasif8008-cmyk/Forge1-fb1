@@ -1,0 +1,110 @@
+[
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 127 for law_nda exceeds 80% of capacity",
+    "related_event": null
+  },
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 147 for law_nda exceeds 80% of capacity",
+    "related_event": null
+  },
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 113 for law_nda exceeds 80% of capacity",
+    "related_event": null
+  },
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 138 for law_nda exceeds 80% of capacity",
+    "related_event": "slack_502_burst"
+  },
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 145 for law_nda exceeds 80% of capacity",
+    "related_event": "slack_502_burst"
+  },
+  {
+    "name": "dlq_entry_detected",
+    "severity": "warning",
+    "message": "law_nda task for tenant-health routed to DLQ",
+    "related_event": "slack_502_burst"
+  },
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 140 for law_nda exceeds 80% of capacity",
+    "related_event": "slack_502_burst"
+  },
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 140 for law_nda exceeds 80% of capacity",
+    "related_event": "slack_502_burst"
+  },
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 136 for law_nda exceeds 80% of capacity",
+    "related_event": null
+  },
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 124 for law_nda exceeds 80% of capacity",
+    "related_event": "drive_429_spike"
+  },
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 146 for law_nda exceeds 80% of capacity",
+    "related_event": "drive_429_spike"
+  },
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 120 for law_nda exceeds 80% of capacity",
+    "related_event": "drive_429_spike"
+  },
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 128 for law_nda exceeds 80% of capacity",
+    "related_event": "drive_429_spike"
+  },
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 156 for law_nda exceeds 80% of capacity",
+    "related_event": null
+  },
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 153 for law_nda exceeds 80% of capacity",
+    "related_event": null
+  },
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 143 for law_nda exceeds 80% of capacity",
+    "related_event": "vector_latency_injection"
+  },
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 132 for law_nda exceeds 80% of capacity",
+    "related_event": "vector_latency_injection"
+  },
+  {
+    "name": "queue_depth_threshold",
+    "severity": "critical",
+    "message": "Queue depth 102 for finance_pnl exceeds 80% of capacity",
+    "related_event": null
+  }
+]

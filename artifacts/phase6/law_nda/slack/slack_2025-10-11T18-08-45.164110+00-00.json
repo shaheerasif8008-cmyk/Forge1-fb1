@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "ts": "2025-10-11T18:08:45.164110+00:00",
+  "channel": "#legal-reviews",
+  "text": "NDA review ready",
+  "attachments": [
+    {
+      "text": "NDA review completed with OCR-enabled parsing, capturing None nodes. Key findings reference entries: 40434f6c5421442eaba28146f31ad57a. Preview: This Non-Disclosure Agreement (NDA) is made between Cont"
+    }
+  ],
+  "blocks": null
+}

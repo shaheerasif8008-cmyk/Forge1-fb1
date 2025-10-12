@@ -1,0 +1,130 @@
+[
+  {
+    "timestamp": "2025-10-11T18:08:45.153403+00:00",
+    "tenant_id": "tenant_legal",
+    "employee_id": "attorney_jane",
+    "event_type": "tool",
+    "model": null,
+    "tool": "drive.upload_file",
+    "tokens_input": 0,
+    "tokens_output": 0,
+    "latency_ms": 1.1155310003232444,
+    "cost_estimate": 0.0,
+    "request_id": "local::tenant_legal/nda_sample.txt",
+    "metadata": {
+      "folder_id": "tenant_legal",
+      "size_bytes": 263,
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2025-10-11T18:08:45.154504+00:00",
+    "tenant_id": "tenant_legal",
+    "employee_id": "attorney_jane",
+    "event_type": "tool",
+    "model": null,
+    "tool": "drive.fetch_file",
+    "tokens_input": 0,
+    "tokens_output": 0,
+    "latency_ms": 0.42525699973339215,
+    "cost_estimate": 0.0,
+    "request_id": "local::tenant_legal/nda_sample.txt",
+    "metadata": {
+      "requested_file_id": "local::tenant_legal/nda_sample.txt",
+      "requested_path": null,
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2025-10-11T18:08:45.160500+00:00",
+    "tenant_id": "tenant_legal",
+    "employee_id": "attorney_jane",
+    "event_type": "tool",
+    "model": null,
+    "tool": "document_parser.parse",
+    "tokens_input": 0,
+    "tokens_output": 0,
+    "latency_ms": 5.368553000153042,
+    "cost_estimate": 0.0,
+    "request_id": "document-parse-27e8cfd10c",
+    "metadata": {
+      "detected_format": "txt",
+      "success": true,
+      "nodes": 1
+    }
+  },
+  {
+    "timestamp": "2025-10-11T18:08:45.162862+00:00",
+    "tenant_id": "tenant_legal",
+    "employee_id": "attorney_jane",
+    "event_type": "tool",
+    "model": null,
+    "tool": "kb.search",
+    "tokens_input": 2,
+    "tokens_output": 0,
+    "latency_ms": 0.15166699995461386,
+    "cost_estimate": 0.0,
+    "request_id": "kb-search-9ec0f2014c",
+    "metadata": {
+      "backend": "local",
+      "tenant_id": "tenant_legal",
+      "employee_id": "attorney_jane",
+      "limit": 3,
+      "success": true,
+      "results": 1
+    }
+  },
+  {
+    "timestamp": "2025-10-11T18:08:45.163341+00:00",
+    "tenant_id": "tenant_legal",
+    "employee_id": "attorney_jane",
+    "event_type": "model",
+    "model": "mock-llm-legal",
+    "tool": null,
+    "tokens_input": 36,
+    "tokens_output": 49,
+    "latency_ms": 42.0,
+    "cost_estimate": 0.0001,
+    "request_id": "nda-compose",
+    "metadata": {
+      "case_id": "nda-case-001"
+    }
+  },
+  {
+    "timestamp": "2025-10-11T18:08:45.164738+00:00",
+    "tenant_id": "tenant_legal",
+    "employee_id": "attorney_jane",
+    "event_type": "tool",
+    "model": null,
+    "tool": "slack.send_message",
+    "tokens_input": 0,
+    "tokens_output": 0,
+    "latency_ms": 0.6951370005481294,
+    "cost_estimate": 0.0,
+    "request_id": "2025-10-11T18:08:45.164110+00:00",
+    "metadata": {
+      "channel": "#legal-reviews",
+      "has_attachments": true,
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2025-10-11T18:08:45.181125+00:00",
+    "tenant_id": "tenant_legal",
+    "employee_id": "attorney_jane",
+    "event_type": "tool",
+    "model": null,
+    "tool": "email.send",
+    "tokens_input": 0,
+    "tokens_output": 0,
+    "latency_ms": 16.02630399975169,
+    "cost_estimate": 0.0,
+    "request_id": "email-11ceba6ae09f",
+    "metadata": {
+      "to": "legal-team@example.com",
+      "cc": false,
+      "bcc": false,
+      "success": true
+    }
+  }
+]

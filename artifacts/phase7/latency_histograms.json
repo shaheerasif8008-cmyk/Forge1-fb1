@@ -1,0 +1,126 @@
+{
+  "law_nda": [
+    {
+      "bucket_start": 0.0,
+      "bucket_end": 0.5,
+      "count": 0
+    },
+    {
+      "bucket_start": 0.5,
+      "bucket_end": 1.0,
+      "count": 0
+    },
+    {
+      "bucket_start": 1.0,
+      "bucket_end": 1.5,
+      "count": 65
+    },
+    {
+      "bucket_start": 1.5,
+      "bucket_end": 2.0,
+      "count": 728
+    },
+    {
+      "bucket_start": 2.0,
+      "bucket_end": 2.5,
+      "count": 1924
+    },
+    {
+      "bucket_start": 2.5,
+      "bucket_end": 3.0,
+      "count": 1428
+    },
+    {
+      "bucket_start": 3.0,
+      "bucket_end": 3.5,
+      "count": 619
+    },
+    {
+      "bucket_start": 3.5,
+      "bucket_end": 4.0,
+      "count": 576
+    },
+    {
+      "bucket_start": 4.0,
+      "bucket_end": 4.5,
+      "count": 473
+    },
+    {
+      "bucket_start": 4.5,
+      "bucket_end": 5.0,
+      "count": 275
+    },
+    {
+      "bucket_start": 5.0,
+      "bucket_end": 5.5,
+      "count": 91
+    },
+    {
+      "bucket_start": 5.5,
+      "bucket_end": 6.0,
+      "count": 19
+    },
+    {
+      "bucket_start": 6.0,
+      "bucket_end": 6.5,
+      "count": 1
+    },
+    {
+      "bucket_start": 6.5,
+      "bucket_end": 7.0,
+      "count": 0
+    }
+  ],
+  "finance_pnl": [
+    {
+      "bucket_start": 0.0,
+      "bucket_end": 0.5,
+      "count": 0
+    },
+    {
+      "bucket_start": 0.5,
+      "bucket_end": 1.0,
+      "count": 60
+    },
+    {
+      "bucket_start": 1.0,
+      "bucket_end": 1.5,
+      "count": 1168
+    },
+    {
+      "bucket_start": 1.5,
+      "bucket_end": 2.0,
+      "count": 1781
+    },
+    {
+      "bucket_start": 2.0,
+      "bucket_end": 2.5,
+      "count": 510
+    },
+    {
+      "bucket_start": 2.5,
+      "bucket_end": 3.0,
+      "count": 213
+    },
+    {
+      "bucket_start": 3.0,
+      "bucket_end": 3.5,
+      "count": 53
+    },
+    {
+      "bucket_start": 3.5,
+      "bucket_end": 4.0,
+      "count": 14
+    },
+    {
+      "bucket_start": 4.0,
+      "bucket_end": 4.5,
+      "count": 1
+    },
+    {
+      "bucket_start": 4.5,
+      "bucket_end": 5.0,
+      "count": 0
+    }
+  ]
+}

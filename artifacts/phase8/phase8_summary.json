@@ -1,0 +1,102 @@
+{
+  "legal": {
+    "domain": "legal",
+    "passed": true,
+    "metrics": [
+      {
+        "name": "precision_at_5",
+        "value": 1.0,
+        "target": 0.8,
+        "unit": "ratio",
+        "passed": true,
+        "details": {
+          "per_query": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      {
+        "name": "hallucination_rate",
+        "value": 0.0,
+        "target": 0.02,
+        "unit": "ratio",
+        "passed": true,
+        "details": {
+          "hallucinated_facts": 0,
+          "total_facts": 8
+        }
+      }
+    ],
+    "methodology": "Indexed deterministic NDA clauses into the local KB adapter and executed three legal queries. Precision@5 is computed per query over retrieved clause identifiers, and the hallucination rate captures unsupported key points emitted from retrieved results.",
+    "dataset_summary": {
+      "documents_indexed": 3,
+      "queries": [
+        {
+          "query": "confidentiality obligations in nda",
+          "relevant_clauses": [
+            "confidentiality_obligations"
+          ]
+        },
+        {
+          "query": "nda exceptions for previously known information",
+          "relevant_clauses": [
+            "nda_exceptions"
+          ]
+        },
+        {
+          "query": "california governing law clause",
+          "relevant_clauses": [
+            "governing_law"
+          ]
+        }
+      ]
+    }
+  },
+  "finance": {
+    "domain": "finance",
+    "passed": true,
+    "metrics": [
+      {
+        "name": "revenue_variance",
+        "value": 0.0,
+        "target": 0.01,
+        "unit": "ratio",
+        "passed": true,
+        "details": {}
+      },
+      {
+        "name": "expense_variance",
+        "value": 0.0,
+        "target": 0.01,
+        "unit": "ratio",
+        "passed": true,
+        "details": {}
+      },
+      {
+        "name": "net_profit_variance",
+        "value": 0.0,
+        "target": 0.01,
+        "unit": "ratio",
+        "passed": true,
+        "details": {}
+      },
+      {
+        "name": "profit_margin_delta",
+        "value": 0.0,
+        "target": 0.01,
+        "unit": "ratio",
+        "passed": true,
+        "details": {}
+      }
+    ],
+    "methodology": "Aggregated deterministic ERP revenue and expense samples to compute total revenue, expenses, net profit, and profit margin. Variance is measured against the curated ground-truth ledger with a 1% tolerance.",
+    "dataset_summary": {
+      "month": "2025-01",
+      "revenue_entries": 2,
+      "expense_entries": 3
+    }
+  },
+  "overall_passed": true
+}

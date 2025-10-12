@@ -13,15 +13,45 @@ from typing import Dict, Any, List, Optional
 # Import all adapters
 from forge1.integrations.queue.celery_app import celery_adapter
 from forge1.integrations.queue.redis_client import redis_adapter
-from forge1.integrations.vector.weaviate_client import weaviate_adapter
-from forge1.integrations.vector.vector_store_weaviate import weaviate_memory_adapter
+try:
+    from forge1.integrations.vector.weaviate_client import weaviate_adapter
+    from forge1.integrations.vector.vector_store_weaviate import weaviate_memory_adapter
+    HAS_WEAVIATE = True
+except ModuleNotFoundError:  # pragma: no cover - optional dependency guard
+    weaviate_adapter = None  # type: ignore[assignment]
+    weaviate_memory_adapter = None  # type: ignore[assignment]
+    HAS_WEAVIATE = False
 from forge1.integrations.observability.otel_init import otel_integration
 from forge1.integrations.observability.metrics import forge_metrics
-from forge1.integrations.observability.azure_monitor_adapter import azure_monitor_adapter
-from forge1.integrations.metering.openmeter_client import openmeter_adapter
-from forge1.policy.opa_client import opa_adapter
-from forge1.middleware.policy_enforcer import policy_enforcement_middleware
-from forge1.services.azure_monitor_service import azure_monitor_business_service
+try:
+    from forge1.integrations.observability.azure_monitor_adapter import azure_monitor_adapter
+    HAS_AZURE_MONITOR = True
+except ModuleNotFoundError:  # pragma: no cover - optional dependency guard
+    azure_monitor_adapter = None  # type: ignore[assignment]
+    HAS_AZURE_MONITOR = False
+
+try:
+    from forge1.integrations.metering.openmeter_client import openmeter_adapter
+    HAS_OPENMETER = True
+except ModuleNotFoundError:  # pragma: no cover - optional dependency guard
+    openmeter_adapter = None  # type: ignore[assignment]
+    HAS_OPENMETER = False
+
+try:
+    from forge1.policy.opa_client import opa_adapter
+    HAS_OPA = True
+except ModuleNotFoundError:  # pragma: no cover - optional dependency guard
+    opa_adapter = None  # type: ignore[assignment]
+    HAS_OPA = False
+
+try:
+    from forge1.middleware.policy_enforcer import policy_enforcement_middleware
+except ModuleNotFoundError:  # pragma: no cover - optional dependency guard
+    policy_enforcement_middleware = None  # type: ignore[assignment]
+try:
+    from forge1.services.azure_monitor_service import azure_monitor_business_service
+except ModuleNotFoundError:  # pragma: no cover - optional dependency guard
+    azure_monitor_business_service = None  # type: ignore[assignment]
 
 logger = logging.getLogger(__name__)
 
@@ -32,25 +62,31 @@ class IntegrationManager:
         self.adapters = {
             "celery": celery_adapter,
             "redis": redis_adapter,
-            "weaviate": weaviate_adapter,
-            "weaviate_memory": weaviate_memory_adapter,
             "otel": otel_integration,
-            "azure_monitor": azure_monitor_adapter,
-            "openmeter": openmeter_adapter,
-            "opa": opa_adapter
         }
-        
+
+        if HAS_AZURE_MONITOR:
+            self.adapters["azure_monitor"] = azure_monitor_adapter  # type: ignore[index]
+        if HAS_OPENMETER:
+            self.adapters["openmeter"] = openmeter_adapter  # type: ignore[index]
+        if HAS_OPA:
+            self.adapters["opa"] = opa_adapter  # type: ignore[index]
+
+        if HAS_WEAVIATE:
+            self.adapters["weaviate"] = weaviate_adapter  # type: ignore[index]
+            self.adapters["weaviate_memory"] = weaviate_memory_adapter  # type: ignore[index]
+
         self.initialized = False
-        self.initialization_order = [
-            "redis",
-            "celery", 
-            "weaviate",
-            "weaviate_memory",
-            "otel",
-            "azure_monitor",
-            "openmeter",
-            "opa"
-        ]
+        self.initialization_order = ["redis", "celery"]
+        if HAS_WEAVIATE:
+            self.initialization_order.extend(["weaviate", "weaviate_memory"])
+        self.initialization_order.append("otel")
+        if HAS_AZURE_MONITOR:
+            self.initialization_order.append("azure_monitor")
+        if HAS_OPENMETER:
+            self.initialization_order.append("openmeter")
+        if HAS_OPA:
+            self.initialization_order.append("opa")
     
     async def initialize_all(self) -> bool:
         """Initialize all integrations in proper order"""

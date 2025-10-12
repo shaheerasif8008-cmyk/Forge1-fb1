@@ -53,5 +53,31 @@ def redact_payload(payload: Any) -> Tuple[Any, List[Dict[str, str]]]:
     return payload, violations
 
 
-__all__ = ["redact_payload"]
+def redact_text(text: str) -> Tuple[str, List[Dict[str, str]]]:
+    """Public helper that applies the regex based redaction to plain text."""
+
+    return _redact_text(text)
+
+
+def sanitize_vector_metadata(metadata: Dict[str, Any]) -> Tuple[Dict[str, Any], List[Dict[str, str]]]:
+    """Redact metadata before it is persisted to the vector store."""
+
+    redacted, violations = redact_payload(metadata)
+    sanitized = dict(redacted)
+    sanitized["redaction_count"] = len(violations)
+    return sanitized, violations
+
+
+def redact_for_export(payload: Any) -> Tuple[Any, List[Dict[str, str]]]:
+    """Redact payloads that will be exported outside the service boundary."""
+
+    return redact_payload(payload)
+
+
+__all__ = [
+    "redact_payload",
+    "redact_text",
+    "sanitize_vector_metadata",
+    "redact_for_export",
+]
 

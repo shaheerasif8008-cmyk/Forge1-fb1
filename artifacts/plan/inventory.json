@@ -1,0 +1,108 @@
+{
+  "services": [
+    {
+      "name": "backend",
+      "path": "forge1/backend",
+      "dockerfile": "forge1/backend/Dockerfile"
+    },
+    {
+      "name": "frontend",
+      "path": "forge1/frontend",
+      "dockerfile": "forge1/frontend/Dockerfile"
+    }
+  ],
+  "entrypoints": {
+    "python": [
+      "forge1/backend/forge1/main.py",
+      "forge1/backend/forge1/startup.py"
+    ],
+    "scripts": [
+      "forge1/configure.sh",
+      "forge1/health-check.sh",
+      "forge1/quick-start.sh",
+      "forge1/scripts/docker_build.sh",
+      "forge1/scripts/e2e_full.sh",
+      "forge1/scripts/troubleshoot.sh",
+      "forge1/scripts/verify_docker.sh"
+    ],
+    "frontend": [
+      "forge1/frontend/package.json"
+    ]
+  },
+  "docker": {
+    "dockerfiles": [
+      "forge1/backend/Dockerfile",
+      "forge1/frontend/Dockerfile"
+    ],
+    "compose": [
+      "forge1/docker-compose.dev.yml",
+      "forge1/docker-compose.yml"
+    ]
+  },
+  "iac": {
+    "helm_charts": [
+      "helm/forge1/Chart.yaml"
+    ],
+    "k8s_manifests": [],
+    "terraform": [
+      "infra/terraform/main.tf"
+    ]
+  },
+  "tests": {
+    "pytest": [
+      "forge1/backend/forge1/tests/test_authentication_manager.py",
+      "forge1/backend/forge1/tests/test_autogen_integration.py",
+      "forge1/backend/forge1/tests/test_compliance_security.py",
+      "forge1/backend/forge1/tests/test_crewai_integration.py",
+      "forge1/backend/forge1/tests/test_database_connectivity.py",
+      "forge1/backend/forge1/tests/test_database_setup.py",
+      "forge1/backend/forge1/tests/test_framework_compatibility.py",
+      "forge1/backend/forge1/tests/test_haystack_integration.py",
+      "forge1/backend/forge1/tests/test_integration_endpoints.py",
+      "forge1/backend/forge1/tests/test_langchain_integration.py",
+      "forge1/backend/forge1/tests/test_memory_integration.py",
+      "forge1/backend/forge1/tests/test_memory_manager.py",
+      "forge1/backend/forge1/tests/test_memory_optimizer.py",
+      "forge1/backend/forge1/tests/test_orchestration_durable.py",
+      "forge1/backend/forge1/tests/test_orchestrator_qa_integration.py",
+      "forge1/backend/forge1/tests/test_performance_benchmark.py",
+      "forge1/backend/forge1/tests/test_policy_engine.py",
+      "forge1/backend/forge1/tests/test_quality_assurance.py",
+      "forge1/backend/forge1/tests/test_tenancy.py",
+      "forge1/backend/forge1/tests/test_tool_registry.py",
+      "forge1/backend/forge1/tests/test_verticals_playbooks.py",
+      "forge1/backend/forge1/verticals/cx/tests.py",
+      "forge1/backend/forge1/verticals/tests/test_verticals_integration.py",
+      "forge1/backend/test_analytics_monitoring.py",
+      "forge1/backend/test_api_startup.py",
+      "forge1/backend/test_azure_monitor_integration.py",
+      "forge1/backend/test_compliance_implementation.py",
+      "forge1/backend/test_compliance_simple.py",
+      "forge1/backend/test_core_backend.py",
+      "forge1/backend/test_employee_lifecycle.py",
+      "forge1/backend/test_employee_lifecycle_api.py",
+      "forge1/backend/test_openai_integration.py",
+      "forge1/backend/test_performance_optimization.py",
+      "forge1/backend/test_phase_g_implementation.py",
+      "forge1/backend/test_production_readiness.py",
+      "forge1/backend/test_security_features.py",
+      "forge1/backend/test_startup.py",
+      "forge1/backend/tests/e2e/test_complete_workflow_validation.py",
+      "forge1/backend/tests/e2e/test_employee_lifecycle_e2e.py",
+      "forge1/backend/tests/integration/test_employee_lifecycle_integration.py",
+      "forge1/backend/tests/performance/test_employee_performance.py",
+      "forge1/backend/tests/performance/test_verify_performance.py",
+      "forge1/backend/tests/security/test_tenant_isolation.py",
+      "forge1/backend/tests/security/test_verify_security.py",
+      "forge1/backend/tests/test_api_integration_layer.py",
+      "forge1/backend/tests/test_automation_connectors.py",
+      "forge1/backend/tests/test_llamaindex_workflows_integration.py",
+      "forge1/backend/tests/test_mcae_integration_units.py",
+      "forge1/backend/tests/test_mcae_law_firm_integration.py",
+      "forge1/backend/tests/unit/test_employee_manager.py",
+      "forge1/backend/tests/unit/test_employee_memory_manager.py",
+      "forge1/backend/tests/unit/test_memory_summarizer.py"
+    ],
+    "other": []
+  }
+}

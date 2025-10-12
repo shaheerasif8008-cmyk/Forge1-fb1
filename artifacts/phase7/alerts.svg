@@ -1,0 +1,23 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='800' height='580'>
+<style>text{font-family:monospace;font-size:14px;} .critical{fill:#b30000;} .warning{fill:#b36b00;} .info{fill:#004d99;}</style>
+<rect width='800' height='580' fill='#0b1e39'/>
+<text x='20' y='25' fill='#ffffff'>Phase 7 Alert Summary</text>
+<text x='20' y='60' class='critical'>[CRITICAL] Queue depth 127 for law_nda exceeds 80% of capacity</text>
+<text x='20' y='84' class='critical'>[CRITICAL] Queue depth 147 for law_nda exceeds 80% of capacity</text>
+<text x='20' y='108' class='critical'>[CRITICAL] Queue depth 113 for law_nda exceeds 80% of capacity</text>
+<text x='20' y='132' class='critical'>[CRITICAL] Queue depth 138 for law_nda exceeds 80% of capacity (event: slack_502_burst)</text>
+<text x='20' y='156' class='critical'>[CRITICAL] Queue depth 145 for law_nda exceeds 80% of capacity (event: slack_502_burst)</text>
+<text x='20' y='180' class='warning'>[WARNING] law_nda task for tenant-health routed to DLQ (event: slack_502_burst)</text>
+<text x='20' y='204' class='critical'>[CRITICAL] Queue depth 140 for law_nda exceeds 80% of capacity (event: slack_502_burst)</text>
+<text x='20' y='228' class='critical'>[CRITICAL] Queue depth 140 for law_nda exceeds 80% of capacity (event: slack_502_burst)</text>
+<text x='20' y='252' class='critical'>[CRITICAL] Queue depth 136 for law_nda exceeds 80% of capacity</text>
+<text x='20' y='276' class='critical'>[CRITICAL] Queue depth 124 for law_nda exceeds 80% of capacity (event: drive_429_spike)</text>
+<text x='20' y='300' class='critical'>[CRITICAL] Queue depth 146 for law_nda exceeds 80% of capacity (event: drive_429_spike)</text>
+<text x='20' y='324' class='critical'>[CRITICAL] Queue depth 120 for law_nda exceeds 80% of capacity (event: drive_429_spike)</text>
+<text x='20' y='348' class='critical'>[CRITICAL] Queue depth 128 for law_nda exceeds 80% of capacity (event: drive_429_spike)</text>
+<text x='20' y='372' class='critical'>[CRITICAL] Queue depth 156 for law_nda exceeds 80% of capacity</text>
+<text x='20' y='396' class='critical'>[CRITICAL] Queue depth 153 for law_nda exceeds 80% of capacity</text>
+<text x='20' y='420' class='critical'>[CRITICAL] Queue depth 143 for law_nda exceeds 80% of capacity (event: vector_latency_injection)</text>
+<text x='20' y='444' class='critical'>[CRITICAL] Queue depth 132 for law_nda exceeds 80% of capacity (event: vector_latency_injection)</text>
+<text x='20' y='468' class='critical'>[CRITICAL] Queue depth 102 for finance_pnl exceeds 80% of capacity</text>
+</svg>

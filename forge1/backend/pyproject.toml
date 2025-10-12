@@ -12,8 +12,10 @@ dependencies = [
     "pydantic-settings>=2.0.0",
     
     # Database and Storage
+    "asyncpg>=0.29.0",
     "psycopg2-binary>=2.9.0",
     "redis>=4.0.0",
+    "alembic>=1.13.0",
     
     # Security and Authentication
     "cryptography>=40.0.0",

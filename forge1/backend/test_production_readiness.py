@@ -11,7 +11,8 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 
 # Add the forge1 directory to the Python path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'forge1'))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 def test_payment_processing():
     """Test payment processing implementation"""

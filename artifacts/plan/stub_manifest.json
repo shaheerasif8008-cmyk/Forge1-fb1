@@ -1,0 +1,541 @@
+{
+  "stubs": [
+    {
+      "path": "forge1/backend/forge1/agents/communication_manager.py",
+      "line": 28,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/agents/communication_manager.py",
+      "line": 36,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/api/automation_api.py",
+      "line": 33,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/api/automation_api.py",
+      "line": 36,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/api/automation_api.py",
+      "line": 39,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/api/automation_api.py",
+      "line": 42,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/api/automation_api.py",
+      "line": 45,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/api/automation_api.py",
+      "line": 48,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/api/automation_api.py",
+      "line": 51,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/api/automation_api.py",
+      "line": 54,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/api/automation_api.py",
+      "line": 65,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/api/automation_api.py",
+      "line": 75,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 45,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 48,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 56,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 68,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 77,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 85,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 88,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 92,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 97,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 100,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 103,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 142,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 145,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 148,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 151,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 154,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 157,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 160,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 163,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 166,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/auth/authentication_manager.py",
+      "line": 169,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/compliance/programs.py",
+      "line": 46,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/compliance/programs.py",
+      "line": 98,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/compliance/programs.py",
+      "line": 105,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/compliance/programs.py",
+      "line": 111,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/compliance/programs.py",
+      "line": 114,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/compliance/programs.py",
+      "line": 120,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/compliance/programs.py",
+      "line": 123,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/core/agent_base.py",
+      "line": 24,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/core/monitoring.py",
+      "line": 18,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/core/monitoring.py",
+      "line": 21,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/core/security.py",
+      "line": 16,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/core/security.py",
+      "line": 19,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/customization/guardrails.py",
+      "line": 102,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/customization/guardrails.py",
+      "line": 109,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/customization/guardrails.py",
+      "line": 117,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/customization/guardrails.py",
+      "line": 124,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/customization/guardrails.py",
+      "line": 131,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/customization/guardrails.py",
+      "line": 134,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/customization/guardrails.py",
+      "line": 137,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/customization/guardrails.py",
+      "line": 140,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/api_integration_layer.py",
+      "line": 79,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/api_integration_layer.py",
+      "line": 82,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/api_integration_layer.py",
+      "line": 85,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/api_integration_layer.py",
+      "line": 94,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/api_integration_layer.py",
+      "line": 97,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/api_integration_layer.py",
+      "line": 100,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/api_integration_layer.py",
+      "line": 130,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/api_integration_layer.py",
+      "line": 133,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/api_integration_layer.py",
+      "line": 166,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/api_integration_layer.py",
+      "line": 169,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/api_integration_layer.py",
+      "line": 172,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/api_integration_layer.py",
+      "line": 175,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/api_integration_layer.py",
+      "line": 183,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/api_integration_layer.py",
+      "line": 199,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/automation_connectors.py",
+      "line": 58,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/automation_connectors.py",
+      "line": 65,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/automation_connectors.py",
+      "line": 68,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/automation_connectors.py",
+      "line": 71,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/automation_connectors.py",
+      "line": 103,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/automation_connectors.py",
+      "line": 109,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/automation_connectors.py",
+      "line": 112,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/automation_connectors.py",
+      "line": 118,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/automation_connectors.py",
+      "line": 126,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/automation_connectors.py",
+      "line": 129,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/automation_connectors.py",
+      "line": 142,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/automation_connectors.py",
+      "line": 150,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/automation_connectors.py",
+      "line": 164,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/haystack_adapter.py",
+      "line": 41,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/haystack_adapter.py",
+      "line": 50,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/haystack_adapter.py",
+      "line": 81,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/haystack_adapter.py",
+      "line": 87,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/haystack_adapter.py",
+      "line": 90,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/haystack_adapter.py",
+      "line": 93,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/llamaindex_adapter.py",
+      "line": 199,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/llamaindex_model_shim.py",
+      "line": 228,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/llamaindex_model_shim.py",
+      "line": 232,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/llamaindex_model_shim.py",
+      "line": 301,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/llamaindex_model_shim.py",
+      "line": 305,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/integrations/workflows_adapter.py",
+      "line": 248,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/security/supply_chain.py",
+      "line": 72,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/security/supply_chain.py",
+      "line": 87,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/security/supply_chain.py",
+      "line": 90,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/security/supply_chain.py",
+      "line": 93,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/tools/example_tools.py",
+      "line": 28,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/tools/example_tools.py",
+      "line": 31,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/tools/example_tools.py",
+      "line": 45,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/tools/example_tools.py",
+      "line": 48,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/tools/example_tools.py",
+      "line": 62,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/tools/example_tools.py",
+      "line": 65,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/tools/example_tools.py",
+      "line": 79,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/tools/example_tools.py",
+      "line": 82,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/tools/example_tools.py",
+      "line": 96,
+      "kind": "NotImplementedError"
+    },
+    {
+      "path": "forge1/backend/forge1/tools/example_tools.py",
+      "line": 99,
+      "kind": "NotImplementedError"
+    }
+  ],
+  "corrupted": [
+    {
+      "path": "forge1/backend/tests/e2e/test_complete_workflow_validation.py",
+      "error": "SyntaxError",
+      "message": "invalid syntax (<unknown>, line 75)"
+    }
+  ]
+}

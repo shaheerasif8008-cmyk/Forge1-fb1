@@ -1,0 +1,2007 @@
+[
+  {
+    "time_index": 0,
+    "workflow": "law_nda",
+    "queue_depth": 35
+  },
+  {
+    "time_index": 25,
+    "workflow": "law_nda",
+    "queue_depth": 31
+  },
+  {
+    "time_index": 50,
+    "workflow": "law_nda",
+    "queue_depth": 22
+  },
+  {
+    "time_index": 75,
+    "workflow": "law_nda",
+    "queue_depth": 32
+  },
+  {
+    "time_index": 100,
+    "workflow": "law_nda",
+    "queue_depth": 16
+  },
+  {
+    "time_index": 125,
+    "workflow": "law_nda",
+    "queue_depth": 10
+  },
+  {
+    "time_index": 150,
+    "workflow": "law_nda",
+    "queue_depth": 26
+  },
+  {
+    "time_index": 175,
+    "workflow": "law_nda",
+    "queue_depth": 13
+  },
+  {
+    "time_index": 200,
+    "workflow": "law_nda",
+    "queue_depth": 9
+  },
+  {
+    "time_index": 225,
+    "workflow": "law_nda",
+    "queue_depth": 8
+  },
+  {
+    "time_index": 250,
+    "workflow": "law_nda",
+    "queue_depth": 29
+  },
+  {
+    "time_index": 275,
+    "workflow": "law_nda",
+    "queue_depth": 11
+  },
+  {
+    "time_index": 300,
+    "workflow": "law_nda",
+    "queue_depth": 12
+  },
+  {
+    "time_index": 325,
+    "workflow": "law_nda",
+    "queue_depth": 21
+  },
+  {
+    "time_index": 350,
+    "workflow": "law_nda",
+    "queue_depth": 28
+  },
+  {
+    "time_index": 375,
+    "workflow": "law_nda",
+    "queue_depth": 19
+  },
+  {
+    "time_index": 400,
+    "workflow": "law_nda",
+    "queue_depth": 44
+  },
+  {
+    "time_index": 425,
+    "workflow": "law_nda",
+    "queue_depth": 43
+  },
+  {
+    "time_index": 450,
+    "workflow": "law_nda",
+    "queue_depth": 8
+  },
+  {
+    "time_index": 475,
+    "workflow": "law_nda",
+    "queue_depth": 51
+  },
+  {
+    "time_index": 500,
+    "workflow": "law_nda",
+    "queue_depth": 36
+  },
+  {
+    "time_index": 525,
+    "workflow": "law_nda",
+    "queue_depth": 23
+  },
+  {
+    "time_index": 550,
+    "workflow": "law_nda",
+    "queue_depth": 12
+  },
+  {
+    "time_index": 575,
+    "workflow": "law_nda",
+    "queue_depth": 45
+  },
+  {
+    "time_index": 600,
+    "workflow": "law_nda",
+    "queue_depth": 41
+  },
+  {
+    "time_index": 625,
+    "workflow": "law_nda",
+    "queue_depth": 18
+  },
+  {
+    "time_index": 650,
+    "workflow": "law_nda",
+    "queue_depth": 29
+  },
+  {
+    "time_index": 675,
+    "workflow": "law_nda",
+    "queue_depth": 30
+  },
+  {
+    "time_index": 700,
+    "workflow": "law_nda",
+    "queue_depth": 11
+  },
+  {
+    "time_index": 725,
+    "workflow": "law_nda",
+    "queue_depth": 33
+  },
+  {
+    "time_index": 750,
+    "workflow": "law_nda",
+    "queue_depth": 50
+  },
+  {
+    "time_index": 775,
+    "workflow": "law_nda",
+    "queue_depth": 26
+  },
+  {
+    "time_index": 800,
+    "workflow": "law_nda",
+    "queue_depth": 15
+  },
+  {
+    "time_index": 825,
+    "workflow": "law_nda",
+    "queue_depth": 55
+  },
+  {
+    "time_index": 850,
+    "workflow": "law_nda",
+    "queue_depth": 37
+  },
+  {
+    "time_index": 875,
+    "workflow": "law_nda",
+    "queue_depth": 3
+  },
+  {
+    "time_index": 900,
+    "workflow": "law_nda",
+    "queue_depth": 82
+  },
+  {
+    "time_index": 925,
+    "workflow": "law_nda",
+    "queue_depth": 16
+  },
+  {
+    "time_index": 950,
+    "workflow": "law_nda",
+    "queue_depth": 17
+  },
+  {
+    "time_index": 975,
+    "workflow": "law_nda",
+    "queue_depth": 21
+  },
+  {
+    "time_index": 1000,
+    "workflow": "law_nda",
+    "queue_depth": 8
+  },
+  {
+    "time_index": 1025,
+    "workflow": "law_nda",
+    "queue_depth": 21
+  },
+  {
+    "time_index": 1050,
+    "workflow": "law_nda",
+    "queue_depth": 22
+  },
+  {
+    "time_index": 1075,
+    "workflow": "law_nda",
+    "queue_depth": 56
+  },
+  {
+    "time_index": 1100,
+    "workflow": "law_nda",
+    "queue_depth": 22
+  },
+  {
+    "time_index": 1125,
+    "workflow": "law_nda",
+    "queue_depth": 12
+  },
+  {
+    "time_index": 1150,
+    "workflow": "law_nda",
+    "queue_depth": 21
+  },
+  {
+    "time_index": 1175,
+    "workflow": "law_nda",
+    "queue_depth": 26
+  },
+  {
+    "time_index": 1200,
+    "workflow": "law_nda",
+    "queue_depth": 2
+  },
+  {
+    "time_index": 1225,
+    "workflow": "law_nda",
+    "queue_depth": 7
+  },
+  {
+    "time_index": 1250,
+    "workflow": "law_nda",
+    "queue_depth": 44
+  },
+  {
+    "time_index": 1275,
+    "workflow": "law_nda",
+    "queue_depth": 10
+  },
+  {
+    "time_index": 1300,
+    "workflow": "law_nda",
+    "queue_depth": 17
+  },
+  {
+    "time_index": 1325,
+    "workflow": "law_nda",
+    "queue_depth": 48
+  },
+  {
+    "time_index": 1350,
+    "workflow": "law_nda",
+    "queue_depth": 20
+  },
+  {
+    "time_index": 1375,
+    "workflow": "law_nda",
+    "queue_depth": 20
+  },
+  {
+    "time_index": 1400,
+    "workflow": "law_nda",
+    "queue_depth": 48
+  },
+  {
+    "time_index": 1425,
+    "workflow": "law_nda",
+    "queue_depth": 28
+  },
+  {
+    "time_index": 1450,
+    "workflow": "law_nda",
+    "queue_depth": 21
+  },
+  {
+    "time_index": 1475,
+    "workflow": "law_nda",
+    "queue_depth": 40
+  },
+  {
+    "time_index": 1500,
+    "workflow": "law_nda",
+    "queue_depth": 6
+  },
+  {
+    "time_index": 1525,
+    "workflow": "law_nda",
+    "queue_depth": 8
+  },
+  {
+    "time_index": 1550,
+    "workflow": "law_nda",
+    "queue_depth": 3
+  },
+  {
+    "time_index": 1575,
+    "workflow": "law_nda",
+    "queue_depth": 34
+  },
+  {
+    "time_index": 1600,
+    "workflow": "law_nda",
+    "queue_depth": 17
+  },
+  {
+    "time_index": 1625,
+    "workflow": "law_nda",
+    "queue_depth": 14
+  },
+  {
+    "time_index": 1650,
+    "workflow": "law_nda",
+    "queue_depth": 5
+  },
+  {
+    "time_index": 1675,
+    "workflow": "law_nda",
+    "queue_depth": 9
+  },
+  {
+    "time_index": 1700,
+    "workflow": "law_nda",
+    "queue_depth": 7
+  },
+  {
+    "time_index": 1725,
+    "workflow": "law_nda",
+    "queue_depth": 15
+  },
+  {
+    "time_index": 1750,
+    "workflow": "law_nda",
+    "queue_depth": 16
+  },
+  {
+    "time_index": 1775,
+    "workflow": "law_nda",
+    "queue_depth": 62
+  },
+  {
+    "time_index": 1800,
+    "workflow": "law_nda",
+    "queue_depth": 31
+  },
+  {
+    "time_index": 1825,
+    "workflow": "law_nda",
+    "queue_depth": 35
+  },
+  {
+    "time_index": 1850,
+    "workflow": "law_nda",
+    "queue_depth": 31
+  },
+  {
+    "time_index": 1875,
+    "workflow": "law_nda",
+    "queue_depth": 70
+  },
+  {
+    "time_index": 1900,
+    "workflow": "law_nda",
+    "queue_depth": 37
+  },
+  {
+    "time_index": 1925,
+    "workflow": "law_nda",
+    "queue_depth": 32
+  },
+  {
+    "time_index": 1950,
+    "workflow": "law_nda",
+    "queue_depth": 51
+  },
+  {
+    "time_index": 1975,
+    "workflow": "law_nda",
+    "queue_depth": 41
+  },
+  {
+    "time_index": 2000,
+    "workflow": "law_nda",
+    "queue_depth": 37
+  },
+  {
+    "time_index": 2025,
+    "workflow": "law_nda",
+    "queue_depth": 37
+  },
+  {
+    "time_index": 2050,
+    "workflow": "law_nda",
+    "queue_depth": 35
+  },
+  {
+    "time_index": 2075,
+    "workflow": "law_nda",
+    "queue_depth": 34
+  },
+  {
+    "time_index": 2100,
+    "workflow": "law_nda",
+    "queue_depth": 38
+  },
+  {
+    "time_index": 2125,
+    "workflow": "law_nda",
+    "queue_depth": 59
+  },
+  {
+    "time_index": 2150,
+    "workflow": "law_nda",
+    "queue_depth": 59
+  },
+  {
+    "time_index": 2175,
+    "workflow": "law_nda",
+    "queue_depth": 62
+  },
+  {
+    "time_index": 2200,
+    "workflow": "law_nda",
+    "queue_depth": 53
+  },
+  {
+    "time_index": 2225,
+    "workflow": "law_nda",
+    "queue_depth": 42
+  },
+  {
+    "time_index": 2250,
+    "workflow": "law_nda",
+    "queue_depth": 50
+  },
+  {
+    "time_index": 2275,
+    "workflow": "law_nda",
+    "queue_depth": 44
+  },
+  {
+    "time_index": 2300,
+    "workflow": "law_nda",
+    "queue_depth": 80
+  },
+  {
+    "time_index": 2325,
+    "workflow": "law_nda",
+    "queue_depth": 36
+  },
+  {
+    "time_index": 2350,
+    "workflow": "law_nda",
+    "queue_depth": 51
+  },
+  {
+    "time_index": 2375,
+    "workflow": "law_nda",
+    "queue_depth": 112
+  },
+  {
+    "time_index": 2400,
+    "workflow": "law_nda",
+    "queue_depth": 9
+  },
+  {
+    "time_index": 2425,
+    "workflow": "law_nda",
+    "queue_depth": 10
+  },
+  {
+    "time_index": 2450,
+    "workflow": "law_nda",
+    "queue_depth": 6
+  },
+  {
+    "time_index": 2475,
+    "workflow": "law_nda",
+    "queue_depth": 6
+  },
+  {
+    "time_index": 2500,
+    "workflow": "law_nda",
+    "queue_depth": 43
+  },
+  {
+    "time_index": 2525,
+    "workflow": "law_nda",
+    "queue_depth": 27
+  },
+  {
+    "time_index": 2550,
+    "workflow": "law_nda",
+    "queue_depth": 22
+  },
+  {
+    "time_index": 2575,
+    "workflow": "law_nda",
+    "queue_depth": 4
+  },
+  {
+    "time_index": 2600,
+    "workflow": "law_nda",
+    "queue_depth": 20
+  },
+  {
+    "time_index": 2625,
+    "workflow": "law_nda",
+    "queue_depth": 20
+  },
+  {
+    "time_index": 2650,
+    "workflow": "law_nda",
+    "queue_depth": 14
+  },
+  {
+    "time_index": 2675,
+    "workflow": "law_nda",
+    "queue_depth": 7
+  },
+  {
+    "time_index": 2700,
+    "workflow": "law_nda",
+    "queue_depth": 41
+  },
+  {
+    "time_index": 2725,
+    "workflow": "law_nda",
+    "queue_depth": 10
+  },
+  {
+    "time_index": 2750,
+    "workflow": "law_nda",
+    "queue_depth": 14
+  },
+  {
+    "time_index": 2775,
+    "workflow": "law_nda",
+    "queue_depth": 15
+  },
+  {
+    "time_index": 2800,
+    "workflow": "law_nda",
+    "queue_depth": 32
+  },
+  {
+    "time_index": 2825,
+    "workflow": "law_nda",
+    "queue_depth": 20
+  },
+  {
+    "time_index": 2850,
+    "workflow": "law_nda",
+    "queue_depth": 11
+  },
+  {
+    "time_index": 2875,
+    "workflow": "law_nda",
+    "queue_depth": 27
+  },
+  {
+    "time_index": 2900,
+    "workflow": "law_nda",
+    "queue_depth": 12
+  },
+  {
+    "time_index": 2925,
+    "workflow": "law_nda",
+    "queue_depth": 35
+  },
+  {
+    "time_index": 2950,
+    "workflow": "law_nda",
+    "queue_depth": 76
+  },
+  {
+    "time_index": 2975,
+    "workflow": "law_nda",
+    "queue_depth": 18
+  },
+  {
+    "time_index": 3000,
+    "workflow": "law_nda",
+    "queue_depth": 6
+  },
+  {
+    "time_index": 3025,
+    "workflow": "law_nda",
+    "queue_depth": 30
+  },
+  {
+    "time_index": 3050,
+    "workflow": "law_nda",
+    "queue_depth": 13
+  },
+  {
+    "time_index": 3075,
+    "workflow": "law_nda",
+    "queue_depth": 23
+  },
+  {
+    "time_index": 3100,
+    "workflow": "law_nda",
+    "queue_depth": 6
+  },
+  {
+    "time_index": 3125,
+    "workflow": "law_nda",
+    "queue_depth": 44
+  },
+  {
+    "time_index": 3150,
+    "workflow": "law_nda",
+    "queue_depth": 31
+  },
+  {
+    "time_index": 3175,
+    "workflow": "law_nda",
+    "queue_depth": 27
+  },
+  {
+    "time_index": 3200,
+    "workflow": "law_nda",
+    "queue_depth": 19
+  },
+  {
+    "time_index": 3225,
+    "workflow": "law_nda",
+    "queue_depth": 38
+  },
+  {
+    "time_index": 3250,
+    "workflow": "law_nda",
+    "queue_depth": 4
+  },
+  {
+    "time_index": 3275,
+    "workflow": "law_nda",
+    "queue_depth": 55
+  },
+  {
+    "time_index": 3300,
+    "workflow": "law_nda",
+    "queue_depth": 14
+  },
+  {
+    "time_index": 3325,
+    "workflow": "law_nda",
+    "queue_depth": 7
+  },
+  {
+    "time_index": 3350,
+    "workflow": "law_nda",
+    "queue_depth": 38
+  },
+  {
+    "time_index": 3375,
+    "workflow": "law_nda",
+    "queue_depth": 10
+  },
+  {
+    "time_index": 3400,
+    "workflow": "law_nda",
+    "queue_depth": 39
+  },
+  {
+    "time_index": 3425,
+    "workflow": "law_nda",
+    "queue_depth": 25
+  },
+  {
+    "time_index": 3450,
+    "workflow": "law_nda",
+    "queue_depth": 14
+  },
+  {
+    "time_index": 3475,
+    "workflow": "law_nda",
+    "queue_depth": 24
+  },
+  {
+    "time_index": 3500,
+    "workflow": "law_nda",
+    "queue_depth": 54
+  },
+  {
+    "time_index": 3525,
+    "workflow": "law_nda",
+    "queue_depth": 21
+  },
+  {
+    "time_index": 3550,
+    "workflow": "law_nda",
+    "queue_depth": 31
+  },
+  {
+    "time_index": 3575,
+    "workflow": "law_nda",
+    "queue_depth": 23
+  },
+  {
+    "time_index": 3600,
+    "workflow": "law_nda",
+    "queue_depth": 5
+  },
+  {
+    "time_index": 3625,
+    "workflow": "law_nda",
+    "queue_depth": 21
+  },
+  {
+    "time_index": 3650,
+    "workflow": "law_nda",
+    "queue_depth": 39
+  },
+  {
+    "time_index": 3675,
+    "workflow": "law_nda",
+    "queue_depth": 22
+  },
+  {
+    "time_index": 3700,
+    "workflow": "law_nda",
+    "queue_depth": 60
+  },
+  {
+    "time_index": 3725,
+    "workflow": "law_nda",
+    "queue_depth": 23
+  },
+  {
+    "time_index": 3750,
+    "workflow": "law_nda",
+    "queue_depth": 36
+  },
+  {
+    "time_index": 3775,
+    "workflow": "law_nda",
+    "queue_depth": 14
+  },
+  {
+    "time_index": 3800,
+    "workflow": "law_nda",
+    "queue_depth": 18
+  },
+  {
+    "time_index": 3825,
+    "workflow": "law_nda",
+    "queue_depth": 34
+  },
+  {
+    "time_index": 3850,
+    "workflow": "law_nda",
+    "queue_depth": 19
+  },
+  {
+    "time_index": 3875,
+    "workflow": "law_nda",
+    "queue_depth": 31
+  },
+  {
+    "time_index": 3900,
+    "workflow": "law_nda",
+    "queue_depth": 9
+  },
+  {
+    "time_index": 3925,
+    "workflow": "law_nda",
+    "queue_depth": 35
+  },
+  {
+    "time_index": 3950,
+    "workflow": "law_nda",
+    "queue_depth": 4
+  },
+  {
+    "time_index": 3975,
+    "workflow": "law_nda",
+    "queue_depth": 22
+  },
+  {
+    "time_index": 4000,
+    "workflow": "law_nda",
+    "queue_depth": 5
+  },
+  {
+    "time_index": 4025,
+    "workflow": "law_nda",
+    "queue_depth": 30
+  },
+  {
+    "time_index": 4050,
+    "workflow": "law_nda",
+    "queue_depth": 20
+  },
+  {
+    "time_index": 4075,
+    "workflow": "law_nda",
+    "queue_depth": 17
+  },
+  {
+    "time_index": 4100,
+    "workflow": "law_nda",
+    "queue_depth": 15
+  },
+  {
+    "time_index": 4125,
+    "workflow": "law_nda",
+    "queue_depth": 7
+  },
+  {
+    "time_index": 4150,
+    "workflow": "law_nda",
+    "queue_depth": 3
+  },
+  {
+    "time_index": 4175,
+    "workflow": "law_nda",
+    "queue_depth": 6
+  },
+  {
+    "time_index": 4200,
+    "workflow": "law_nda",
+    "queue_depth": 24
+  },
+  {
+    "time_index": 4225,
+    "workflow": "law_nda",
+    "queue_depth": 42
+  },
+  {
+    "time_index": 4250,
+    "workflow": "law_nda",
+    "queue_depth": 60
+  },
+  {
+    "time_index": 4275,
+    "workflow": "law_nda",
+    "queue_depth": 35
+  },
+  {
+    "time_index": 4300,
+    "workflow": "law_nda",
+    "queue_depth": 24
+  },
+  {
+    "time_index": 4325,
+    "workflow": "law_nda",
+    "queue_depth": 43
+  },
+  {
+    "time_index": 4350,
+    "workflow": "law_nda",
+    "queue_depth": 46
+  },
+  {
+    "time_index": 4375,
+    "workflow": "law_nda",
+    "queue_depth": 29
+  },
+  {
+    "time_index": 4400,
+    "workflow": "law_nda",
+    "queue_depth": 27
+  },
+  {
+    "time_index": 4425,
+    "workflow": "law_nda",
+    "queue_depth": 59
+  },
+  {
+    "time_index": 4450,
+    "workflow": "law_nda",
+    "queue_depth": 68
+  },
+  {
+    "time_index": 4475,
+    "workflow": "law_nda",
+    "queue_depth": 23
+  },
+  {
+    "time_index": 4500,
+    "workflow": "law_nda",
+    "queue_depth": 71
+  },
+  {
+    "time_index": 4525,
+    "workflow": "law_nda",
+    "queue_depth": 28
+  },
+  {
+    "time_index": 4550,
+    "workflow": "law_nda",
+    "queue_depth": 31
+  },
+  {
+    "time_index": 4575,
+    "workflow": "law_nda",
+    "queue_depth": 44
+  },
+  {
+    "time_index": 4600,
+    "workflow": "law_nda",
+    "queue_depth": 24
+  },
+  {
+    "time_index": 4625,
+    "workflow": "law_nda",
+    "queue_depth": 26
+  },
+  {
+    "time_index": 4650,
+    "workflow": "law_nda",
+    "queue_depth": 25
+  },
+  {
+    "time_index": 4675,
+    "workflow": "law_nda",
+    "queue_depth": 58
+  },
+  {
+    "time_index": 4700,
+    "workflow": "law_nda",
+    "queue_depth": 2
+  },
+  {
+    "time_index": 4725,
+    "workflow": "law_nda",
+    "queue_depth": 4
+  },
+  {
+    "time_index": 4750,
+    "workflow": "law_nda",
+    "queue_depth": 22
+  },
+  {
+    "time_index": 4775,
+    "workflow": "law_nda",
+    "queue_depth": 14
+  },
+  {
+    "time_index": 4800,
+    "workflow": "law_nda",
+    "queue_depth": 50
+  },
+  {
+    "time_index": 4825,
+    "workflow": "law_nda",
+    "queue_depth": 57
+  },
+  {
+    "time_index": 4850,
+    "workflow": "law_nda",
+    "queue_depth": 23
+  },
+  {
+    "time_index": 4875,
+    "workflow": "law_nda",
+    "queue_depth": 25
+  },
+  {
+    "time_index": 4900,
+    "workflow": "law_nda",
+    "queue_depth": 8
+  },
+  {
+    "time_index": 4925,
+    "workflow": "law_nda",
+    "queue_depth": 4
+  },
+  {
+    "time_index": 4950,
+    "workflow": "law_nda",
+    "queue_depth": 20
+  },
+  {
+    "time_index": 4975,
+    "workflow": "law_nda",
+    "queue_depth": 14
+  },
+  {
+    "time_index": 5000,
+    "workflow": "law_nda",
+    "queue_depth": 25
+  },
+  {
+    "time_index": 5025,
+    "workflow": "law_nda",
+    "queue_depth": 41
+  },
+  {
+    "time_index": 5050,
+    "workflow": "law_nda",
+    "queue_depth": 8
+  },
+  {
+    "time_index": 5075,
+    "workflow": "law_nda",
+    "queue_depth": 13
+  },
+  {
+    "time_index": 5100,
+    "workflow": "law_nda",
+    "queue_depth": 56
+  },
+  {
+    "time_index": 5125,
+    "workflow": "law_nda",
+    "queue_depth": 16
+  },
+  {
+    "time_index": 5150,
+    "workflow": "law_nda",
+    "queue_depth": 22
+  },
+  {
+    "time_index": 5175,
+    "workflow": "law_nda",
+    "queue_depth": 8
+  },
+  {
+    "time_index": 5200,
+    "workflow": "law_nda",
+    "queue_depth": 17
+  },
+  {
+    "time_index": 5225,
+    "workflow": "law_nda",
+    "queue_depth": 10
+  },
+  {
+    "time_index": 5250,
+    "workflow": "law_nda",
+    "queue_depth": 46
+  },
+  {
+    "time_index": 5275,
+    "workflow": "law_nda",
+    "queue_depth": 14
+  },
+  {
+    "time_index": 5300,
+    "workflow": "law_nda",
+    "queue_depth": 13
+  },
+  {
+    "time_index": 5325,
+    "workflow": "law_nda",
+    "queue_depth": 33
+  },
+  {
+    "time_index": 5350,
+    "workflow": "law_nda",
+    "queue_depth": 15
+  },
+  {
+    "time_index": 5375,
+    "workflow": "law_nda",
+    "queue_depth": 45
+  },
+  {
+    "time_index": 5400,
+    "workflow": "law_nda",
+    "queue_depth": 18
+  },
+  {
+    "time_index": 5425,
+    "workflow": "law_nda",
+    "queue_depth": 35
+  },
+  {
+    "time_index": 5450,
+    "workflow": "law_nda",
+    "queue_depth": 44
+  },
+  {
+    "time_index": 5475,
+    "workflow": "law_nda",
+    "queue_depth": 17
+  },
+  {
+    "time_index": 5500,
+    "workflow": "law_nda",
+    "queue_depth": 44
+  },
+  {
+    "time_index": 5525,
+    "workflow": "law_nda",
+    "queue_depth": 14
+  },
+  {
+    "time_index": 5550,
+    "workflow": "law_nda",
+    "queue_depth": 32
+  },
+  {
+    "time_index": 5575,
+    "workflow": "law_nda",
+    "queue_depth": 30
+  },
+  {
+    "time_index": 5600,
+    "workflow": "law_nda",
+    "queue_depth": 46
+  },
+  {
+    "time_index": 5625,
+    "workflow": "law_nda",
+    "queue_depth": 74
+  },
+  {
+    "time_index": 5650,
+    "workflow": "law_nda",
+    "queue_depth": 20
+  },
+  {
+    "time_index": 5675,
+    "workflow": "law_nda",
+    "queue_depth": 54
+  },
+  {
+    "time_index": 5700,
+    "workflow": "law_nda",
+    "queue_depth": 62
+  },
+  {
+    "time_index": 5725,
+    "workflow": "law_nda",
+    "queue_depth": 15
+  },
+  {
+    "time_index": 5750,
+    "workflow": "law_nda",
+    "queue_depth": 25
+  },
+  {
+    "time_index": 5775,
+    "workflow": "law_nda",
+    "queue_depth": 21
+  },
+  {
+    "time_index": 5800,
+    "workflow": "law_nda",
+    "queue_depth": 15
+  },
+  {
+    "time_index": 5825,
+    "workflow": "law_nda",
+    "queue_depth": 9
+  },
+  {
+    "time_index": 5850,
+    "workflow": "law_nda",
+    "queue_depth": 50
+  },
+  {
+    "time_index": 5875,
+    "workflow": "law_nda",
+    "queue_depth": 33
+  },
+  {
+    "time_index": 5900,
+    "workflow": "law_nda",
+    "queue_depth": 12
+  },
+  {
+    "time_index": 5925,
+    "workflow": "law_nda",
+    "queue_depth": 21
+  },
+  {
+    "time_index": 5950,
+    "workflow": "law_nda",
+    "queue_depth": 65
+  },
+  {
+    "time_index": 5975,
+    "workflow": "law_nda",
+    "queue_depth": 23
+  },
+  {
+    "time_index": 6000,
+    "workflow": "law_nda",
+    "queue_depth": 26
+  },
+  {
+    "time_index": 6025,
+    "workflow": "law_nda",
+    "queue_depth": 23
+  },
+  {
+    "time_index": 6050,
+    "workflow": "law_nda",
+    "queue_depth": 37
+  },
+  {
+    "time_index": 6075,
+    "workflow": "law_nda",
+    "queue_depth": 65
+  },
+  {
+    "time_index": 6100,
+    "workflow": "law_nda",
+    "queue_depth": 14
+  },
+  {
+    "time_index": 6125,
+    "workflow": "law_nda",
+    "queue_depth": 18
+  },
+  {
+    "time_index": 6150,
+    "workflow": "law_nda",
+    "queue_depth": 35
+  },
+  {
+    "time_index": 6175,
+    "workflow": "law_nda",
+    "queue_depth": 35
+  },
+  {
+    "time_index": 6200,
+    "workflow": "finance_pnl",
+    "queue_depth": 17
+  },
+  {
+    "time_index": 6225,
+    "workflow": "finance_pnl",
+    "queue_depth": 14
+  },
+  {
+    "time_index": 6250,
+    "workflow": "finance_pnl",
+    "queue_depth": 14
+  },
+  {
+    "time_index": 6275,
+    "workflow": "finance_pnl",
+    "queue_depth": 18
+  },
+  {
+    "time_index": 6300,
+    "workflow": "finance_pnl",
+    "queue_depth": 27
+  },
+  {
+    "time_index": 6325,
+    "workflow": "finance_pnl",
+    "queue_depth": 4
+  },
+  {
+    "time_index": 6350,
+    "workflow": "finance_pnl",
+    "queue_depth": 8
+  },
+  {
+    "time_index": 6375,
+    "workflow": "finance_pnl",
+    "queue_depth": 32
+  },
+  {
+    "time_index": 6400,
+    "workflow": "finance_pnl",
+    "queue_depth": 26
+  },
+  {
+    "time_index": 6425,
+    "workflow": "finance_pnl",
+    "queue_depth": 25
+  },
+  {
+    "time_index": 6450,
+    "workflow": "finance_pnl",
+    "queue_depth": 9
+  },
+  {
+    "time_index": 6475,
+    "workflow": "finance_pnl",
+    "queue_depth": 11
+  },
+  {
+    "time_index": 6500,
+    "workflow": "finance_pnl",
+    "queue_depth": 5
+  },
+  {
+    "time_index": 6525,
+    "workflow": "finance_pnl",
+    "queue_depth": 7
+  },
+  {
+    "time_index": 6550,
+    "workflow": "finance_pnl",
+    "queue_depth": 17
+  },
+  {
+    "time_index": 6575,
+    "workflow": "finance_pnl",
+    "queue_depth": 8
+  },
+  {
+    "time_index": 6600,
+    "workflow": "finance_pnl",
+    "queue_depth": 3
+  },
+  {
+    "time_index": 6625,
+    "workflow": "finance_pnl",
+    "queue_depth": 9
+  },
+  {
+    "time_index": 6650,
+    "workflow": "finance_pnl",
+    "queue_depth": 2
+  },
+  {
+    "time_index": 6675,
+    "workflow": "finance_pnl",
+    "queue_depth": 10
+  },
+  {
+    "time_index": 6700,
+    "workflow": "finance_pnl",
+    "queue_depth": 20
+  },
+  {
+    "time_index": 6725,
+    "workflow": "finance_pnl",
+    "queue_depth": 24
+  },
+  {
+    "time_index": 6750,
+    "workflow": "finance_pnl",
+    "queue_depth": 9
+  },
+  {
+    "time_index": 6775,
+    "workflow": "finance_pnl",
+    "queue_depth": 19
+  },
+  {
+    "time_index": 6800,
+    "workflow": "finance_pnl",
+    "queue_depth": 19
+  },
+  {
+    "time_index": 6825,
+    "workflow": "finance_pnl",
+    "queue_depth": 10
+  },
+  {
+    "time_index": 6850,
+    "workflow": "finance_pnl",
+    "queue_depth": 10
+  },
+  {
+    "time_index": 6875,
+    "workflow": "finance_pnl",
+    "queue_depth": 13
+  },
+  {
+    "time_index": 6900,
+    "workflow": "finance_pnl",
+    "queue_depth": 18
+  },
+  {
+    "time_index": 6925,
+    "workflow": "finance_pnl",
+    "queue_depth": 17
+  },
+  {
+    "time_index": 6950,
+    "workflow": "finance_pnl",
+    "queue_depth": 15
+  },
+  {
+    "time_index": 6975,
+    "workflow": "finance_pnl",
+    "queue_depth": 13
+  },
+  {
+    "time_index": 7000,
+    "workflow": "finance_pnl",
+    "queue_depth": 7
+  },
+  {
+    "time_index": 7025,
+    "workflow": "finance_pnl",
+    "queue_depth": 5
+  },
+  {
+    "time_index": 7050,
+    "workflow": "finance_pnl",
+    "queue_depth": 8
+  },
+  {
+    "time_index": 7075,
+    "workflow": "finance_pnl",
+    "queue_depth": 8
+  },
+  {
+    "time_index": 7100,
+    "workflow": "finance_pnl",
+    "queue_depth": 4
+  },
+  {
+    "time_index": 7125,
+    "workflow": "finance_pnl",
+    "queue_depth": 29
+  },
+  {
+    "time_index": 7150,
+    "workflow": "finance_pnl",
+    "queue_depth": 6
+  },
+  {
+    "time_index": 7175,
+    "workflow": "finance_pnl",
+    "queue_depth": 2
+  },
+  {
+    "time_index": 7200,
+    "workflow": "finance_pnl",
+    "queue_depth": 6
+  },
+  {
+    "time_index": 7225,
+    "workflow": "finance_pnl",
+    "queue_depth": 11
+  },
+  {
+    "time_index": 7250,
+    "workflow": "finance_pnl",
+    "queue_depth": 10
+  },
+  {
+    "time_index": 7275,
+    "workflow": "finance_pnl",
+    "queue_depth": 10
+  },
+  {
+    "time_index": 7300,
+    "workflow": "finance_pnl",
+    "queue_depth": 8
+  },
+  {
+    "time_index": 7325,
+    "workflow": "finance_pnl",
+    "queue_depth": 36
+  },
+  {
+    "time_index": 7350,
+    "workflow": "finance_pnl",
+    "queue_depth": 30
+  },
+  {
+    "time_index": 7375,
+    "workflow": "finance_pnl",
+    "queue_depth": 12
+  },
+  {
+    "time_index": 7400,
+    "workflow": "finance_pnl",
+    "queue_depth": 21
+  },
+  {
+    "time_index": 7425,
+    "workflow": "finance_pnl",
+    "queue_depth": 14
+  },
+  {
+    "time_index": 7450,
+    "workflow": "finance_pnl",
+    "queue_depth": 3
+  },
+  {
+    "time_index": 7475,
+    "workflow": "finance_pnl",
+    "queue_depth": 12
+  },
+  {
+    "time_index": 7500,
+    "workflow": "finance_pnl",
+    "queue_depth": 38
+  },
+  {
+    "time_index": 7525,
+    "workflow": "finance_pnl",
+    "queue_depth": 6
+  },
+  {
+    "time_index": 7550,
+    "workflow": "finance_pnl",
+    "queue_depth": 3
+  },
+  {
+    "time_index": 7575,
+    "workflow": "finance_pnl",
+    "queue_depth": 25
+  },
+  {
+    "time_index": 7600,
+    "workflow": "finance_pnl",
+    "queue_depth": 6
+  },
+  {
+    "time_index": 7625,
+    "workflow": "finance_pnl",
+    "queue_depth": 11
+  },
+  {
+    "time_index": 7650,
+    "workflow": "finance_pnl",
+    "queue_depth": 37
+  },
+  {
+    "time_index": 7675,
+    "workflow": "finance_pnl",
+    "queue_depth": 18
+  },
+  {
+    "time_index": 7700,
+    "workflow": "finance_pnl",
+    "queue_depth": 22
+  },
+  {
+    "time_index": 7725,
+    "workflow": "finance_pnl",
+    "queue_depth": 6
+  },
+  {
+    "time_index": 7750,
+    "workflow": "finance_pnl",
+    "queue_depth": 8
+  },
+  {
+    "time_index": 7775,
+    "workflow": "finance_pnl",
+    "queue_depth": 22
+  },
+  {
+    "time_index": 7800,
+    "workflow": "finance_pnl",
+    "queue_depth": 36
+  },
+  {
+    "time_index": 7825,
+    "workflow": "finance_pnl",
+    "queue_depth": 22
+  },
+  {
+    "time_index": 7850,
+    "workflow": "finance_pnl",
+    "queue_depth": 31
+  },
+  {
+    "time_index": 7875,
+    "workflow": "finance_pnl",
+    "queue_depth": 40
+  },
+  {
+    "time_index": 7900,
+    "workflow": "finance_pnl",
+    "queue_depth": 28
+  },
+  {
+    "time_index": 7925,
+    "workflow": "finance_pnl",
+    "queue_depth": 19
+  },
+  {
+    "time_index": 7950,
+    "workflow": "finance_pnl",
+    "queue_depth": 42
+  },
+  {
+    "time_index": 7975,
+    "workflow": "finance_pnl",
+    "queue_depth": 19
+  },
+  {
+    "time_index": 8000,
+    "workflow": "finance_pnl",
+    "queue_depth": 21
+  },
+  {
+    "time_index": 8025,
+    "workflow": "finance_pnl",
+    "queue_depth": 24
+  },
+  {
+    "time_index": 8050,
+    "workflow": "finance_pnl",
+    "queue_depth": 38
+  },
+  {
+    "time_index": 8075,
+    "workflow": "finance_pnl",
+    "queue_depth": 61
+  },
+  {
+    "time_index": 8100,
+    "workflow": "finance_pnl",
+    "queue_depth": 29
+  },
+  {
+    "time_index": 8125,
+    "workflow": "finance_pnl",
+    "queue_depth": 55
+  },
+  {
+    "time_index": 8150,
+    "workflow": "finance_pnl",
+    "queue_depth": 23
+  },
+  {
+    "time_index": 8175,
+    "workflow": "finance_pnl",
+    "queue_depth": 32
+  },
+  {
+    "time_index": 8200,
+    "workflow": "finance_pnl",
+    "queue_depth": 4
+  },
+  {
+    "time_index": 8225,
+    "workflow": "finance_pnl",
+    "queue_depth": 27
+  },
+  {
+    "time_index": 8250,
+    "workflow": "finance_pnl",
+    "queue_depth": 10
+  },
+  {
+    "time_index": 8275,
+    "workflow": "finance_pnl",
+    "queue_depth": 5
+  },
+  {
+    "time_index": 8300,
+    "workflow": "finance_pnl",
+    "queue_depth": 13
+  },
+  {
+    "time_index": 8325,
+    "workflow": "finance_pnl",
+    "queue_depth": 27
+  },
+  {
+    "time_index": 8350,
+    "workflow": "finance_pnl",
+    "queue_depth": 25
+  },
+  {
+    "time_index": 8375,
+    "workflow": "finance_pnl",
+    "queue_depth": 14
+  },
+  {
+    "time_index": 8400,
+    "workflow": "finance_pnl",
+    "queue_depth": 25
+  },
+  {
+    "time_index": 8425,
+    "workflow": "finance_pnl",
+    "queue_depth": 7
+  },
+  {
+    "time_index": 8450,
+    "workflow": "finance_pnl",
+    "queue_depth": 14
+  },
+  {
+    "time_index": 8475,
+    "workflow": "finance_pnl",
+    "queue_depth": 16
+  },
+  {
+    "time_index": 8500,
+    "workflow": "finance_pnl",
+    "queue_depth": 5
+  },
+  {
+    "time_index": 8525,
+    "workflow": "finance_pnl",
+    "queue_depth": 21
+  },
+  {
+    "time_index": 8550,
+    "workflow": "finance_pnl",
+    "queue_depth": 13
+  },
+  {
+    "time_index": 8575,
+    "workflow": "finance_pnl",
+    "queue_depth": 16
+  },
+  {
+    "time_index": 8600,
+    "workflow": "finance_pnl",
+    "queue_depth": 13
+  },
+  {
+    "time_index": 8625,
+    "workflow": "finance_pnl",
+    "queue_depth": 37
+  },
+  {
+    "time_index": 8650,
+    "workflow": "finance_pnl",
+    "queue_depth": 15
+  },
+  {
+    "time_index": 8675,
+    "workflow": "finance_pnl",
+    "queue_depth": 45
+  },
+  {
+    "time_index": 8700,
+    "workflow": "finance_pnl",
+    "queue_depth": 2
+  },
+  {
+    "time_index": 8725,
+    "workflow": "finance_pnl",
+    "queue_depth": 25
+  },
+  {
+    "time_index": 8750,
+    "workflow": "finance_pnl",
+    "queue_depth": 5
+  },
+  {
+    "time_index": 8775,
+    "workflow": "finance_pnl",
+    "queue_depth": 21
+  },
+  {
+    "time_index": 8800,
+    "workflow": "finance_pnl",
+    "queue_depth": 21
+  },
+  {
+    "time_index": 8825,
+    "workflow": "finance_pnl",
+    "queue_depth": 25
+  },
+  {
+    "time_index": 8850,
+    "workflow": "finance_pnl",
+    "queue_depth": 30
+  },
+  {
+    "time_index": 8875,
+    "workflow": "finance_pnl",
+    "queue_depth": 7
+  },
+  {
+    "time_index": 8900,
+    "workflow": "finance_pnl",
+    "queue_depth": 23
+  },
+  {
+    "time_index": 8925,
+    "workflow": "finance_pnl",
+    "queue_depth": 24
+  },
+  {
+    "time_index": 8950,
+    "workflow": "finance_pnl",
+    "queue_depth": 36
+  },
+  {
+    "time_index": 8975,
+    "workflow": "finance_pnl",
+    "queue_depth": 18
+  },
+  {
+    "time_index": 9000,
+    "workflow": "finance_pnl",
+    "queue_depth": 39
+  },
+  {
+    "time_index": 9025,
+    "workflow": "finance_pnl",
+    "queue_depth": 8
+  },
+  {
+    "time_index": 9050,
+    "workflow": "finance_pnl",
+    "queue_depth": 29
+  },
+  {
+    "time_index": 9075,
+    "workflow": "finance_pnl",
+    "queue_depth": 12
+  },
+  {
+    "time_index": 9100,
+    "workflow": "finance_pnl",
+    "queue_depth": 12
+  },
+  {
+    "time_index": 9125,
+    "workflow": "finance_pnl",
+    "queue_depth": 6
+  },
+  {
+    "time_index": 9150,
+    "workflow": "finance_pnl",
+    "queue_depth": 4
+  },
+  {
+    "time_index": 9175,
+    "workflow": "finance_pnl",
+    "queue_depth": 9
+  },
+  {
+    "time_index": 9200,
+    "workflow": "finance_pnl",
+    "queue_depth": 9
+  },
+  {
+    "time_index": 9225,
+    "workflow": "finance_pnl",
+    "queue_depth": 12
+  },
+  {
+    "time_index": 9250,
+    "workflow": "finance_pnl",
+    "queue_depth": 10
+  },
+  {
+    "time_index": 9275,
+    "workflow": "finance_pnl",
+    "queue_depth": 11
+  },
+  {
+    "time_index": 9300,
+    "workflow": "finance_pnl",
+    "queue_depth": 15
+  },
+  {
+    "time_index": 9325,
+    "workflow": "finance_pnl",
+    "queue_depth": 7
+  },
+  {
+    "time_index": 9350,
+    "workflow": "finance_pnl",
+    "queue_depth": 6
+  },
+  {
+    "time_index": 9375,
+    "workflow": "finance_pnl",
+    "queue_depth": 35
+  },
+  {
+    "time_index": 9400,
+    "workflow": "finance_pnl",
+    "queue_depth": 34
+  },
+  {
+    "time_index": 9425,
+    "workflow": "finance_pnl",
+    "queue_depth": 9
+  },
+  {
+    "time_index": 9450,
+    "workflow": "finance_pnl",
+    "queue_depth": 7
+  },
+  {
+    "time_index": 9475,
+    "workflow": "finance_pnl",
+    "queue_depth": 20
+  },
+  {
+    "time_index": 9500,
+    "workflow": "finance_pnl",
+    "queue_depth": 26
+  },
+  {
+    "time_index": 9525,
+    "workflow": "finance_pnl",
+    "queue_depth": 2
+  },
+  {
+    "time_index": 9550,
+    "workflow": "finance_pnl",
+    "queue_depth": 18
+  },
+  {
+    "time_index": 9575,
+    "workflow": "finance_pnl",
+    "queue_depth": 6
+  },
+  {
+    "time_index": 9600,
+    "workflow": "finance_pnl",
+    "queue_depth": 8
+  },
+  {
+    "time_index": 9625,
+    "workflow": "finance_pnl",
+    "queue_depth": 6
+  },
+  {
+    "time_index": 9650,
+    "workflow": "finance_pnl",
+    "queue_depth": 26
+  },
+  {
+    "time_index": 9675,
+    "workflow": "finance_pnl",
+    "queue_depth": 21
+  },
+  {
+    "time_index": 9700,
+    "workflow": "finance_pnl",
+    "queue_depth": 13
+  },
+  {
+    "time_index": 9725,
+    "workflow": "finance_pnl",
+    "queue_depth": 41
+  },
+  {
+    "time_index": 9750,
+    "workflow": "finance_pnl",
+    "queue_depth": 18
+  },
+  {
+    "time_index": 9775,
+    "workflow": "finance_pnl",
+    "queue_depth": 5
+  },
+  {
+    "time_index": 9800,
+    "workflow": "finance_pnl",
+    "queue_depth": 25
+  },
+  {
+    "time_index": 9825,
+    "workflow": "finance_pnl",
+    "queue_depth": 17
+  },
+  {
+    "time_index": 9850,
+    "workflow": "finance_pnl",
+    "queue_depth": 15
+  },
+  {
+    "time_index": 9875,
+    "workflow": "finance_pnl",
+    "queue_depth": 12
+  },
+  {
+    "time_index": 9900,
+    "workflow": "finance_pnl",
+    "queue_depth": 31
+  },
+  {
+    "time_index": 9925,
+    "workflow": "finance_pnl",
+    "queue_depth": 34
+  },
+  {
+    "time_index": 9950,
+    "workflow": "finance_pnl",
+    "queue_depth": 6
+  },
+  {
+    "time_index": 9975,
+    "workflow": "finance_pnl",
+    "queue_depth": 7
+  },
+  {
+    "time_index": 9999,
+    "workflow": "finance_pnl",
+    "queue_depth": 7
+  }
+]

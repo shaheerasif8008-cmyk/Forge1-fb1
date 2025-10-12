@@ -30,7 +30,7 @@ from forge1.core.memory_models import (
     MemoryType, SecurityLevel, RelevanceScore, MemoryStats,
     EmbeddingRequest, EmbeddingResponse
 )
-from forge1.core.dlp import redact_payload
+from forge1.core.dlp import redact_payload, sanitize_vector_metadata
 try:
     from forge1.dlp.presidio_adapter import HAS_PRESIDIO, redact_payload_presidio
 except Exception:
@@ -752,17 +752,30 @@ class MemoryManager:
             if not memory.embeddings:
                 return
             
+            metadata = {
+                "employee_id": memory.employee_id,
+                "memory_type": memory.memory_type.value,
+                "owner_id": memory.owner_id,
+                "security_level": memory.security_level.value,
+                "created_at": memory.created_at.isoformat(),
+                "tenant": get_current_tenant(),
+            }
+
+            sanitized_metadata, violations = sanitize_vector_metadata(metadata)
+
+            if violations:
+                logger.warning(
+                    "DLP redacted sensitive fields before vector write",
+                    extra={
+                        "memory_id": memory.id,
+                        "violations": violations,
+                    },
+                )
+
             vector_data = {
                 "id": memory.id,
                 "values": memory.embeddings,
-                "metadata": {
-                    "employee_id": memory.employee_id,
-                    "memory_type": memory.memory_type.value,
-                    "owner_id": memory.owner_id,
-                    "security_level": memory.security_level.value,
-                    "created_at": memory.created_at.isoformat(),
-                    "tenant": get_current_tenant()
-                }
+                "metadata": sanitized_metadata,
             }
             
             if hasattr(self.db_manager.vector_db, 'upsert'):

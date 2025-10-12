@@ -1,0 +1,92 @@
+{
+  "flow_name": "law_nda",
+  "tenant_id": "tenant_legal",
+  "employee_id": "attorney_jane",
+  "case_id": "nda-case-001",
+  "request_id": "2025-10-11T18:08:45.164110+00:00",
+  "summary": "Legal NDA workflow executed successfully with Slack notification and email delivery. Recorded 7 usage events.",
+  "steps": [
+    {
+      "name": "drive_upload",
+      "status": "success",
+      "started_at": "2025-10-11T18:08:45.152230+00:00",
+      "finished_at": "2025-10-11T18:08:45.153450+00:00",
+      "duration_ms": 1.1888290000570123,
+      "output": {
+        "file_id": "local::tenant_legal/nda_sample.txt"
+      }
+    },
+    {
+      "name": "drive_fetch",
+      "status": "success",
+      "started_at": "2025-10-11T18:08:45.153465+00:00",
+      "finished_at": "2025-10-11T18:08:45.154848+00:00",
+      "duration_ms": 1.3851690000592498,
+      "output": {
+        "file_id": "local::tenant_legal/nda_sample.txt",
+        "name": "nda_sample.txt",
+        "size": 263
+      }
+    },
+    {
+      "name": "document_parser",
+      "status": "success",
+      "started_at": "2025-10-11T18:08:45.154882+00:00",
+      "finished_at": "2025-10-11T18:08:45.162281+00:00",
+      "duration_ms": 7.402614999591606,
+      "output": {
+        "document_format": "txt",
+        "text_preview": "This Non-Disclosure Agreement (NDA) is made between Contoso Legal and Tailwind Ventures. The recipient agrees to keep all proprietary information confidential for a period of three years. Exceptions\u2026",
+        "node_count": null
+      }
+    },
+    {
+      "name": "kb_search",
+      "status": "success",
+      "started_at": "2025-10-11T18:08:45.162492+00:00",
+      "finished_at": "2025-10-11T18:08:45.163090+00:00",
+      "duration_ms": 0.5986720007058466,
+      "output": {
+        "total_count": 1,
+        "top_results": [
+          {
+            "memory_id": "40434f6c5421442eaba28146f31ad57a",
+            "summary": "Confidentiality obligations",
+            "similarity_score": 0.392
+          }
+        ]
+      }
+    },
+    {
+      "name": "compose_draft",
+      "status": "success",
+      "started_at": "2025-10-11T18:08:45.163359+00:00",
+      "finished_at": "2025-10-11T18:08:45.163360+00:00",
+      "duration_ms": 1.0,
+      "output": {
+        "draft_preview": "NDA review completed with OCR-enabled parsing, capturing None nodes. Key findings reference entries: 40434f6c5421442eaba28146f31ad57a. Preview: This Non-Disclosure Agreement (NDA) is made between\u2026"
+      }
+    },
+    {
+      "name": "slack_post",
+      "status": "success",
+      "started_at": "2025-10-11T18:08:45.163620+00:00",
+      "finished_at": "2025-10-11T18:08:45.165059+00:00",
+      "duration_ms": 1.4401990001715603,
+      "output": {
+        "message_ts": "2025-10-11T18:08:45.164110+00:00"
+      }
+    },
+    {
+      "name": "email_send",
+      "status": "success",
+      "started_at": "2025-10-11T18:08:45.165078+00:00",
+      "finished_at": "2025-10-11T18:08:45.181189+00:00",
+      "duration_ms": 16.11136199971952,
+      "output": {
+        "message_id": "email-11ceba6ae09f",
+        "recorded_messages": 1
+      }
+    }
+  ]
+}

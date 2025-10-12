@@ -1,0 +1,8 @@
+{
+  "from": "no-reply@forge1.local",
+  "to": [
+    "finance-exec@example.com"
+  ],
+  "subject": "Monthly P&L Summary",
+  "body_preview": "Content-Type: text/html; charset=\"utf-8\"\nContent-Transfer-Encoding: 7bit\nMIME-Version: 1.0\n\n<h1>Monthly P&amp;L Summary - 2025-01</h1>\n<p>Total Revenue: $255,000.00</p>\n<p>Total Expenses: $135,000.00</p>\n<p>Net Profit: $120,000.00</p>\n<p>Profit Margin: 47.06%</p>"
+}

@@ -1,0 +1,26 @@
+{
+  "spans": [
+    {
+      "name": "phase3-demo-span",
+      "context": {
+        "trace_id": "4c17051b59de27214ba6e6cd971533c6",
+        "span_id": "7e0eee37d53ca7c6"
+      },
+      "attributes": {
+        "tenant_id": "artifact-tenant",
+        "component": "phase3"
+      },
+      "events": [
+        {
+          "name": "phase3-artifact",
+          "attributes": {
+            "status": "demo"
+          },
+          "timestamp": 1760203467403558749
+        }
+      ],
+      "start_time": 1760203467403523492,
+      "end_time": 1760203467403571048
+    }
+  ]
+}

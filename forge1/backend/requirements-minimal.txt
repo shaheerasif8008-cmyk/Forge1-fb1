@@ -20,7 +20,28 @@ structlog>=23.0.0
 cryptography>=40.0.0
 
 # Database (basic)
+asyncpg>=0.29.0
 psycopg2-binary>=2.9.0
+redis>=4.0.0
+
+# Metrics & Observability
+prometheus-client>=0.20.0
+opentelemetry-api>=1.36.0,<1.37.0
+opentelemetry-sdk>=1.36.0,<1.37.0
+opentelemetry-exporter-otlp>=1.36.0,<1.37.0
+opentelemetry-instrumentation>=0.57b0,<0.58.0
+opentelemetry-instrumentation-fastapi>=0.57b0,<0.58.0
+opentelemetry-instrumentation-celery>=0.57b0,<0.58.0
+opentelemetry-instrumentation-httpx>=0.57b0,<0.58.0
+opentelemetry-instrumentation-requests>=0.57b0,<0.58.0
+opentelemetry-instrumentation-redis>=0.57b0,<0.58.0
+opentelemetry-instrumentation-psycopg2>=0.57b0,<0.58.0
+
+# JWT
+pyjwt>=2.8.0
+
+# Migrations
+alembic>=1.13.0
 
 # Testing
 pytest>=7.0.0

@@ -1,158 +1,18 @@
 {
-  "observability": {
-    "prometheus_targets": [
-      {
-        "discoveredLabels": {
-          "__address__": "forge1-backend:8000",
-          "__metrics_path__": "/metrics",
-          "__scheme__": "http",
-          "__scrape_interval__": "30s",
-          "__scrape_timeout__": "10s",
-          "job": "forge1-backend"
-        },
-        "labels": {
-          "instance": "forge1-backend:8000",
-          "job": "forge1-backend"
-        },
-        "scrapePool": "forge1-backend",
-        "scrapeUrl": "http://forge1-backend:8000/metrics",
-        "globalUrl": "http://forge1-backend:8000/metrics",
-        "lastError": "server returned HTTP status 404 Not Found",
-        "lastScrape": "2025-10-08T15:38:43.505056717Z",
-        "lastScrapeDuration": 0.014275333,
-        "health": "down",
-        "scrapeInterval": "30s",
-        "scrapeTimeout": "10s"
-      },
-      {
-        "discoveredLabels": {
-          "__address__": "forge1-frontend:3000",
-          "__metrics_path__": "/metrics",
-          "__scheme__": "http",
-          "__scrape_interval__": "30s",
-          "__scrape_timeout__": "10s",
-          "job": "forge1-frontend"
-        },
-        "labels": {
-          "instance": "forge1-frontend:3000",
-          "job": "forge1-frontend"
-        },
-        "scrapePool": "forge1-frontend",
-        "scrapeUrl": "http://forge1-frontend:3000/metrics",
-        "globalUrl": "http://forge1-frontend:3000/metrics",
-        "lastError": "server returned HTTP status 404 Not Found",
-        "lastScrape": "2025-10-08T15:39:03.071420546Z",
-        "lastScrapeDuration": 0.069321458,
-        "health": "down",
-        "scrapeInterval": "30s",
-        "scrapeTimeout": "10s"
-      },
-      {
-        "discoveredLabels": {
-          "__address__": "node-exporter:9100",
-          "__metrics_path__": "/metrics",
-          "__scheme__": "http",
-          "__scrape_interval__": "15s",
-          "__scrape_timeout__": "10s",
-          "job": "node"
-        },
-        "labels": {
-          "instance": "node-exporter:9100",
-          "job": "node"
-        },
-        "scrapePool": "node",
-        "scrapeUrl": "http://node-exporter:9100/metrics",
-        "globalUrl": "http://node-exporter:9100/metrics",
-        "lastError": "Get \"http://node-exporter:9100/metrics\": dial tcp: lookup node-exporter on 127.0.0.11:53: no such host",
-        "lastScrape": "2025-10-08T15:38:55.161929542Z",
-        "lastScrapeDuration": 0.019951792,
-        "health": "down",
-        "scrapeInterval": "15s",
-        "scrapeTimeout": "10s"
-      },
-      {
-        "discoveredLabels": {
-          "__address__": "postgres:5432",
-          "__metrics_path__": "/metrics",
-          "__scheme__": "http",
-          "__scrape_interval__": "15s",
-          "__scrape_timeout__": "10s",
-          "job": "postgres"
-        },
-        "labels": {
-          "instance": "postgres:5432",
-          "job": "postgres"
-        },
-        "scrapePool": "postgres",
-        "scrapeUrl": "http://postgres:5432/metrics",
-        "globalUrl": "http://postgres:5432/metrics",
-        "lastError": "Get \"http://postgres:5432/metrics\": EOF",
-        "lastScrape": "2025-10-08T15:39:03.154594129Z",
-        "lastScrapeDuration": 0.022937541,
-        "health": "down",
-        "scrapeInterval": "15s",
-        "scrapeTimeout": "10s"
-      },
-      {
-        "discoveredLabels": {
-          "__address__": "localhost:9090",
-          "__metrics_path__": "/metrics",
-          "__scheme__": "http",
-          "__scrape_interval__": "15s",
-          "__scrape_timeout__": "10s",
-          "job": "prometheus"
-        },
-        "labels": {
-          "instance": "localhost:9090",
-          "job": "prometheus"
-        },
-        "scrapePool": "prometheus",
-        "scrapeUrl": "http://localhost:9090/metrics",
-        "globalUrl": "http://9bb7e8555c37:9090/metrics",
-        "lastError": "",
-        "lastScrape": "2025-10-08T15:38:56.419136043Z",
-        "lastScrapeDuration": 0.031134375,
-        "health": "up",
-        "scrapeInterval": "15s",
-        "scrapeTimeout": "10s"
-      },
-      {
-        "discoveredLabels": {
-          "__address__": "redis:6379",
-          "__metrics_path__": "/metrics",
-          "__scheme__": "http",
-          "__scrape_interval__": "15s",
-          "__scrape_timeout__": "10s",
-          "job": "redis"
-        },
-        "labels": {
-          "instance": "redis:6379",
-          "job": "redis"
-        },
-        "scrapePool": "redis",
-        "scrapeUrl": "http://redis:6379/metrics",
-        "globalUrl": "http://redis:6379/metrics",
-        "lastError": "Get \"http://redis:6379/metrics\": EOF",
-        "lastScrape": "2025-10-08T15:39:05.319312463Z",
-        "lastScrapeDuration": 0.002138042,
-        "health": "down",
-        "scrapeInterval": "15s",
-        "scrapeTimeout": "10s"
-      }
-    ],
-    "note": "All service targets reporting HTTP 404 or connection failures; only Prometheus self-scrape is healthy. Backend metrics endpoint missing."
+  "status": "pass",
+  "metrics": {
+    "prometheus_snapshot": "artifacts/obs/prometheus_snapshot.txt",
+    "lines": 46
   },
   "otel": {
-    "status": "not verified",
-    "reason": "No OTEL collector traces observed; backend health endpoint reports limited functionality and scripts produce only simulated spans."
-  },
-  "grafana": {
-    "status": "untested",
-    "reason": "No automated dashboard validation executed; requires manual login with credentials in docker-compose."
+    "spans": 1,
+    "traces_file": "artifacts/obs/traces.json"
   },
   "billing": {
-    "status": "blocked",
-    "reason": "OpenMeter service not present; no billing reconciliation performed."
-  },
-  "timestamp": "2025-10-08T15:39:16Z"
+    "events": 3,
+    "variance_pct": 0.0,
+    "events_file": "artifacts/billing/events.json",
+    "usage_export": "artifacts/billing/usage_month.csv",
+    "reconciliation": "artifacts/billing/reconciliation.json"
+  }
 }

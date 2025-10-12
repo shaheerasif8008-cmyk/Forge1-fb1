@@ -1,0 +1,4 @@
+timestamp,tenant_id,employee_id,event_type,model,tool,tokens_input,tokens_output,latency_ms,cost_estimate,request_id
+2024-05-20T15:30:00+00:00,tenant-sample,analyst-1,model,gpt-4o-mini,,150,60,240.00,0.013500,sample-model-1
+2024-05-20T15:35:00+00:00,tenant-sample,analyst-1,tool,,slack.send_message,0,0,95.00,0.000000,sample-tool-1
+2024-05-20T15:40:00+00:00,tenant-sample,analyst-2,tool,,kb.search,4,0,60.00,0.000000,sample-tool-2

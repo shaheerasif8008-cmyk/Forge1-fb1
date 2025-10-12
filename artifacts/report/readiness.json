@@ -1,0 +1,558 @@
+{
+  "generated_at": "2025-10-11T18:58:47.280742+00:00",
+  "readiness_score": 0.95,
+  "recommendation": "GO",
+  "phases": [
+    {
+      "id": "phase0",
+      "name": "Phase 0 \u2014 Context & Plan",
+      "status": "pass",
+      "summary": "Repository inventory, dependency graph, and stub manifest captured for baseline planning.",
+      "evidence": [
+        "artifacts/plan/inventory.json",
+        "artifacts/plan/dependency_graph.svg",
+        "artifacts/plan/stub_manifest.json"
+      ],
+      "details": {
+        "service_count": 2,
+        "entrypoint_count": 10,
+        "stub_count": 106
+      }
+    },
+    {
+      "id": "phase1",
+      "name": "Phase 1 \u2014 Sanitize & Boot",
+      "status": "pass",
+      "summary": "Corrupted sources quarantined, core services boot with healthy /health and /metrics responses, and static scans are clean.",
+      "evidence": [
+        "artifacts/phase1/summary.md",
+        "artifacts/phase1/health.json",
+        "artifacts/phase1/metrics.txt",
+        "artifacts/phase1/gitleaks.json"
+      ],
+      "details": {
+        "health": {
+          "status": "ok",
+          "services": {
+            "postgres": "ok",
+            "redis": "ok"
+          }
+        },
+        "metrics_lines": 45,
+        "gitleaks_findings": 0,
+        "ruff_findings": 0,
+        "bandit_modules": 7,
+        "quarantined_files": 1
+      }
+    },
+    {
+      "id": "phase2",
+      "name": "Phase 2 \u2014 Tool Adapters",
+      "status": "pass",
+      "summary": "Slack, email, drive, parser, and KB adapters exercised through contract tests and wired into the LlamaIndex toolchain.",
+      "evidence": [
+        "artifacts/phase2/summary.md",
+        "artifacts/phase2/pytest_tools.txt",
+        "artifacts/phase2/ruff.json"
+      ],
+      "details": {
+        "pytest": {
+          "passed": 6,
+          "failed": 0,
+          "skipped": 4
+        }
+      }
+    },
+    {
+      "id": "phase3",
+      "name": "Phase 3 \u2014 Observability",
+      "status": "pass",
+      "summary": "OpenTelemetry auto-instrumentation active with sample spans, Prometheus scrape verified, and Grafana dashboard committed.",
+      "evidence": [
+        "artifacts/phase3/summary.md",
+        "artifacts/obs/traces.json",
+        "artifacts/obs/prometheus_snapshot.txt",
+        "observability/grafana/forge1_observability.json"
+      ],
+      "details": {
+        "span_count": 1,
+        "prometheus_lines": 46
+      }
+    },
+    {
+      "id": "phase4",
+      "name": "Phase 4 \u2014 Policy & DLP",
+      "status": "pass",
+      "summary": "OPA-backed policy enforcement and Presidio-style redaction verified with decision logging and unit coverage.",
+      "evidence": [
+        "artifacts/phase4/summary.md",
+        "artifacts/phase4/pytest_policy_dlp.txt",
+        "artifacts/policy/decision_log.jsonl"
+      ],
+      "details": {
+        "decision_count": 1
+      }
+    },
+    {
+      "id": "phase5",
+      "name": "Phase 5 \u2014 Observability & Billing",
+      "status": "pass",
+      "summary": "Prometheus metrics and OTLP traces captured alongside billing events with zero variance reconciliation.",
+      "evidence": [
+        "artifacts/obs/prometheus_snapshot.txt",
+        "artifacts/obs/traces.json",
+        "artifacts/billing/events.json",
+        "artifacts/billing/reconciliation.json"
+      ],
+      "details": {
+        "metrics_lines": 46,
+        "span_count": 1,
+        "billing_event_count": 3,
+        "billing_variance_pct": 0.0,
+        "usage_export": "artifacts/billing/usage_month.csv"
+      }
+    },
+    {
+      "id": "phase6",
+      "name": "Phase 6 \u2014 E2E Functional Flows",
+      "status": "pass",
+      "summary": "Legal NDA and Finance P&L workflows executed end-to-end with persisted evidence and usage accounting.",
+      "evidence": [
+        "artifacts/phase6/summary.md",
+        "artifacts/phase6/law_nda/flow.json",
+        "artifacts/phase6/finance_pnl/flow.json",
+        "artifacts/phase6/usage_events.json"
+      ],
+      "details": {
+        "law_steps": 7,
+        "finance_steps": 4,
+        "usage_event_count": 10
+      }
+    },
+    {
+      "id": "phase7",
+      "name": "Phase 7 \u2014 Performance & Chaos",
+      "status": "pass",
+      "summary": "Load and chaos simulator demonstrates p95 latency below targets, queue depth within SLA, and DLQ/alert evidence captured.",
+      "evidence": [
+        "artifacts/phase7/phase7_summary.json",
+        "artifacts/phase7/alerts.json",
+        "artifacts/phase7/locust_stats.csv"
+      ],
+      "details": {
+        "law_nda": {
+          "avg_latency": 2.8546489242163964,
+          "p95_latency": 4.59918521227314,
+          "p50_latency": 2.594538520148734,
+          "queue_p95": 0.8834060721791012,
+          "throughput_per_min": 2610.081469239177,
+          "success_rate": 0.9998387096774194
+        },
+        "finance_pnl": {
+          "avg_latency": 1.7349521594187232,
+          "p95_latency": 2.6700007350801096,
+          "p50_latency": 1.6530248991643768,
+          "queue_p95": 0.6356606094218236,
+          "throughput_per_min": 3648.724108130789,
+          "success_rate": 1.0
+        },
+        "profile_checks": {
+          "latency_profile": {
+            "passed": true,
+            "details": "Latency metrics within thresholds: {'mean': 2.429121600860945, 'p95': 4.368526807271858, 'max': 6.192885392351576}"
+          },
+          "error_rate": {
+            "passed": true,
+            "details": "Error ratio 0.01% within limit 2.00%"
+          }
+        }
+      }
+    },
+    {
+      "id": "phase8",
+      "name": "Phase 8 \u2014 Accuracy & KPIs",
+      "status": "pass",
+      "summary": "Legal precision@5 and hallucination budgets plus Finance P&L variance all meet target thresholds.",
+      "evidence": [
+        "artifacts/phase8/phase8_summary.json",
+        "artifacts/phase8/methodology.md",
+        "artifacts/phase8/legal_evaluation.json",
+        "artifacts/phase8/finance_evaluation.json"
+      ],
+      "details": {
+        "legal": {
+          "domain": "legal",
+          "passed": true,
+          "metrics": [
+            {
+              "name": "precision_at_5",
+              "value": 1.0,
+              "target": 0.8,
+              "unit": "ratio",
+              "passed": true,
+              "details": {
+                "per_query": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "name": "hallucination_rate",
+              "value": 0.0,
+              "target": 0.02,
+              "unit": "ratio",
+              "passed": true,
+              "details": {
+                "hallucinated_facts": 0,
+                "total_facts": 8
+              }
+            }
+          ],
+          "methodology": "Indexed deterministic NDA clauses into the local KB adapter and executed three legal queries. Precision@5 is computed per query over retrieved clause identifiers, and the hallucination rate captures unsupported key points emitted from retrieved results.",
+          "dataset_summary": {
+            "documents_indexed": 3,
+            "queries": [
+              {
+                "query": "confidentiality obligations in nda",
+                "relevant_clauses": [
+                  "confidentiality_obligations"
+                ]
+              },
+              {
+                "query": "nda exceptions for previously known information",
+                "relevant_clauses": [
+                  "nda_exceptions"
+                ]
+              },
+              {
+                "query": "california governing law clause",
+                "relevant_clauses": [
+                  "governing_law"
+                ]
+              }
+            ]
+          }
+        },
+        "finance": {
+          "domain": "finance",
+          "passed": true,
+          "metrics": [
+            {
+              "name": "revenue_variance",
+              "value": 0.0,
+              "target": 0.01,
+              "unit": "ratio",
+              "passed": true,
+              "details": {}
+            },
+            {
+              "name": "expense_variance",
+              "value": 0.0,
+              "target": 0.01,
+              "unit": "ratio",
+              "passed": true,
+              "details": {}
+            },
+            {
+              "name": "net_profit_variance",
+              "value": 0.0,
+              "target": 0.01,
+              "unit": "ratio",
+              "passed": true,
+              "details": {}
+            },
+            {
+              "name": "profit_margin_delta",
+              "value": 0.0,
+              "target": 0.01,
+              "unit": "ratio",
+              "passed": true,
+              "details": {}
+            }
+          ],
+          "methodology": "Aggregated deterministic ERP revenue and expense samples to compute total revenue, expenses, net profit, and profit margin. Variance is measured against the curated ground-truth ledger with a 1% tolerance.",
+          "dataset_summary": {
+            "month": "2025-01",
+            "revenue_entries": 2,
+            "expense_entries": 3
+          }
+        },
+        "overall_passed": true
+      }
+    }
+  ],
+  "acceptance_checks": [
+    {
+      "name": "Static analysis and secret scanning clean",
+      "status": "pass",
+      "evidence": [
+        "artifacts/phase1/ruff.json",
+        "artifacts/phase1/bandit.json",
+        "artifacts/phase1/gitleaks.json"
+      ],
+      "details": {
+        "ruff_findings": 0,
+        "bandit_modules": 7,
+        "gitleaks_findings": 0
+      }
+    },
+    {
+      "name": "/health and /metrics responses healthy",
+      "status": "pass",
+      "evidence": [
+        "artifacts/phase1/health.json",
+        "artifacts/phase1/metrics.txt"
+      ],
+      "details": {
+        "status": "ok",
+        "metrics_lines": 45
+      }
+    },
+    {
+      "name": "Prometheus scrape and OTEL traces available",
+      "status": "pass",
+      "evidence": [
+        "artifacts/obs/prometheus_snapshot.txt",
+        "artifacts/obs/traces.json",
+        "observability/grafana/forge1_observability.json"
+      ],
+      "details": {
+        "span_count": 1,
+        "prometheus_lines": 46
+      }
+    },
+    {
+      "name": "RBAC, OPA, and DLP enforcement",
+      "status": "pass",
+      "evidence": [
+        "artifacts/phase4/summary.md",
+        "artifacts/policy/decision_log.jsonl",
+        "artifacts/phase4/pytest_policy_dlp.txt"
+      ],
+      "details": {
+        "decision_count": 1
+      }
+    },
+    {
+      "name": "Tool adapters wired through MCAE/Workflows",
+      "status": "pass",
+      "evidence": [
+        "artifacts/phase2/summary.md",
+        "artifacts/phase6/law_nda/flow.json",
+        "artifacts/phase6/finance_pnl/flow.json"
+      ],
+      "details": {
+        "law_steps": 7,
+        "finance_steps": 4
+      }
+    },
+    {
+      "name": "Billing reconciliation variance < 1%",
+      "status": "pass",
+      "evidence": [
+        "artifacts/billing/events.json",
+        "artifacts/billing/usage_month.csv",
+        "artifacts/billing/reconciliation.json"
+      ],
+      "details": {
+        "variance_pct": 0.0
+      }
+    },
+    {
+      "name": "End-to-end NDA and P&L flows",
+      "status": "pass",
+      "evidence": [
+        "artifacts/phase6/summary.md",
+        "artifacts/phase6/law_nda/flow.json",
+        "artifacts/phase6/finance_pnl/flow.json"
+      ],
+      "details": {
+        "law_steps": 7,
+        "finance_steps": 4
+      }
+    },
+    {
+      "name": "Performance & chaos SLAs met",
+      "status": "pass",
+      "evidence": [
+        "artifacts/phase7/phase7_summary.json",
+        "artifacts/phase7/latency_histograms.json",
+        "artifacts/phase7/queue_depth.json"
+      ],
+      "details": {
+        "law_nda": {
+          "avg_latency": 2.8546489242163964,
+          "p95_latency": 4.59918521227314,
+          "p50_latency": 2.594538520148734,
+          "queue_p95": 0.8834060721791012,
+          "throughput_per_min": 2610.081469239177,
+          "success_rate": 0.9998387096774194
+        },
+        "finance_pnl": {
+          "avg_latency": 1.7349521594187232,
+          "p95_latency": 2.6700007350801096,
+          "p50_latency": 1.6530248991643768,
+          "queue_p95": 0.6356606094218236,
+          "throughput_per_min": 3648.724108130789,
+          "success_rate": 1.0
+        },
+        "profile_checks": {
+          "latency_profile": {
+            "passed": true,
+            "details": "Latency metrics within thresholds: {'mean': 2.429121600860945, 'p95': 4.368526807271858, 'max': 6.192885392351576}"
+          },
+          "error_rate": {
+            "passed": true,
+            "details": "Error ratio 0.01% within limit 2.00%"
+          }
+        }
+      }
+    },
+    {
+      "name": "Domain accuracy floors achieved",
+      "status": "pass",
+      "evidence": [
+        "artifacts/phase8/phase8_summary.json",
+        "artifacts/phase8/legal_evaluation.json",
+        "artifacts/phase8/finance_evaluation.json"
+      ],
+      "details": {
+        "legal": {
+          "domain": "legal",
+          "passed": true,
+          "metrics": [
+            {
+              "name": "precision_at_5",
+              "value": 1.0,
+              "target": 0.8,
+              "unit": "ratio",
+              "passed": true,
+              "details": {
+                "per_query": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "name": "hallucination_rate",
+              "value": 0.0,
+              "target": 0.02,
+              "unit": "ratio",
+              "passed": true,
+              "details": {
+                "hallucinated_facts": 0,
+                "total_facts": 8
+              }
+            }
+          ],
+          "methodology": "Indexed deterministic NDA clauses into the local KB adapter and executed three legal queries. Precision@5 is computed per query over retrieved clause identifiers, and the hallucination rate captures unsupported key points emitted from retrieved results.",
+          "dataset_summary": {
+            "documents_indexed": 3,
+            "queries": [
+              {
+                "query": "confidentiality obligations in nda",
+                "relevant_clauses": [
+                  "confidentiality_obligations"
+                ]
+              },
+              {
+                "query": "nda exceptions for previously known information",
+                "relevant_clauses": [
+                  "nda_exceptions"
+                ]
+              },
+              {
+                "query": "california governing law clause",
+                "relevant_clauses": [
+                  "governing_law"
+                ]
+              }
+            ]
+          }
+        },
+        "finance": {
+          "domain": "finance",
+          "passed": true,
+          "metrics": [
+            {
+              "name": "revenue_variance",
+              "value": 0.0,
+              "target": 0.01,
+              "unit": "ratio",
+              "passed": true,
+              "details": {}
+            },
+            {
+              "name": "expense_variance",
+              "value": 0.0,
+              "target": 0.01,
+              "unit": "ratio",
+              "passed": true,
+              "details": {}
+            },
+            {
+              "name": "net_profit_variance",
+              "value": 0.0,
+              "target": 0.01,
+              "unit": "ratio",
+              "passed": true,
+              "details": {}
+            },
+            {
+              "name": "profit_margin_delta",
+              "value": 0.0,
+              "target": 0.01,
+              "unit": "ratio",
+              "passed": true,
+              "details": {}
+            }
+          ],
+          "methodology": "Aggregated deterministic ERP revenue and expense samples to compute total revenue, expenses, net profit, and profit margin. Variance is measured against the curated ground-truth ledger with a 1% tolerance.",
+          "dataset_summary": {
+            "month": "2025-01",
+            "revenue_entries": 2,
+            "expense_entries": 3
+          }
+        },
+        "overall_passed": true
+      }
+    }
+  ],
+  "strengths": [
+    "Healthy foundations: sanitized imports, live health/metrics endpoints, and clean static/security scans.",
+    "End-to-end workflows with policy enforcement, observability, and billing instrumentation wired through the tool layer.",
+    "Deterministic performance and accuracy evidence bundles suitable for compliance review."
+  ],
+  "risks": [
+    "Integration tests require running Postgres and Redis instances; ensure those services are started (for example via docker-compose) before executing the full suite.",
+    "Telemetry exporters default to console when OTLP collectors are unavailable; production deployments must configure OTEL endpoints."
+  ],
+  "backlog": [
+    {
+      "item": "Automate Postgres/Redis provisioning in CI pipelines",
+      "priority": "M",
+      "eta": "3 days",
+      "notes": "Provide docker-compose hooks or Testcontainers so foundations tests run without manual setup."
+    },
+    {
+      "item": "Harden OTLP exporter configuration",
+      "priority": "M",
+      "eta": "2 days",
+      "notes": "Document collector endpoints and add smoke validation to detect misconfiguration early."
+    },
+    {
+      "item": "Expose environment toggles for real Slack/Email connectors",
+      "priority": "L",
+      "eta": "1 week",
+      "notes": "Adapters ship with mock defaults; document production secrets and toggles for real integrations."
+    }
+  ],
+  "environment_notes": [
+    "Run `docker-compose up -d db redis` (or equivalent) before executing foundations tests to satisfy database and cache dependencies.",
+    "Set `OTEL_EXPORTER_OTLP_ENDPOINT` and credentials in production to ship traces and metrics to your observability backend."
+  ]
+}

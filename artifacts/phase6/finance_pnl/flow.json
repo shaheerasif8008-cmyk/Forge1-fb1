@@ -1,0 +1,56 @@
+{
+  "flow_name": "finance_pnl",
+  "tenant_id": "tenant_finance",
+  "employee_id": "analyst_lee",
+  "case_id": "pnl-case-2025-01",
+  "request_id": "email-ba6ce94465d0",
+  "summary": "Finance P&L workflow ingested ERP data, produced an analysis with net profit $120,000.00, and distributed the report via email.",
+  "steps": [
+    {
+      "name": "erp_ingest",
+      "status": "success",
+      "started_at": "2025-10-11T18:08:45.183880+00:00",
+      "finished_at": "2025-10-11T18:08:45.183900+00:00",
+      "duration_ms": 0.01743099983286811,
+      "output": {
+        "month": "2025-01",
+        "revenue_entries": 2,
+        "expense_entries": 3
+      }
+    },
+    {
+      "name": "analysis",
+      "status": "success",
+      "started_at": "2025-10-11T18:08:45.183917+00:00",
+      "finished_at": "2025-10-11T18:08:45.183949+00:00",
+      "duration_ms": 0.03145200025755912,
+      "output": {
+        "total_revenue": 255000.0,
+        "total_expenses": 135000.0,
+        "net_profit": 120000.0,
+        "profit_margin": 0.4706
+      }
+    },
+    {
+      "name": "report_builder",
+      "status": "success",
+      "started_at": "2025-10-11T18:08:45.183967+00:00",
+      "finished_at": "2025-10-11T18:08:45.184137+00:00",
+      "duration_ms": 0.1715990001684986,
+      "output": {
+        "preview": "<h1>Monthly P&amp;L Summary - 2025-01</h1> <p>Total Revenue: $255,000.00</p> <p>Total Expenses: $135,000.00</p> <p>Net Profit: $120,000.00</p> <p>Profit Margin: 47.06%</p>"
+      }
+    },
+    {
+      "name": "email_send",
+      "status": "success",
+      "started_at": "2025-10-11T18:08:45.184235+00:00",
+      "finished_at": "2025-10-11T18:08:45.187528+00:00",
+      "duration_ms": 3.2934450000539073,
+      "output": {
+        "message_id": "email-ba6ce94465d0",
+        "recorded_messages": 1
+      }
+    }
+  ]
+}

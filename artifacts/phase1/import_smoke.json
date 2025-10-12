@@ -1,0 +1,11 @@
+{
+  "modules": [
+    "forge1.main",
+    "forge1.auth.jwt",
+    "forge1.core.security",
+    "forge1.core.tenancy",
+    "forge1.core.database_config",
+    "forge1.middleware.tenant_context"
+  ],
+  "status": "imported"
+}

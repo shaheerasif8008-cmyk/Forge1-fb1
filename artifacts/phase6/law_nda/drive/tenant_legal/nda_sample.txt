@@ -1,0 +1,3 @@
+This Non-Disclosure Agreement (NDA) is made between Contoso Legal and Tailwind Ventures.
+The recipient agrees to keep all proprietary information confidential for a period of three years.
+Exceptions apply to information previously known or obtained independently.

@@ -22,6 +22,8 @@ WORKDIR /app
 
 # Copy requirements first for better caching
 COPY pyproject.toml README.md ./
+COPY alembic.ini ./
+COPY alembic ./alembic/
 COPY forge1/ ./forge1/
 
 # Install Python dependencies with pinned versions
@@ -54,6 +56,8 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 
 # Copy application code
 COPY --chown=forge1:forge1 forge1/ ./forge1/
+COPY --chown=forge1:forge1 alembic.ini ./
+COPY --chown=forge1:forge1 alembic ./alembic/
 COPY --chown=forge1:forge1 pyproject.toml README.md ./
 
 # Create necessary directories

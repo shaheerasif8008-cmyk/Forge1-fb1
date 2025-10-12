@@ -9,9 +9,9 @@ interface expectations and tracking usage metrics for billing.
 import asyncio
 import logging
 import time
-from typing import Dict, List, Optional, Any, AsyncGenerator, Generator
+import uuid
 from dataclasses import dataclass
-import json
+from typing import Any, Dict, List, Optional
 
 # LlamaIndex imports
 from llama_index.core.llms.llm import LLM
@@ -31,9 +31,9 @@ from llama_index.core.embeddings import BaseEmbedding
 from llama_index.core.bridge.pydantic import Field
 
 # Forge1 imports
-from forge1.core.model_router import ModelRouter
-from forge1.core.tenancy import get_current_tenant
+from forge1.billing import usage_meter
 from forge1.core.audit_logger import AuditLogger
+from forge1.core.model_router import ModelRouter
 
 logger = logging.getLogger(__name__)
 
@@ -142,9 +142,21 @@ class Forge1LLMShim(LLM):
             employee_id=self.employee_id,
             request_id=request_id
         )
-        
+
         self.usage_history.append(metrics)
-        
+
+        usage_meter.record_model_call(
+            tenant_id=self.tenant_id,
+            employee_id=self.employee_id,
+            model=model_name,
+            tokens_input=tokens_input,
+            tokens_output=tokens_output,
+            latency_ms=latency_ms,
+            cost_estimate=cost_estimate,
+            request_id=request_id or f"model-{uuid.uuid4().hex[:10]}",
+            metadata={"source": "llamaindex_shim"},
+        )
+
         # Log usage event for billing system
         asyncio.create_task(self._log_usage_event(metrics))
     

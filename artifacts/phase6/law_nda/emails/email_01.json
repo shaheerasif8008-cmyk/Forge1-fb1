@@ -1,0 +1,8 @@
+{
+  "from": "no-reply@forge1.local",
+  "to": [
+    "legal-team@example.com"
+  ],
+  "subject": "NDA Review Packet",
+  "body_preview": "Content-Type: text/html; charset=\"utf-8\"\nContent-Transfer-Encoding: quoted-printable\nMIME-Version: 1.0\n\n<p>NDA review completed with OCR-enabled parsing, capturing None nodes. Key f=\nindings reference entries: 40434f6c5421442eaba28146f31ad57a. Preview: This No=\nn-Disclosure Agreement (NDA) is made between Contoso Legal and Tailwind Ventu=\nres. The recipient agrees to keep all proprietary informati"
+}

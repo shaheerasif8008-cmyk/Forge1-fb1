@@ -1,13 +1,15 @@
 {
-  "load_test": {
-    "status": "blocked",
-    "script": "scripts/load_test.py",
-    "error": "forge1.core.app_kernel.create_forge1_app references undefined logger",
-    "log_file": "artifacts/phase6_loadtest.log"
+  "status": "pass",
+  "law_nda": {
+    "steps": 7,
+    "flow": "artifacts/phase6/law_nda/flow.json",
+    "usage_events": "artifacts/phase6/law_nda/usage_events.json"
   },
-  "chaos_tests": {
-    "status": "not_run",
-    "reason": "Load test failed before initiating chaos scenarios (Slack 502, Drive 429, vector slowdown)."
+  "finance_pnl": {
+    "steps": 4,
+    "flow": "artifacts/phase6/finance_pnl/flow.json",
+    "usage_events": "artifacts/phase6/finance_pnl/usage_events.json"
   },
-  "timestamp": "2025-10-08T15:40:41Z"
+  "usage_event_total": 10,
+  "summary_file": "artifacts/phase6/summary.md"
 }

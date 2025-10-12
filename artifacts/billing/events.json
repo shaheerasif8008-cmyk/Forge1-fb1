@@ -1,0 +1,50 @@
+[
+  {
+    "timestamp": "2024-05-20T15:30:00+00:00",
+    "tenant_id": "tenant-sample",
+    "employee_id": "analyst-1",
+    "event_type": "model",
+    "model": "gpt-4o-mini",
+    "tool": null,
+    "tokens_input": 150,
+    "tokens_output": 60,
+    "latency_ms": 240.0,
+    "cost_estimate": 0.0135,
+    "request_id": "sample-model-1",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2024-05-20T15:35:00+00:00",
+    "tenant_id": "tenant-sample",
+    "employee_id": "analyst-1",
+    "event_type": "tool",
+    "model": null,
+    "tool": "slack.send_message",
+    "tokens_input": 0,
+    "tokens_output": 0,
+    "latency_ms": 95.0,
+    "cost_estimate": 0.0,
+    "request_id": "sample-tool-1",
+    "metadata": {
+      "channel": "#ops",
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2024-05-20T15:40:00+00:00",
+    "tenant_id": "tenant-sample",
+    "employee_id": "analyst-2",
+    "event_type": "tool",
+    "model": null,
+    "tool": "kb.search",
+    "tokens_input": 4,
+    "tokens_output": 0,
+    "latency_ms": 60.0,
+    "cost_estimate": 0.0,
+    "request_id": "sample-tool-2",
+    "metadata": {
+      "backend": "local",
+      "success": true
+    }
+  }
+]

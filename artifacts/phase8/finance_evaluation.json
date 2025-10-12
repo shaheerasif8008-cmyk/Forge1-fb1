@@ -1,0 +1,44 @@
+{
+  "domain": "finance",
+  "passed": true,
+  "metrics": [
+    {
+      "name": "revenue_variance",
+      "value": 0.0,
+      "target": 0.01,
+      "unit": "ratio",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "expense_variance",
+      "value": 0.0,
+      "target": 0.01,
+      "unit": "ratio",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "net_profit_variance",
+      "value": 0.0,
+      "target": 0.01,
+      "unit": "ratio",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "profit_margin_delta",
+      "value": 0.0,
+      "target": 0.01,
+      "unit": "ratio",
+      "passed": true,
+      "details": {}
+    }
+  ],
+  "methodology": "Aggregated deterministic ERP revenue and expense samples to compute total revenue, expenses, net profit, and profit margin. Variance is measured against the curated ground-truth ledger with a 1% tolerance.",
+  "dataset_summary": {
+    "month": "2025-01",
+    "revenue_entries": 2,
+    "expense_entries": 3
+  }
+}

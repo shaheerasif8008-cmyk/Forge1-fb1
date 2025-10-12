@@ -1,0 +1,147 @@
+{
+  "id": null,
+  "uid": "forge1-overview",
+  "title": "Forge1 Observability Overview",
+  "timezone": "browser",
+  "schemaVersion": 38,
+  "version": 1,
+  "refresh": "30s",
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "-- Grafana --",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": false,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "API Latency (p50/p95)",
+      "description": "Latency percentiles across FastAPI endpoints",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.5, sum(rate(http_server_duration_seconds_bucket{service=\"forge1-backend\"}[5m])) by (le))",
+          "legendFormat": "p50"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(http_server_duration_seconds_bucket{service=\"forge1-backend\"}[5m])) by (le))",
+          "legendFormat": "p95"
+        }
+      ],
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Workflow Queue Depth",
+      "description": "Celery queue depth derived from forge1_queue_depth metric",
+      "targets": [
+        {
+          "expr": "sum(forge1_queue_depth)",
+          "legendFormat": "queue"
+        }
+      ],
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Error Rate",
+      "description": "HTTP 5xx counts and business error totals",
+      "targets": [
+        {
+          "expr": "sum(rate(http_server_requests_seconds_count{status=~\"5..\",service=\"forge1-backend\"}[5m]))",
+          "legendFormat": "HTTP 5xx"
+        },
+        {
+          "expr": "sum(rate(forge1_errors_total[5m]))",
+          "legendFormat": "Business Errors"
+        }
+      ],
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Tool & Model Utilization",
+      "description": "Model token usage and cost across tenants",
+      "targets": [
+        {
+          "expr": "sum(rate(forge1_model_requests_total[5m]))",
+          "legendFormat": "Requests"
+        },
+        {
+          "expr": "sum(rate(forge1_model_cost_dollars_sum[5m]))",
+          "legendFormat": "Cost ($/min)"
+        }
+      ],
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Tenant Health",
+      "description": "Overall health gauges per tenant",
+      "targets": [
+        {
+          "expr": "forge1_health_status",
+          "legendFormat": "Health"
+        },
+        {
+          "expr": "forge1_postgres_health",
+          "legendFormat": "Postgres"
+        },
+        {
+          "expr": "forge1_redis_health",
+          "legendFormat": "Redis"
+        }
+      ],
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      }
+    }
+  ],
+  "templating": {
+    "list": [
+      {
+        "name": "tenant",
+        "type": "query",
+        "datasource": "Prometheus",
+        "query": "label_values(forge1_tasks_total, tenant_id)",
+        "refresh": 1
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  }
+}

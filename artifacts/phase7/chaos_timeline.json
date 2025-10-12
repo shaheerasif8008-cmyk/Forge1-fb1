@@ -1,0 +1,34 @@
+[
+  {
+    "name": "slack_502_burst",
+    "start_index": 1800,
+    "end_index": 2400,
+    "impacted_requests": 600,
+    "failures": 1,
+    "description": "Simulated Slack API 502 burst handled via retries and DLQ fallback."
+  },
+  {
+    "name": "drive_429_spike",
+    "start_index": 4200,
+    "end_index": 4700,
+    "impacted_requests": 500,
+    "failures": 0,
+    "description": "Drive connector rate limiting requiring backoff and jitter."
+  },
+  {
+    "name": "vector_latency_injection",
+    "start_index": 5500,
+    "end_index": 6300,
+    "impacted_requests": 800,
+    "failures": 0,
+    "description": "Vector store latency injection validating circuit breakers."
+  },
+  {
+    "name": "model_failover",
+    "start_index": 7800,
+    "end_index": 8200,
+    "impacted_requests": 400,
+    "failures": 0,
+    "description": "Primary model provider failure forcing failover sequence."
+  }
+]
